@@ -1,0 +1,45 @@
+---
+const projects = [
+  {
+    title: 'Menuisier · Strasbourg',
+    tags: 'Site vitrine WordPress · Client autonome · SEO local',
+    image: '/images/project-menuisier.webp'
+  },
+  {
+    title: 'Électricien · Colmar',
+    tags: 'Landing page statique · Génération de leads',
+    image: '/images/project-electricien.webp'
+  },
+  {
+    title: 'Paysagiste · Mulhouse',
+    tags: 'Site vitrine WordPress · Galerie avant/après',
+    image: '/images/project-paysagiste.webp'
+  }
+];
+---
+
+<section id="realisations" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium" style="color: var(--accent-primary);" data-animate="fade-up">Réalisations</p>
+    <h2 class="text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">Des sites qui font la différence</h2>
+    <p class="mb-12" style="color: var(--text-muted);" data-animate="fade-up">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, i) => (
+        <div
+          class="group rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-[var(--accent-primary)] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]"
+          style="background: var(--bg-card); border-color: var(--border-card);"
+          data-animate="fade-up"
+          data-animate-delay={i * 100}
+        >
+          <div class="overflow-hidden aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a]">
+            <img src={project.image} alt={project.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold mb-1">{project.title}</h3>
+            <p class="text-sm" style="color: var(--text-muted);">{project.tags}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

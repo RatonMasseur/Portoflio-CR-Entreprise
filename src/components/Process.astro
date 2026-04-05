@@ -1,0 +1,39 @@
+---
+const steps = [
+  { number: '1', title: 'Échange', description: 'On discute de votre activité, vos clients cibles, ce que vous voulez mettre en avant.' },
+  { number: '2', title: 'Maquette', description: "Je vous présente une maquette complète. On ajuste ensemble jusqu'à ce que ce soit parfait." },
+  { number: '3', title: 'Développement', description: "Je code le site, j'optimise le SEO, je configure l'hébergement. Vous ne touchez à rien." },
+  { number: '4', title: 'Mise en ligne', description: 'Votre site est en ligne. Je vous forme en 30 min à gérer votre contenu vous-même.' }
+];
+---
+
+<section id="processus" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium text-center" style="color: var(--accent-primary);" data-animate="fade-up">Processus</p>
+    <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center" data-animate="fade-up">Comment ça se passe ?</h2>
+
+    <!-- Desktop: horizontal -->
+    <div class="hidden md:grid grid-cols-4 gap-8 relative">
+      <div class="absolute top-[18px] left-[calc(12.5%+18px)] right-[calc(12.5%+18px)] h-px" style="background: var(--border-card);" id="process-line"></div>
+      {steps.map((step, i) => (
+        <div class="text-center relative" data-animate="fade-up" data-animate-delay={i * 150}>
+          <div class="w-10 h-10 rounded-full border flex items-center justify-center mx-auto mb-4 text-sm font-bold relative z-10" style="background: rgba(59, 130, 246, 0.15); border-color: var(--accent-primary); color: var(--accent-light); backdrop-filter: blur(4px);">{step.number}</div>
+          <h3 class="text-base font-bold mb-2">{step.title}</h3>
+          <p class="text-sm" style="color: var(--text-muted);">{step.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile: vertical -->
+    <div class="md:hidden flex flex-col gap-8 relative pl-12">
+      <div class="absolute left-[19px] top-[20px] bottom-[20px] w-px" style="background: var(--border-card);"></div>
+      {steps.map((step, i) => (
+        <div class="relative" data-animate="fade-up" data-animate-delay={i * 100}>
+          <div class="absolute -left-12 w-10 h-10 rounded-full border flex items-center justify-center text-sm font-bold" style="background: rgba(59, 130, 246, 0.15); border-color: var(--accent-primary); color: var(--accent-light);">{step.number}</div>
+          <h3 class="text-base font-bold mb-1">{step.title}</h3>
+          <p class="text-sm" style="color: var(--text-muted);">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

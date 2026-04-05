@@ -1,0 +1,46 @@
+---
+const services = [
+  {
+    icon: '🌐',
+    title: 'Création de site web',
+    description: 'Site vitrine moderne, rapide et optimisé pour convertir vos visiteurs en clients.'
+  },
+  {
+    icon: '📱',
+    title: 'Design responsive',
+    description: "Votre site s'adapte parfaitement sur mobile, tablette et desktop."
+  },
+  {
+    icon: '🔍',
+    title: 'SEO local',
+    description: 'Apparaissez en premier quand vos clients vous cherchent sur Google.'
+  },
+  {
+    icon: '⚡',
+    title: 'Performance & maintenance',
+    description: "Site rapide, sécurisé et maintenu à jour. Vous n'avez rien à gérer."
+  }
+];
+---
+
+<section id="services" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium" style="color: var(--accent-primary);" data-animate="fade-up">Services</p>
+    <h2 class="text-3xl md:text-4xl font-bold mb-12" data-animate="fade-up">Ce que je peux faire pour vous</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {services.map((service, i) => (
+        <div
+          class="group p-6 rounded-2xl border transition-all duration-300 hover:border-[var(--accent-primary)] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]"
+          style="background: var(--bg-card); border-color: var(--border-card);"
+          data-animate="fade-up"
+          data-animate-delay={i * 100}
+          data-tilt
+        >
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4" style="background: rgba(59, 130, 246, 0.1);">{service.icon}</div>
+          <h3 class="text-lg font-bold mb-2">{service.title}</h3>
+          <p style="color: var(--text-muted);">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

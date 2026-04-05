@@ -1,0 +1,28 @@
+---
+const traits = ['Réactif', 'Transparent', 'Passionné'];
+---
+
+<section id="a-propos" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+      <div class="md:col-span-2" data-animate="fade-right">
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden border" style="border-color: var(--border-card);">
+          <img src="/images/robin.webp" alt="Robin Carivenc" class="w-full h-full object-cover" onerror="this.parentElement.style.background='linear-gradient(135deg, #1e293b, #0f172a)'" />
+        </div>
+      </div>
+      <div class="md:col-span-3" data-animate="fade-left">
+        <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium" style="color: var(--accent-primary);">À propos</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Robin, développeur web freelance</h2>
+        <div class="space-y-4 text-base leading-relaxed" style="color: var(--text-secondary);">
+          <p>Je m'appelle Robin, développeur web basé en Alsace. Je travaille en direct avec chaque client — pas d'intermédiaire, pas de chef de projet, pas de délai gonflé.</p>
+          <p>Ce que vous obtenez concrètement : un interlocuteur unique du brief à la mise en ligne, une réponse sous 24h, et un site conçu spécifiquement pour votre métier et votre ville — pas un template générique.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 mt-8">
+          {traits.map(trait => (
+            <span class="px-4 py-2 rounded-lg text-sm font-medium" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-light);">{trait}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
