@@ -1,0 +1,11 @@
+<div id="cursor-dot" class="fixed top-0 left-0 w-2.5 h-2.5 rounded-full pointer-events-none z-[9999] mix-blend-difference" style="background: white;"></div>
+<div id="cursor-ring" class="fixed top-0 left-0 w-9 h-9 rounded-full pointer-events-none z-[9999] border border-white/50 mix-blend-difference"></div>
+
+<style>
+  @media (hover: none), (pointer: coarse) {
+    #cursor-dot, #cursor-ring { display: none !important; }
+  }
+  @media (hover: hover) {
+    * { cursor: none !important; }
+  }
+</style>
