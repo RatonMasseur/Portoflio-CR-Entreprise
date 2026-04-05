@@ -13,9 +13,9 @@ window.addEventListener('scroll', () => {
   if (isMenuOpen) return;
   const currentY = window.scrollY;
   if (currentY > lastScrollY && currentY > 100) {
-    navbar.style.transform = 'translate(-50%, -100%)';
+    navbar.style.top = '-80px';
   } else {
-    navbar.style.transform = 'translate(-50%, 0)';
+    navbar.style.top = '24px';
   }
   lastScrollY = currentY;
 });

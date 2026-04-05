@@ -1,20 +1,35 @@
 ---
+const categories = ['Tous', 'Paysagiste', 'Charpentier', 'Fleuriste', 'Électricien'];
+
 const projects = [
   {
-    title: 'Menuisier · Strasbourg',
-    tags: 'Site vitrine WordPress · Client autonome · SEO local',
-    image: '/images/project-menuisier.webp'
+    title: 'Paysagiste · Mulhouse',
+    category: 'Paysagiste',
+    type: 'Site vitrine WordPress',
+    tags: ['SEO local', 'Galerie avant/après'],
+    image: '/images/project-paysagiste.webp',
   },
   {
     title: 'Électricien · Colmar',
-    tags: 'Landing page statique · Génération de leads',
-    image: '/images/project-electricien.webp'
+    category: 'Électricien',
+    type: 'Landing page statique',
+    tags: ['Génération de leads', 'Formulaire devis'],
+    image: '/images/project-electricien.webp',
   },
   {
-    title: 'Paysagiste · Mulhouse',
-    tags: 'Site vitrine WordPress · Galerie avant/après',
-    image: '/images/project-paysagiste.webp'
-  }
+    title: 'Fleuriste · Strasbourg',
+    category: 'Fleuriste',
+    type: 'Site vitrine WordPress',
+    tags: ['Boutique en ligne', 'SEO local'],
+    image: '/images/project-fleuriste.webp',
+  },
+  {
+    title: 'Charpentier · Colmar',
+    category: 'Charpentier',
+    type: 'Site vitrine statique',
+    tags: ['Galerie projets', 'Formulaire contact'],
+    image: '/images/project-charpentier.webp',
+  },
 ];
 ---
 
@@ -22,24 +37,99 @@ const projects = [
   <div class="max-w-5xl mx-auto">
     <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium" style="color: var(--accent-primary);" data-animate="fade-up">Réalisations</p>
     <h2 class="text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">Des sites qui font la différence</h2>
-    <p class="mb-12" style="color: var(--text-muted);" data-animate="fade-up">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <p class="mb-10" style="color: var(--text-muted);" data-animate="fade-up">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
+
+    <!-- Filtres -->
+    <div class="flex flex-wrap gap-3 mb-10" data-animate="fade-up" id="portfolio-filters">
+      {categories.map(cat => (
+        <button
+          class="portfolio-filter px-5 py-2 rounded-full text-sm font-medium border transition-all duration-200"
+          data-category={cat}
+          style={cat === 'Tous'
+            ? 'background: var(--accent-primary); border-color: var(--accent-primary); color: white;'
+            : 'background: transparent; border-color: var(--border-card); color: var(--text-muted);'}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="portfolio-grid">
       {projects.map((project, i) => (
         <div
-          class="group rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-[var(--accent-primary)] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]"
+          class="portfolio-card group rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent-primary)] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]"
           style="background: var(--bg-card); border-color: var(--border-card);"
+          data-category={project.category}
           data-animate="fade-up"
-          data-animate-delay={i * 100}
+          data-animate-delay={i * 80}
         >
-          <div class="overflow-hidden aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a]">
-            <img src={project.image} alt={project.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'" />
+          <!-- Image -->
+          <div class="overflow-hidden aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a] relative">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            />
+            <!-- Category badge -->
+            <span
+              class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium"
+              style="background: rgba(59,130,246,0.2); color: var(--accent-light); border: 1px solid rgba(59,130,246,0.3); backdrop-filter: blur(8px);"
+            >
+              {project.category}
+            </span>
           </div>
+
+          <!-- Content -->
           <div class="p-5">
-            <h3 class="text-base font-bold mb-1">{project.title}</h3>
-            <p class="text-sm" style="color: var(--text-muted);">{project.tags}</p>
+            <p class="text-xs mb-1" style="color: var(--accent-light);">{project.type}</p>
+            <h3 class="text-base font-bold mb-3">{project.title}</h3>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg"
+                  style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.06);"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('.portfolio-filter');
+  const cards = document.querySelectorAll<HTMLElement>('.portfolio-card');
+
+  filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      const selected = filter.dataset.category!;
+
+      // Update button styles
+      filters.forEach(btn => {
+        const isActive = btn.dataset.category === selected;
+        btn.style.background = isActive ? 'var(--accent-primary)' : 'transparent';
+        btn.style.borderColor = isActive ? 'var(--accent-primary)' : 'var(--border-card)';
+        btn.style.color = isActive ? 'white' : 'var(--text-muted)';
+      });
+
+      // Filter cards
+      cards.forEach(card => {
+        const match = selected === 'Tous' || card.dataset.category === selected;
+        if (match) {
+          card.style.display = '';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+        }
+      });
+    });
+  });
+</script>
