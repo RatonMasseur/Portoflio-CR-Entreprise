@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --border-card: rgba(59, 130, 246, 0.12);
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-primary: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-deep: #2563eb;
+  --gradient-cta: linear-gradient(135deg, #3b82f6, #2563eb);
+  --glow: rgba(59, 130, 246, 0.25);
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--text-primary);
+}
+
+::selection {
+  background: var(--accent-primary);
+  color: white;
+}
