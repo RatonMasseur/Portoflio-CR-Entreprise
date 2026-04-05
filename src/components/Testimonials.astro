@@ -1,0 +1,44 @@
+---
+const testimonials = [
+  { quote: "Robin a parfaitement compris ce que je voulais. Mon site était en ligne en une semaine, exactement comme promis.", name: "Marie", role: "Fleuriste" },
+  { quote: "Très professionnel et réactif. Je recommande à tous les artisans qui veulent un vrai site.", name: "Thomas", role: "Menuisier" },
+  { quote: "Depuis que j'ai mon site, je reçois des appels de nouveaux clients chaque semaine. Ça change tout.", name: "Sophie", role: "Coiffeuse" },
+  { quote: "Je n'y connaissais rien en informatique. Robin m'a tout expliqué simplement. Le résultat est top.", name: "Philippe", role: "Électricien" }
+];
+---
+
+<section class="py-24 px-6 overflow-hidden">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium text-center" style="color: var(--accent-primary);" data-animate="fade-up">Témoignages</p>
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" data-animate="fade-up">Ce que disent mes clients</h2>
+    <div class="relative" data-animate="fade-up">
+      <div class="overflow-hidden" id="testimonial-viewport">
+        <div class="flex transition-transform duration-500 ease-out" id="testimonial-track">
+          {testimonials.map(t => (
+            <div class="w-full shrink-0 px-4 md:w-1/2 lg:w-1/2">
+              <div class="p-6 rounded-2xl border h-full" style="background: var(--bg-card); border-color: var(--border-card);">
+                <p class="text-base italic mb-4 leading-relaxed" style="color: var(--text-secondary);">"{t.quote}"</p>
+                <p class="text-sm font-medium">
+                  <span class="text-white">{t.name}</span>
+                  <span style="color: var(--accent-light);"> · {t.role}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="flex justify-center gap-2 mt-8" id="testimonial-dots">
+        {testimonials.map((_, i) => (
+          <button
+            class="w-2 h-2 rounded-full transition-all duration-300"
+            style={i === 0 ? 'background: var(--accent-primary); width: 24px;' : 'background: var(--text-muted);'}
+            data-dot={i}
+            aria-label={`Témoignage ${i + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/testimonials.ts"></script>
