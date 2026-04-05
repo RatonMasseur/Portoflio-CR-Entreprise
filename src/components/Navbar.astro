@@ -1,0 +1,32 @@
+<nav
+  id="navbar"
+  class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl px-6 py-3 rounded-full border border-[rgba(59,130,246,0.15)] bg-[rgba(10,10,26,0.8)] backdrop-blur-xl transition-transform duration-300"
+>
+  <div class="flex items-center justify-between">
+    <a href="#" class="text-white font-bold text-lg font-['Space_Grotesk']">CR</a>
+    <div class="hidden md:flex items-center gap-6 text-sm text-[var(--text-muted)]">
+      <a href="#services" class="hover:text-white transition-colors">Services</a>
+      <a href="#realisations" class="hover:text-white transition-colors">Réalisations</a>
+      <a href="#a-propos" class="hover:text-white transition-colors">À propos</a>
+      <a href="#processus" class="hover:text-white transition-colors">Processus</a>
+      <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+    </div>
+    <a href="#contact" class="hidden md:block px-5 py-2 rounded-full text-sm text-white font-medium" style="background: var(--gradient-cta);">Contact</a>
+    <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Ouvrir le menu">
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="bar3"></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-[rgba(10,10,26,0.95)] backdrop-blur-xl flex flex-col items-center justify-center gap-8 text-2xl opacity-0 pointer-events-none transition-opacity duration-300">
+  <a href="#services" class="text-white hover:text-[var(--accent-light)] transition-colors mobile-link">Services</a>
+  <a href="#realisations" class="text-white hover:text-[var(--accent-light)] transition-colors mobile-link">Réalisations</a>
+  <a href="#a-propos" class="text-white hover:text-[var(--accent-light)] transition-colors mobile-link">À propos</a>
+  <a href="#processus" class="text-white hover:text-[var(--accent-light)] transition-colors mobile-link">Processus</a>
+  <a href="#faq" class="text-white hover:text-[var(--accent-light)] transition-colors mobile-link">FAQ</a>
+  <a href="#contact" class="px-8 py-3 rounded-full text-lg text-white font-medium mobile-link" style="background: var(--gradient-cta);">Contact</a>
+</div>
+
+<script src="../scripts/navbar.ts"></script>

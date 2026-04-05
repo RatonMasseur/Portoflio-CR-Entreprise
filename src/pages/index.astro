@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
 ---
 
 <Layout
   title="Robin Carivenc — Développeur Web Freelance en Alsace"
   description="Sites web sur-mesure pour artisans et entreprises locales. Design moderne, SEO local, livraison rapide. Basé en Alsace."
 >
+  <Navbar />
   <main>
-    <p class="text-white text-center py-20">Portfolio V2 — En construction</p>
+    <Hero />
+    <Marquee />
   </main>
 </Layout>

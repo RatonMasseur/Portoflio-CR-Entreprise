@@ -1,0 +1,30 @@
+---
+const items = [
+  'Astro', 'React', 'Tailwind CSS', 'GSAP', 'WordPress',
+  'SEO Local', 'Figma', 'TypeScript', 'Performance', 'Responsive Design'
+];
+const allItems = [...items, ...items];
+---
+
+<div class="border-y border-[rgba(255,255,255,0.05)] py-4 overflow-hidden">
+  <div class="marquee-track flex gap-8 whitespace-nowrap hover:[animation-play-state:paused]">
+    {allItems.map(item => (
+      <span class="text-sm tracking-[0.15em] uppercase text-[var(--text-muted)] flex items-center gap-8 shrink-0">
+        {item}
+        <span class="text-[var(--accent-primary)] text-xs">✦</span>
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
