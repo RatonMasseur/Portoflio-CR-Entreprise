@@ -1,102 +1,27 @@
 # CLAUDE.md — Portfolio Robin Ration
 
-## 1. Contexte Projet
+## 1. Contexte
 
-**Qui** : Robin Ration, développeur web freelance, marché français.
-
-**Clients cibles** : Artisans et PME locales — paysagistes, électriciens, fleuristes, charpentiers, plombiers, BTP en général. Ces clients ont une activité qui tourne mais aucune présence web crédible. Ils ne veulent pas gérer un site eux-mêmes.
-
-**Problème résolu** : Donner à un artisan local un site professionnel qui inspire confiance à ses clients, sans la lourdeur d'une agence et sans le côté générique d'un template Wix.
-
-**Positionnement** : "Pas une agence. Pas un template." — fait main, livré en 7 jours, relation 1:1. Robin est le seul interlocuteur du début à la fin.
-
-**Vision esthétique** : "Artisanat Digital" — la précision technique d'un outil comme Mixpanel (propre, structuré, typographie forte) combinée à la chaleur humaine de Healthy Together. Direction décidée : **noir/blanc pur** avec hero sombre. Fond principal blanc `#ffffff`, hero `#0a0806` + orbs ambre, accent ambre conservé. Éviter le côté "template SaaS froid" ou "agence générique".
-
-**Stack** : Astro (SSG) + Tailwind CSS + GSAP + ScrollTrigger + Lenis (smooth scroll) + @lottiefiles/dotlottie-web
+Freelance web, marché FR, clients artisans/PME locales. Positionnement : "Pas une agence. Pas un template." — fait main, livré 7 jours, relation 1:1.
+Vision : "Artisanat Digital" — noir/blanc pur, hero sombre `#0a0806` + orbs ambre, accent ambre. Pas SaaS froid, pas template générique.
+Stack : Astro (SSG) + Tailwind CSS + GSAP + ScrollTrigger + Lenis + @lottiefiles/dotlottie-web
 
 ---
 
-## 2. Design Tokens
+## 2. Règles Design Tokens
 
-Ces valeurs sont figées. Ne jamais les hardcoder — toujours utiliser les variables CSS.
+Les valeurs sont dans `src/styles/global.css`. Règles d'utilisation :
 
-### Couleurs (définies dans `src/styles/global.css`)
-
-```css
-/* Fonds */
---bg-primary: #ffffff        /* Blanc — fond principal (sections claires) */
---bg-card: rgba(255,255,255,0.75)
---bg-card-hover: rgba(255,255,255,0.95)
-
-/* Textes */
---text-primary: #0f0d0a
---text-secondary: #4a4035
---text-muted: #9a8f82
-
-/* Accent ambre */
---accent-primary: #b87418
---accent-light: #e8a44a
---accent-deep: #8a5510
-
-/* Bordures */
---border-card: rgba(0,0,0,0.08)
---border-hover: rgba(184,116,24,0.45)
-
-/* Glass */
---glass-bg: rgba(255,255,255,0.65)
---glass-border: rgba(255,255,255,0.9)
-
-/* Effets */
---glow: rgba(232,164,74,0.18)
---gradient-cta: linear-gradient(135deg, #e8a44a 0%, #b87418 100%)
-```
-
-### Typographie
-
-**Familles :**
-- Titres (H1/H2/H3) : `font-['Bricolage_Grotesque']` — variable 200–800, remplace Syne
-- Labels + citations : `font-['Fraunces'] italic font-light` (humain, élégant)
-- Corps de texte : DM Sans Regular (défaut `body`)
-- Notes manuscrites : `font-['Caveat']` — uniquement dans Tools.astro
-
-**Hiérarchie des poids :**
-- H1 : `font-weight: 800` (display hero)
-- H2 : `font-weight: 700` (titres de section)
-- H3 : `font-weight: 600` (sous-titres, card titles)
-
-**Échelle (variables CSS dans `:root`) :**
-```css
---type-display: clamp(3rem, 7vw, 6rem)     /* hero h1 */
---type-h2:      clamp(2.25rem, 5.5vw, 4rem) /* titres de section */
---type-h3:      clamp(1.25rem, 2.5vw, 1.75rem) /* sous-titres */
---type-body:    1rem                        /* corps de texte */
-```
-
-Ne jamais mélanger `clamp()` inline et classes `text-*` Tailwind pour les titres. Utiliser les variables CSS pour les titres, les classes Tailwind uniquement pour les textes de corps.
-
-### Rythme Vertical (règle absolue)
-
-```
-py-32 (desktop) / py-20 (mobile) — TOUTES les sections sans exception.
-```
-
-Exception documentée et autorisée : Marquee → `py-6`.
-
-Ne pas introduire `py-24`, `py-28`, `py-40`, `py-5`, `py-8` sur les wrappers de section.
-
-### Ombres & Effets
-
-```css
-shadow-luxury : 0 20px 80px -15px rgba(0,0,0,0.1)  /* décoller les cards */
-backdrop-blur-xl + border rgba(255,255,255,0.1)      /* glassmorphism */
-blur-[120px]                                          /* glows ambiants */
-```
+- **Jamais de couleur hardcodée** — toujours `var(--token)`, jamais `#fff`, `#000` ou hex direct dans un composant
+- **Rythme vertical absolu** : `py-32` desktop / `py-20` mobile sur toutes les sections. Exception unique : Marquee → `py-6`. Ne pas introduire d'autres valeurs.
+- **Titres** : toujours `var(--type-display)` / `var(--type-h2)` / `var(--type-h3)`. Jamais `text-4xl` ni `clamp()` inline.
+- **Ne pas mélanger** `clamp()` inline et classes `text-*` Tailwind pour les titres.
+- **`style=""` inline** : interdit pour couleurs et espacements. Exception : valeurs dynamiques JS (position de glow calculée).
+- **`text-white` sur fond clair** : interdit. Uniquement sur fond dark explicite (`#0a0806`).
 
 ---
 
-## 3. Règles de Composants
-
-### Classes utilitaires disponibles — toujours réutiliser
+## 3. Classes Utilitaires — toujours réutiliser
 
 | Besoin | Classe |
 |--------|--------|
@@ -110,155 +35,34 @@ blur-[120px]                                          /* glows ambiants */
 | Étiquette de section | `.section-label` |
 | Lien nav avec underline | `.nav-link` |
 
-### Interdictions strictes
+---
 
-- **Couleurs hardcodées** : jamais `#fff`, `#000`, ou toute valeur hex directe dans un composant. Toujours `var(--token)`.
-- **`text-white` sur fond clair** : uniquement sur un fond dark explicitement identifié (fond `--color-deep` ou équivalent).
-- **`style=""` inline pour couleurs ou espacements** : toujours une classe CSS ou une variable. Exception acceptée : valeurs dynamiques JS (ex: position d'un glow calculée).
-- **Tailles de titres sans variable** : toujours `var(--type-h2)` etc., pas `text-4xl` ou `clamp()` inline.
-
-### Sélecteurs d'animation GSAP attendus
-
-Ces `id` et `data-*` sont lus par `src/scripts/animations.ts`. Ne jamais les renommer sans mettre à jour le script.
+## 4. Sélecteurs GSAP — ne jamais renommer sans mettre à jour `animations.ts`
 
 | Attribut | Composant | Effet |
 |----------|-----------|-------|
 | `id="hero-headline"` | Hero.astro | Stagger enfants directs (y: 30→0, opacity) |
-| `id="tools-illustration"` | Tools.astro | Trigger pour lignes SVG + lévitation cards |
-| ~~`id="process-line"`~~ | ~~Process.astro~~ | Supprimé — section remplacée par sticky scroll cards |
-| `data-animate="fade-up"` | Tout composant | Fade depuis le bas (y: 40→0) |
-| `data-animate="fade-right"` | About photo | Fade depuis la gauche (x: -60→0) |
-| `data-animate="fade-left"` | About texte | Fade depuis la droite (x: 60→0) |
-| `data-animate-delay="Xms"` | Tout composant | Délai de déclenchement en ms |
-| `data-parallax-img` | Images portfolio | Parallaxe léger au scroll |
-| `data-tilt` | Cards | Effet 3D tilt au survol |
-| `.process-card` | Process.astro | Entrée GSAP (y: 60→0) sur chaque sticky card |
-| `.tool-card` | Tools.astro | Lévitation GSAP continue yoyo désynchronisée |
-| `.tool-line` | Tools.astro | SVG stroke-dashoffset draw au scroll |
-| `.handwritten-arrow-path` | Tools.astro | Flèche SVG draw au scroll |
-| `canvas[data-lottie-src]` | Services.astro | DotLottie play via IntersectionObserver (lottie.ts) |
-
-### Hero dark — règles spécifiques
-
-Le Hero est la **seule section** avec fond sombre (`#0a0806`). Toutes les autres sections utilisent `--bg-primary`.
-
-- **Grille perspective** : `.hero-grid` — `background-image` avec 2 `linear-gradient` ambre (0.18 opacity), `transform: perspective(700px) rotateX(58deg)`, animation `grid-flow` 5s. Toujours dans le wrapper overflow-hidden.
-- **Orbs animés** : 2 divs (orb-1 et orb-3 — orb-2 supprimée), animés via GSAP timeline yoyo. Couleurs : `#b87418` (0.55), `#7a4510` (0.4). Ne pas recréer orb-2.
-- **Spline iframe** : `.spline-bg hidden md:block` — `position: absolute; left: 35%`, gradient mask gauche, `z-index: 2`, `pointer-events: none`. Masqué sur mobile.
-- **Texte sur dark** : `color: #ffffff` (acceptable sur fond dark explicite) ou `rgba(255,255,255,X)`
-- **`.btn-outline-dark`** : variante locale dans `Hero.astro` — ne pas modifier `.btn-outline` global
-- **Transition vers section claire** : rupture franche (pas de dégradé). Marquee a son propre fond via `--bg-primary`.
-- **Ne jamais** mettre `overflow-hidden` sur `<section>` hero — ça clippe grille + orbs. Le wrapper interne gère ça.
-
-### Textures obligatoires (déjà en place)
-
-- **Grain global** : `body::after` — bruit SVG, `opacity: 0.055`, `mix-blend-mode: soft-light` (visible sur blanc). Ne jamais supprimer ni repasser en `multiply`.
-- **Grain hero dark** : `.grain-hero` dans `Hero.astro` — même SVG, `opacity: 0.07`, `mix-blend-mode: overlay` (visible sur fond `#0a0806`). Séparé du grain global.
-- **Glows ambiants** : `.ambient-glow-1` et `.ambient-glow-2` dans `Layout.astro` — animation CSS `breathe` désynchronisée (12s / 16s reverse). Ne pas remettre en `style=""` inline.
-- **Glassmorphism** : via la classe `.glass` — ne pas recréer inline.
+| `id="tools-illustration"` | Tools.astro | Trigger lignes SVG + lévitation cards |
+| `data-animate="fade-up"` | Tout composant | Fade bas (y: 40→0) |
+| `data-animate="fade-right"` | About photo | Fade gauche (x: -60→0) |
+| `data-animate="fade-left"` | About texte | Fade droite (x: 60→0) |
+| `data-animate-delay="Xms"` | Tout composant | Délai déclenchement |
+| `data-parallax-img` | Images portfolio | Parallaxe scroll |
+| `data-tilt` | Cards | Effet 3D tilt hover |
+| `.process-card` | Process.astro | Entrée GSAP y: 60→0 |
+| `.tool-card` | Tools.astro | Lévitation yoyo continue |
+| `.tool-line` | Tools.astro | SVG stroke-dashoffset draw |
+| `.handwritten-arrow-path` | Tools.astro | Flèche SVG draw scroll |
+| `canvas[data-lottie-src]` | Services.astro | DotLottie via IntersectionObserver |
 
 ---
 
-## 4. Workflow par Session
+## 5. Hero Dark — Gotchas
 
-### Règles de base
-
-1. **Lire le composant avant toute modification** — ne jamais coder à l'aveugle
-2. **Vérifier le rythme vertical** après modification — la section a-t-elle `py-32 md:py-20` ?
-3. **Aucune valeur hardcodée** — utiliser les tokens du CLAUDE.md
-4. **`npm run dev` ouvert** — vérifier le rendu mobile (375px) avant de valider
-5. **Une section à la fois** — ne jamais refaire toute la page en une session
-
-### Comment travailler avec les inspirations
-
-- **Partager des screenshots**, pas du code source HTML complet (trop lourd)
-- Décrire précisément l'élément qui plaît : "l'animation du titre", "la grille des services", "le hover des cards"
-- Le skill `ui-ux-pro-max` est disponible pour des recommandations de design approfondies
-
-### Pour les nouveaux projets (important)
-
-**Écrire ce CLAUDE.md AVANT la première ligne de code.**
-
-Workflow recommandé :
-1. Session 1 : brainstorming + CLAUDE.md (tokens, règles, personas) — rien dans `src/`
-2. Session 2 : `Layout.astro` + `global.css` qui implémentent exactement les tokens
-3. Session 3+ : sections une par une, chacune vérifiée contre le CLAUDE.md
-
-Le CLAUDE.md est le contrat. Le code est la preuve du contrat.
-
----
-
-## 5. Checklist de Livraison
-
-Avant de déclarer une session terminée, vérifier chaque point :
-
-### Images
-- [ ] `/public/images/photo.jpg` — photo profil About
-- [ ] `/public/images/project-paysagiste.webp`
-- [ ] `/public/images/project-electricien.webp`
-- [ ] `/public/images/project-fleuriste.webp`
-- [ ] `/public/images/project-charpentier.webp`
-
-### Fonctionnel
-- [ ] Formspree ID configuré dans `Contact.astro` (remplacer `YOUR_FORM_ID`)
-- [ ] `npm run build` sans erreurs TypeScript ou Astro
-
-### SEO
-- [ ] `og:title`, `og:description`, `og:image`, `og:url` dans `Layout.astro`
-- [ ] `twitter:card`, `twitter:title` dans `Layout.astro`
-- [ ] JSON-LD `LocalBusiness` dans `Layout.astro`
-
-### Animations
-- [ ] `id="hero-headline"` présent dans `Hero.astro`
-- [ ] ~~`id="process-line"`~~ — supprimé, Process redessiné en sticky scroll
-- [ ] Animations `fade-up` visibles au scroll (vérifier en dev)
-- [ ] Orbs hero animés (2 orbs, GSAP yoyo)
-- [ ] Grille perspective visible dans le hero
-- [ ] Spline iframe visible sur desktop (vérifier le chargement)
-- [ ] Lottie : fichiers `.lottie` présents dans `/public/animations/` (web / responsive / seo / perf)
-- [ ] Process sticky stack : 4 cards s'empilent au scroll (desktop)
-- [ ] Tools : lignes SVG se dessinent au scroll, cards lévitent
-
-### Design
-- [ ] Aucun `text-white` sur fond clair
-- [ ] Rythme vertical uniforme sur toutes les sections (`py-32 md:py-20`)
-- [ ] Aucune couleur hardcodée introduite
-- [ ] Rendu mobile vérifié à 375px
-
----
-
-## 6. Structure du Projet
-
-```
-src/
-  components/        ← un fichier par section
-    Hero.astro       ← fond dark #0a0806 + orbs animés + grille perspective
-    Navbar.astro     ← pill dark floating, style visitors-now
-    Personas.astro   ← 3 cards services (Landing Page / Site Vitrine / E-commerce)
-    Marquee.astro    ← défilement tech stack (py-6 exception)
-    Services.astro   ← bento grid 4 services, cards dark + Lottie (canvas[data-lottie-src])
-    Portfolio.astro  ← filtre par catégorie
-    About.astro
-    Tools.astro      ← section Outils : logo RC + 5 tool cards SVG animées + note Caveat
-    Process.astro    ← sticky scroll 4 cards sombres (100vh/slot, .process-card GSAP)
-    Testimonials.astro
-    Contact.astro
-    FAQ.astro
-    Footer.astro
-    Cursor.astro     ← curseur custom (desktop only)
-  layouts/
-    Layout.astro     ← head, fonts, SEO, ambient glows
-  scripts/
-    animations.ts    ← GSAP + ScrollTrigger (data-animate, process-card, tools)
-    lottie.ts        ← DotLottie init + IntersectionObserver (canvas[data-lottie-src])
-    cursor.ts        ← curseur custom
-    tilt.ts          ← effet 3D cards
-    faq.ts           ← accordion FAQ
-    testimonials.ts  ← carousel témoignages
-    lenis.ts         ← smooth scroll
-    navbar.ts        ← mobile menu + scroll hide
-  styles/
-    global.css       ← tokens CSS, classes utilitaires, grain
-public/
-  images/            ← toutes les images du site
-```
+- **Ne jamais** mettre `overflow-hidden` sur `<section>` hero — clippe grille + orbs. Le wrapper interne gère ça.
+- **Orb-2 supprimée** — il y a orb-1 et orb-3 uniquement. Ne pas recréer orb-2.
+- **Grain séparé** : `.grain-hero` dans Hero.astro (`opacity: 0.07`, `mix-blend-mode: overlay`) ≠ grain global dans `body::after` (`opacity: 0.055`, `mix-blend-mode: soft-light`). Ne jamais fusionner.
+- **Spline iframe** : `.spline-bg hidden md:block`, `position: absolute; left: 35%`, masqué mobile.
+- **`.btn-outline-dark`** : variante locale Hero.astro — ne pas modifier `.btn-outline` global.
+- **Glows ambiants** : `.ambient-glow-1` / `.ambient-glow-2` dans Layout.astro — ne pas remettre en `style=""` inline.
+- **Transition hero → sections claires** : rupture franche, pas de dégradé.
