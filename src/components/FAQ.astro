@@ -7,15 +7,15 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="py-24 px-6">
+<section id="faq" class="py-32 md:py-20 px-6">
   <div class="max-w-3xl mx-auto">
     <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium text-center" style="color: var(--accent-primary);" data-animate="fade-up">FAQ</p>
-    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" data-animate="fade-up">Questions fréquentes</h2>
+    <h2 class="font-['Syne'] font-bold mb-12 text-center" style="font-size: var(--type-h2);" data-animate="fade-up">Questions fréquentes</h2>
     <div class="space-y-4">
       {faqs.map((faq, i) => (
         <div class="border rounded-xl overflow-hidden" style="border-color: var(--border-card); background: var(--bg-card);" data-animate="fade-up" data-animate-delay={i * 80}>
           <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
-            <span class="text-white font-medium text-base pr-4">{faq.question}</span>
+            <span class="font-medium text-base pr-4" style="color: var(--text-primary);">{faq.question}</span>
             <span class="faq-icon text-xl shrink-0 transition-transform duration-300" style="color: var(--accent-primary);">+</span>
           </button>
           <div class="faq-content overflow-hidden" style="height: 0;">

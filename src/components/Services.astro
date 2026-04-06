@@ -1,44 +1,63 @@
 ---
 const services = [
   {
-    icon: '🌐',
+    number: '01',
     title: 'Création de site web',
-    description: 'Site vitrine moderne, rapide et optimisé pour convertir vos visiteurs en clients.'
+    description: 'Site vitrine moderne, rapide et optimisé pour convertir vos visiteurs en clients. Conçu sur-mesure pour votre métier.'
   },
   {
-    icon: '📱',
+    number: '02',
     title: 'Design responsive',
-    description: "Votre site s'adapte parfaitement sur mobile, tablette et desktop."
+    description: "Votre site s'adapte parfaitement sur mobile, tablette et desktop. Testé sur tous les appareils."
   },
   {
-    icon: '🔍',
+    number: '03',
     title: 'SEO local',
-    description: 'Apparaissez en premier quand vos clients vous cherchent sur Google.'
+    description: 'Apparaissez en premier quand vos clients vous cherchent sur Google. Configuration Google Business incluse.'
   },
   {
-    icon: '⚡',
+    number: '04',
     title: 'Performance & maintenance',
-    description: "Site rapide, sécurisé et maintenu à jour. Vous n'avez rien à gérer."
+    description: "Site rapide, sécurisé et maintenu. Vous n'avez rien à gérer — je m'occupe de tout."
   }
 ];
 ---
 
-<section id="services" class="py-24 px-6">
-  <div class="max-w-5xl mx-auto">
-    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium" style="color: var(--accent-primary);" data-animate="fade-up">Services</p>
-    <h2 class="text-3xl md:text-4xl font-bold mb-12" data-animate="fade-up">Ce que je peux faire pour vous</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<section id="services" class="py-32 md:py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
+      <div>
+        <span class="section-label mb-4 block">Services</span>
+        <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800;">Ce que je peux<br />faire pour vous</h2>
+      </div>
+      <p class="max-w-xs text-base" style="color: var(--text-muted);">Tout ce qu'il faut pour être visible et crédible en ligne. Rien de superflu.</p>
+    </div>
+
+    <!-- Services list — numbered, editorial -->
+    <div class="divide-y" style="border-top: 1px solid var(--border-card); border-bottom: 1px solid var(--border-card);">
       {services.map((service, i) => (
         <div
-          class="group p-6 rounded-2xl border transition-all duration-300 hover:border-[var(--accent-primary)] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]"
-          style="background: var(--bg-card); border-color: var(--border-card);"
+          class="group grid grid-cols-[auto_1fr_auto] items-center gap-8 py-8 cursor-default transition-all duration-300 hover:pl-4"
           data-animate="fade-up"
-          data-animate-delay={i * 100}
-          data-tilt
+          data-animate-delay={i * 80}
+          style="border-color: var(--border-card);"
         >
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4" style="background: rgba(59, 130, 246, 0.1);">{service.icon}</div>
-          <h3 class="text-lg font-bold mb-2">{service.title}</h3>
-          <p style="color: var(--text-muted);">{service.description}</p>
+          <!-- Number -->
+          <span class="label-tech group-hover:text-[var(--accent-primary)] transition-colors duration-300">
+            {service.number}
+          </span>
+
+          <!-- Content -->
+          <div class="min-w-0">
+            <h3 class="text-xl md:text-2xl font-['Syne'] font-bold mb-1 transition-colors duration-300 group-hover:text-[var(--accent-primary)]">
+              {service.title}
+            </h3>
+            <p class="text-sm leading-relaxed max-w-lg" style="color: var(--text-muted);">{service.description}</p>
+          </div>
+
+          <!-- Arrow -->
+          <span class="text-xl opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0" style="color: var(--accent-primary);">→</span>
         </div>
       ))}
     </div>

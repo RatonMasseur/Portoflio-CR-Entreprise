@@ -71,6 +71,23 @@ if (heroHeadline) {
   });
 }
 
+// Parallax sur les images de projets
+gsap.utils.toArray<HTMLElement>('[data-parallax-img]').forEach(img => {
+  gsap.fromTo(img,
+    { y: -30 },
+    {
+      y: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: img.closest('.portfolio-card') as Element,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    }
+  );
+});
+
 // Process line draw animation
 const processLine = document.getElementById('process-line');
 if (processLine) {

@@ -1,9 +1,26 @@
-<footer class="py-8 px-6 border-t" style="border-color: rgba(255, 255, 255, 0.05);">
-  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style="color: var(--text-muted);">
-    <p>© 2026 Robin Carivenc · Tous droits réservés</p>
+<!-- CTA typographique bold -->
+<div class="px-6 py-24 overflow-hidden relative" style="border-top: 1px solid var(--border-card);">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, rgba(232,164,74,0.08) 0%, transparent 70%);"></div>
+  <div class="max-w-6xl mx-auto relative text-center" data-animate="fade-up">
+    <span class="label-tech mb-6 block">Prêt à commencer ?</span>
+    <h2
+      class="font-['Syne'] leading-[0.9] tracking-tight mb-8"
+      style="font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 800; color: var(--text-primary);"
+    >
+      Construisons votre<br />
+      <span style="color: var(--accent-primary);">présence en ligne.</span>
+    </h2>
+    <a href="#contact" class="btn-primary text-base px-8 py-4">Démarrer le projet →</a>
+  </div>
+</div>
+
+<footer class="py-8 px-6" style="border-top: 1px solid var(--border-card);">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="font-['Syne'] font-bold text-base" style="color: var(--text-primary);">RC<span style="color: var(--accent-primary);">.</span></p>
+    <p class="label-tech">© 2026 Robin Carivenc · Tous droits réservés</p>
     <div class="flex gap-6">
-      <a href="#" class="hover:text-white transition-colors">Mentions légales</a>
-      <a href="#" class="hover:text-white transition-colors">CGV</a>
+      <a href="#" class="label-tech hover:text-[var(--text-primary)] transition-colors duration-200">Mentions légales</a>
+      <a href="#" class="label-tech hover:text-[var(--text-primary)] transition-colors duration-200">CGV</a>
     </div>
   </div>
 </footer>

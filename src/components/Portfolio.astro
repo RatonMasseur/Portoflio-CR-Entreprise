@@ -1,53 +1,59 @@
 ---
 const categories = ['Tous', 'Paysagiste', 'Charpentier', 'Fleuriste', 'Électricien'];
 
+// Remplacer les src par /images/project-*.webp quand les vraies screenshots sont disponibles
 const projects = [
   {
     title: 'Paysagiste · Mulhouse',
     category: 'Paysagiste',
     type: 'Site vitrine WordPress',
     tags: ['SEO local', 'Galerie avant/après'],
-    image: '/images/project-paysagiste.webp',
+    image: 'https://placehold.co/800x500/3d5c3d/e8f5e8?text=Paysagiste+·+Mulhouse',
   },
   {
     title: 'Électricien · Colmar',
     category: 'Électricien',
     type: 'Landing page statique',
     tags: ['Génération de leads', 'Formulaire devis'],
-    image: '/images/project-electricien.webp',
+    image: 'https://placehold.co/800x500/1e2a3a/f6ad55?text=Electricien+·+Colmar',
   },
   {
     title: 'Fleuriste · Strasbourg',
     category: 'Fleuriste',
     type: 'Site vitrine WordPress',
     tags: ['Boutique en ligne', 'SEO local'],
-    image: '/images/project-fleuriste.webp',
+    image: 'https://placehold.co/800x500/f5e6ef/9d174d?text=Fleuriste+·+Strasbourg',
   },
   {
     title: 'Charpentier · Colmar',
     category: 'Charpentier',
     type: 'Site vitrine statique',
     tags: ['Galerie projets', 'Formulaire contact'],
-    image: '/images/project-charpentier.webp',
+    image: 'https://placehold.co/800x500/7c4a1e/fef3c7?text=Charpentier+·+Colmar',
   },
 ];
 ---
 
-<section id="realisations" class="py-24 px-6">
-  <div class="max-w-5xl mx-auto">
-    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium" style="color: var(--accent-primary);" data-animate="fade-up">Réalisations</p>
-    <h2 class="text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">Des sites qui font la différence</h2>
-    <p class="mb-10" style="color: var(--text-muted);" data-animate="fade-up">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
+<section id="realisations" class="py-32 md:py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
+      <div>
+        <span class="section-label mb-4 block">Réalisations</span>
+        <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800;">Des sites qui font<br />la différence</h2>
+      </div>
+      <p class="max-w-xs text-sm" style="color: var(--text-muted);">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
+    </div>
 
     <!-- Filtres -->
-    <div class="flex flex-wrap gap-3 mb-10" data-animate="fade-up" id="portfolio-filters">
+    <div class="flex flex-wrap gap-2 mb-12" data-animate="fade-up" id="portfolio-filters">
       {categories.map(cat => (
         <button
-          class="portfolio-filter px-5 py-2 rounded-full text-sm font-medium border transition-all duration-200"
+          class="portfolio-filter px-5 py-2 text-sm font-['Syne'] font-semibold border transition-all duration-200 cursor-pointer"
           data-category={cat}
           style={cat === 'Tous'
-            ? 'background: var(--accent-primary); border-color: var(--accent-primary); color: white;'
-            : 'background: transparent; border-color: var(--border-card); color: var(--text-muted);'}
+            ? 'background: var(--accent-primary); border-color: var(--accent-primary); color: #fff; border-radius: 100px;'
+            : 'background: transparent; border-color: var(--border-card); color: var(--text-muted); border-radius: 100px;'}
         >
           {cat}
         </button>
@@ -55,47 +61,50 @@ const projects = [
     </div>
 
     <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="portfolio-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="portfolio-grid">
       {projects.map((project, i) => (
         <div
-          class="portfolio-card group rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent-primary)] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]"
-          style="background: var(--bg-card); border-color: var(--border-card);"
+          class="portfolio-card group overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+          style="background: #ffffffbf; border: 0.5px solid var(--border-card); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 20px 80px -15px rgba(0, 0, 0, 0.1), 0 10px 30px -10px rgba(0, 0, 0, 0.05);"
           data-category={project.category}
           data-animate="fade-up"
           data-animate-delay={i * 80}
         >
           <!-- Image -->
-          <div class="overflow-hidden aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a] relative">
+          <div class="overflow-hidden aspect-video relative" style="background: linear-gradient(135deg, #e8e0d2, #d5c9b8);">
             <img
               src={project.image}
               alt={project.title}
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              data-parallax-img
               loading="lazy"
-              onerror="this.style.display='none'"
             />
-            <!-- Category badge -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(to top, rgba(184,116,24,0.08) 0%, transparent 60%);"></div>
             <span
-              class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium"
-              style="background: rgba(59,130,246,0.2); color: var(--accent-light); border: 1px solid rgba(59,130,246,0.3); backdrop-filter: blur(8px);"
+              class="absolute top-3 left-3 px-3 py-1 text-xs font-['Syne'] font-semibold glass"
+              style="color: var(--accent-deep); border-radius: 100px;"
             >
               {project.category}
             </span>
           </div>
 
           <!-- Content -->
-          <div class="p-5">
-            <p class="text-xs mb-1" style="color: var(--accent-light);">{project.type}</p>
-            <h3 class="text-base font-bold mb-3">{project.title}</h3>
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map(tag => (
-                <span
-                  class="text-xs px-2.5 py-1 rounded-lg"
-                  style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.06);"
-                >
-                  {tag}
-                </span>
-              ))}
+          <div class="p-5 flex items-start justify-between gap-4">
+            <div>
+              <p class="label-tech mb-1" style="color: var(--accent-primary);">{project.type}</p>
+              <h3 class="text-base font-['Syne'] font-bold mb-3" style="color: var(--text-primary);">{project.title}</h3>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map(tag => (
+                  <span
+                    class="text-xs px-2.5 py-1"
+                    style="background: rgba(0,0,0,0.04); color: var(--text-muted); border: 1px solid var(--border-card); border-radius: 6px;"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
+            <span class="shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1 group-hover:translate-x-0 text-lg" style="color: var(--accent-primary);">→</span>
           </div>
         </div>
       ))}
@@ -110,25 +119,15 @@ const projects = [
   filters.forEach(filter => {
     filter.addEventListener('click', () => {
       const selected = filter.dataset.category!;
-
-      // Update button styles
       filters.forEach(btn => {
         const isActive = btn.dataset.category === selected;
         btn.style.background = isActive ? 'var(--accent-primary)' : 'transparent';
         btn.style.borderColor = isActive ? 'var(--accent-primary)' : 'var(--border-card)';
-        btn.style.color = isActive ? 'white' : 'var(--text-muted)';
+        btn.style.color = isActive ? '#fff' : 'var(--text-muted)';
       });
-
-      // Filter cards
       cards.forEach(card => {
         const match = selected === 'Tous' || card.dataset.category === selected;
-        if (match) {
-          card.style.display = '';
-          card.style.opacity = '1';
-        } else {
-          card.style.display = 'none';
-          card.style.opacity = '0';
-        }
+        card.style.display = match ? '' : 'none';
       });
     });
   });

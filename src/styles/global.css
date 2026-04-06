@@ -1,64 +1,239 @@
 @import 'tailwindcss';
 
-@font-face {
-  font-family: 'Space Grotesk';
-  src: url('/fonts/SpaceGrotesk-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-display: swap;
+@theme {
+  --color-surface: #f5f0e9;
+  --color-deep:    #0F1115;
+  --color-accent:  #b87418;
+  --shadow-luxury: 0 20px 80px -15px rgba(0, 0, 0, 0.1), 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  --shadow-glass:  inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), 0 20px 40px 0 rgba(0, 0, 0, 0.05);
+  --blur-huge:     120px;
 }
 
-@font-face {
-  font-family: 'Space Grotesk';
-  src: url('/fonts/SpaceGrotesk-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
+/* ─── Design Tokens — Atelier Tech Light ─────────────────── */
 :root {
-  --bg-primary: #0a0a1a;
-  --bg-card: rgba(255, 255, 255, 0.03);
-  --border-card: rgba(59, 130, 246, 0.12);
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent-primary: #3b82f6;
-  --accent-light: #60a5fa;
-  --accent-deep: #2563eb;
-  --gradient-cta: linear-gradient(135deg, #3b82f6, #2563eb);
-  --glow: rgba(59, 130, 246, 0.25);
+  /* Typographie — échelle fluide */
+  --type-display: clamp(3rem, 10vw, 8rem);
+  --type-h2:      clamp(2rem, 5vw, 3.5rem);
+  --type-h3:      clamp(1.25rem, 2.5vw, 1.75rem);
+  --type-body:    1rem;
+
+  /* Backgrounds */
+  --bg-primary:    #f5f0e9;
+  --bg-card:       rgba(255, 255, 255, 0.75);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+
+  /* Borders */
+  --border-card:   rgba(0, 0, 0, 0.08);
+  --border-hover:  rgba(184, 116, 24, 0.45);
+
+  /* Text */
+  --text-primary:   #0f0d0a;
+  --text-secondary: #4a4035;
+  --text-muted:     #9a8f82;
+
+  /* Accent amber — assombri pour bon contraste sur fond clair */
+  --accent-primary: #b87418;
+  --accent-light:   #e8a44a;
+  --accent-deep:    #8a5510;
+  --gradient-cta:   linear-gradient(135deg, #e8a44a 0%, #b87418 100%);
+  --glow:           rgba(232, 164, 74, 0.18);
+
+  /* Glass */
+  --glass-bg:      rgba(255, 255, 255, 0.65);
+  --glass-border:  rgba(255, 255, 255, 0.9);
 }
 
+/* ─── Base ────────────────────────────────────────────────── */
 html {
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-secondary);
   overflow-x: hidden;
 }
 
+/* ─── Grain texture — multiply sur fond clair ─────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Typography ──────────────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Syne', system-ui, sans-serif;
   color: var(--text-primary);
+  font-weight: 800;
 }
 
 ::selection {
   background: var(--accent-primary);
-  color: white;
+  color: #fff;
+}
+
+/* Label humain — Fraunces italique */
+.label-tech {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+}
+
+/* Section label — amber, Fraunces italique */
+.section-label {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--accent-primary);
+}
+
+/* Citation serif organique */
+.quote-serif {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ─── Glass container ─────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Cards ───────────────────────────────────────────────── */
+.card-sharp {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+}
+
+.card-sharp:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Bouton primaire ─────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  min-height: 44px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(184, 116, 24, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ─── Bouton outline ──────────────────────────────────────── */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border: 1px solid var(--border-hover);
+  color: var(--accent-deep);
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  min-height: 44px;
+}
+
+.btn-outline:hover {
+  background: rgba(184, 116, 24, 0.07);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(184, 116, 24, 0.15);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+}
+
+/* ─── Nav links ───────────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-primary);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ─── Accent line ─────────────────────────────────────────── */
+.accent-line {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-primary);
+}
+
+/* ─── Form focus ──────────────────────────────────────────── */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary) !important;
+  background: rgba(184, 116, 24, 0.03) !important;
 }
