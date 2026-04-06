@@ -1,0 +1,134 @@
+<section id="outils" class="py-32 md:py-20 px-6 overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-20" data-animate="fade-up">
+      <span class="section-label mb-4 block">Stack & Outils</span>
+      <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">
+        Les outils qui font<br />la différence
+      </h2>
+      <p class="mt-4 max-w-sm mx-auto text-base" style="color: var(--text-muted);">
+        Technologies modernes, résultats concrets pour vos clients.
+      </p>
+    </div>
+
+    <!-- Illustration container -->
+    <div id="tools-illustration" class="relative mx-auto" style="width: 100%; max-width: 700px; height: 420px;">
+
+      <!-- SVG lignes + cartes -->
+      <svg
+        class="absolute inset-0 w-full h-full"
+        viewBox="0 0 700 420"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <!-- Lignes courbes du centre vers chaque carte -->
+        <!-- Centre: 350, 300 — cartes en arc à y≈80 -->
+        <path class="tool-line" d="M350,300 C350,200 130,160 100,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" opacity="0.5"/>
+        <path class="tool-line" d="M350,300 C350,210 230,150 220,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="800" stroke-dashoffset="800" opacity="0.5"/>
+        <path class="tool-line" d="M350,300 C350,220 350,140 350,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="600" stroke-dashoffset="600" opacity="0.5"/>
+        <path class="tool-line" d="M350,300 C350,210 470,150 480,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="800" stroke-dashoffset="800" opacity="0.5"/>
+        <path class="tool-line" d="M350,300 C350,200 570,160 600,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" opacity="0.5"/>
+      </svg>
+
+      <!-- Logo central RC -->
+      <div class="tools-center-logo absolute" style="left: 50%; top: 260px; transform: translate(-50%, -50%);">
+        <div class="relative flex items-center justify-center" style="width: 80px; height: 80px;">
+          <!-- Glow -->
+          <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle, rgba(232,164,74,0.35) 0%, transparent 70%); filter: blur(12px); transform: scale(1.4);"></div>
+          <!-- Cercle -->
+          <div class="relative flex items-center justify-center rounded-full" style="width: 80px; height: 80px; background: linear-gradient(135deg, rgba(184,116,24,0.2) 0%, rgba(232,164,74,0.1) 100%); border: 1.5px solid rgba(232,164,74,0.5); box-shadow: 0 0 24px rgba(184,116,24,0.3);">
+            <span class="font-['Bricolage_Grotesque'] font-extrabold" style="font-size: 1.4rem; color: var(--accent-light); letter-spacing: -0.02em;">RC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool cards en arc -->
+      <!-- Astro -->
+      <div class="tool-card absolute" style="left: 64px; top: 20px; transform: translateX(-50%);">
+        <div class="tool-card-inner">
+          <svg width="24" height="24" viewBox="0 0 256 256" fill="none"><path d="M128 0L256 192H0L128 0z" fill="#FF5D01"/></svg>
+          <span>Astro</span>
+        </div>
+      </div>
+
+      <!-- Tailwind -->
+      <div class="tool-card absolute" style="left: 210px; top: 20px; transform: translateX(-50%);">
+        <div class="tool-card-inner">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 6.4c-4.267 0-6.933 2.133-8 6.4 1.6-2.133 3.467-2.933 5.6-2.4.8.2 1.374.78 2.008 1.42C16.736 13.06 18.19 14.4 21.333 14.4c4.267 0 6.933-2.133 8-6.4-1.6 2.133-3.467 2.933-5.6 2.4-.8-.2-1.374-.78-2.008-1.42C20.597 7.74 19.143 6.4 16 6.4zM8 14.4c-4.267 0-6.933 2.133-8 6.4 1.6-2.133 3.467-2.933 5.6-2.4.8.2 1.374.78 2.008 1.42C8.736 21.06 10.19 22.4 13.333 22.4c4.267 0 6.933-2.133 8-6.4-1.6 2.133-3.467 2.933-5.6 2.4-.8-.2-1.374-.78-2.008-1.42C12.597 15.74 11.143 14.4 8 14.4z" fill="#06B6D4"/></svg>
+          <span>Tailwind</span>
+        </div>
+      </div>
+
+      <!-- SEO -->
+      <div class="tool-card absolute" style="left: 350px; top: 20px; transform: translateX(-50%);">
+        <div class="tool-card-inner">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span>SEO</span>
+        </div>
+      </div>
+
+      <!-- Claude AI -->
+      <div class="tool-card absolute" style="left: 490px; top: 20px; transform: translateX(-50%);">
+        <div class="tool-card-inner">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="var(--accent-primary)"/><path d="M12 6v6l4 2" stroke="var(--accent-primary)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Claude AI</span>
+        </div>
+      </div>
+
+      <!-- GSAP -->
+      <div class="tool-card absolute" style="left: 636px; top: 20px; transform: translateX(-50%);">
+        <div class="tool-card-inner">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" fill="none" stroke="var(--accent-primary)"/></svg>
+          <span>GSAP</span>
+        </div>
+      </div>
+
+    </div><!-- /tools-illustration -->
+
+    <!-- Note manuscrite Excalidraw style -->
+    <div class="relative mt-8 flex justify-end pr-8 md:pr-24" aria-hidden="true">
+      <div class="handwritten-note relative">
+        <svg class="handwritten-arrow absolute -left-16 top-2" width="60" height="40" viewBox="0 0 60 40" fill="none" stroke="var(--accent-primary)" stroke-width="1.5" stroke-linecap="round">
+          <path class="handwritten-arrow-path" d="M55,5 C40,5 20,15 8,30" stroke-dasharray="200" stroke-dashoffset="200"/>
+          <path class="handwritten-arrow-path" d="M8,30 L5,20 M8,30 L18,28" stroke-dasharray="100" stroke-dashoffset="100"/>
+        </svg>
+        <p class="text-sm" style="font-family: 'Caveat', cursive; font-size: 1.05rem; color: var(--text-secondary); transform: rotate(-2deg); display: inline-block; max-width: 280px; line-height: 1.4;">
+          D'ailleurs, ce site a été entièrement réalisé par IA et moi même !
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .tool-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    min-width: 72px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .tool-card-inner span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .tool-card-inner svg {
+    color: var(--text-secondary);
+  }
+</style>

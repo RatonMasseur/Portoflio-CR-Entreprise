@@ -78,10 +78,14 @@ body::after {
 
 /* ─── Typography ──────────────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Syne', system-ui, sans-serif;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
   color: var(--text-primary);
-  font-weight: 800;
 }
+
+h1 { font-weight: 800; }
+h2 { font-weight: 700; }
+h3 { font-weight: 600; }
+h4 { font-weight: 600; }
 
 ::selection {
   background: var(--accent-primary);
@@ -153,7 +157,7 @@ h1, h2, h3, h4 {
   padding: 14px 28px;
   background: var(--gradient-cta);
   color: #fff;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
@@ -181,7 +185,7 @@ h1, h2, h3, h4 {
   padding: 13px 28px;
   border: 1px solid var(--border-hover);
   color: var(--accent-deep);
-  font-family: 'Syne', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.04em;

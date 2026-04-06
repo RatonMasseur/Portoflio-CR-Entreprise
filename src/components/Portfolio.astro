@@ -40,7 +40,7 @@ const projects = [
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
       <div>
         <span class="section-label mb-4 block">Réalisations</span>
-        <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800;">Des sites qui font<br />la différence</h2>
+        <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">Des sites qui font<br />la différence</h2>
       </div>
       <p class="max-w-xs text-sm" style="color: var(--text-muted);">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
     </div>
@@ -49,7 +49,7 @@ const projects = [
     <div class="flex flex-wrap gap-2 mb-12" data-animate="fade-up" id="portfolio-filters">
       {categories.map(cat => (
         <button
-          class="portfolio-filter px-5 py-2 text-sm font-['Syne'] font-semibold border transition-all duration-200 cursor-pointer"
+          class="portfolio-filter px-5 py-2 text-sm font-['Bricolage_Grotesque'] font-semibold border transition-all duration-200 cursor-pointer"
           data-category={cat}
           style={cat === 'Tous'
             ? 'background: var(--accent-primary); border-color: var(--accent-primary); color: #fff; border-radius: 100px;'
@@ -81,7 +81,7 @@ const projects = [
             />
             <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(to top, rgba(184,116,24,0.08) 0%, transparent 60%);"></div>
             <span
-              class="absolute top-3 left-3 px-3 py-1 text-xs font-['Syne'] font-semibold glass"
+              class="absolute top-3 left-3 px-3 py-1 text-xs font-['Bricolage_Grotesque'] font-semibold glass"
               style="color: var(--accent-deep); border-radius: 100px;"
             >
               {project.category}
@@ -92,7 +92,7 @@ const projects = [
           <div class="p-5 flex items-start justify-between gap-4">
             <div>
               <p class="label-tech mb-1" style="color: var(--accent-primary);">{project.type}</p>
-              <h3 class="text-base font-['Syne'] font-bold mb-3" style="color: var(--text-primary);">{project.title}</h3>
+              <h3 class="text-base font-['Bricolage_Grotesque'] font-bold mb-3" style="color: var(--text-primary);">{project.title}</h3>
               <div class="flex flex-wrap gap-2">
                 {project.tags.map(tag => (
                   <span

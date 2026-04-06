@@ -115,7 +115,66 @@ gsap.utils.toArray<HTMLElement>('[data-parallax-img]').forEach(img => {
   );
 });
 
-// Process line draw animation — supprimé (section process redessinée en sticky cards)
+// Tools illustration — lignes SVG + lévitation des cartes + flèche manuscrite
+const toolsIllustration = document.getElementById('tools-illustration');
+if (toolsIllustration) {
+  // Lignes : se dessinent au scroll
+  gsap.to('.tool-line', {
+    strokeDashoffset: 0,
+    duration: 1.2,
+    stagger: 0.15,
+    ease: 'power2.inOut',
+    scrollTrigger: {
+      trigger: toolsIllustration,
+      start: 'top 70%',
+      toggleActions: 'play none none none',
+    },
+  });
+
+  // Cartes : lévitation désynchronisée
+  document.querySelectorAll<HTMLElement>('.tool-card').forEach((card, i) => {
+    gsap.to(card, {
+      y: -10,
+      duration: 1.8 + i * 0.3,
+      yoyo: true,
+      repeat: -1,
+      ease: 'sine.inOut',
+      delay: i * 0.2,
+    });
+  });
+
+  // Flèche manuscrite : se dessine après les lignes
+  gsap.to('.handwritten-arrow-path', {
+    strokeDashoffset: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power2.inOut',
+    scrollTrigger: {
+      trigger: toolsIllustration,
+      start: 'top 70%',
+      toggleActions: 'play none none none',
+    },
+    delay: 1.4,
+  });
+}
+
+// Process sticky cards — entrée GSAP au scroll
+gsap.utils.toArray<HTMLElement>('.process-card').forEach(card => {
+  gsap.fromTo(card,
+    { y: 60, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    }
+  );
+});
 
 // Hero orbs — GSAP mesh gradient (remplace les keyframes CSS float-1/2/3)
 const orbs = document.querySelectorAll<HTMLElement>('.orb');

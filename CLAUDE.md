@@ -12,7 +12,7 @@
 
 **Vision esthétique** : "Artisanat Digital" — la précision technique d'un outil comme Mixpanel (propre, structuré, typographie forte) combinée à la chaleur humaine de Healthy Together. Direction décidée : **noir/blanc pur** avec hero sombre. Fond principal blanc `#ffffff`, hero `#0a0806` + orbs ambre, accent ambre conservé. Éviter le côté "template SaaS froid" ou "agence générique".
 
-**Stack** : Astro (SSG) + Tailwind CSS + GSAP + ScrollTrigger + Lenis (smooth scroll)
+**Stack** : Astro (SSG) + Tailwind CSS + GSAP + ScrollTrigger + Lenis (smooth scroll) + @lottiefiles/dotlottie-web
 
 ---
 
@@ -54,14 +54,20 @@ Ces valeurs sont figées. Ne jamais les hardcoder — toujours utiliser les vari
 ### Typographie
 
 **Familles :**
-- Titres + chiffres : `font-['Syne'] font-extrabold` (brut, solide)
+- Titres (H1/H2/H3) : `font-['Bricolage_Grotesque']` — variable 200–800, remplace Syne
 - Labels + citations : `font-['Fraunces'] italic font-light` (humain, élégant)
 - Corps de texte : DM Sans Regular (défaut `body`)
+- Notes manuscrites : `font-['Caveat']` — uniquement dans Tools.astro
+
+**Hiérarchie des poids :**
+- H1 : `font-weight: 800` (display hero)
+- H2 : `font-weight: 700` (titres de section)
+- H3 : `font-weight: 600` (sous-titres, card titles)
 
 **Échelle (variables CSS dans `:root`) :**
 ```css
---type-display: clamp(2.5rem, 6vw, 5rem)   /* hero h1 */
---type-h2:      clamp(2rem, 5vw, 3.5rem)   /* titres de section */
+--type-display: clamp(3rem, 7vw, 6rem)     /* hero h1 */
+--type-h2:      clamp(2.25rem, 5.5vw, 4rem) /* titres de section */
 --type-h3:      clamp(1.25rem, 2.5vw, 1.75rem) /* sous-titres */
 --type-body:    1rem                        /* corps de texte */
 ```
@@ -94,10 +100,12 @@ blur-[120px]                                          /* glows ambiants */
 
 | Besoin | Classe |
 |--------|--------|
-| Card avec backdrop | `.glass` |
+| Card avec backdrop clair | `.glass` |
 | Card projet/portfolio | `.card-sharp` |
+| Card bento sombre | `.bento-dark` (scoped Services.astro) |
 | Bouton principal | `.btn-primary` |
 | Bouton secondaire | `.btn-outline` |
+| Bouton secondaire sur fond dark | `.btn-outline-dark` (scoped Hero.astro) |
 | Petit label tech | `.label-tech` |
 | Étiquette de section | `.section-label` |
 | Lien nav avec underline | `.nav-link` |
@@ -116,20 +124,27 @@ Ces `id` et `data-*` sont lus par `src/scripts/animations.ts`. Ne jamais les ren
 | Attribut | Composant | Effet |
 |----------|-----------|-------|
 | `id="hero-headline"` | Hero.astro | Stagger enfants directs (y: 30→0, opacity) |
-| `id="process-line"` | ~~Process.astro~~ | Supprimé — section remplacée par sticky scroll cards |
+| `id="tools-illustration"` | Tools.astro | Trigger pour lignes SVG + lévitation cards |
+| ~~`id="process-line"`~~ | ~~Process.astro~~ | Supprimé — section remplacée par sticky scroll cards |
 | `data-animate="fade-up"` | Tout composant | Fade depuis le bas (y: 40→0) |
 | `data-animate="fade-right"` | About photo | Fade depuis la gauche (x: -60→0) |
 | `data-animate="fade-left"` | About texte | Fade depuis la droite (x: 60→0) |
 | `data-animate-delay="Xms"` | Tout composant | Délai de déclenchement en ms |
 | `data-parallax-img` | Images portfolio | Parallaxe léger au scroll |
 | `data-tilt` | Cards | Effet 3D tilt au survol |
+| `.process-card` | Process.astro | Entrée GSAP (y: 60→0) sur chaque sticky card |
+| `.tool-card` | Tools.astro | Lévitation GSAP continue yoyo désynchronisée |
+| `.tool-line` | Tools.astro | SVG stroke-dashoffset draw au scroll |
+| `.handwritten-arrow-path` | Tools.astro | Flèche SVG draw au scroll |
+| `canvas[data-lottie-src]` | Services.astro | DotLottie play via IntersectionObserver (lottie.ts) |
 
 ### Hero dark — règles spécifiques
 
 Le Hero est la **seule section** avec fond sombre (`#0a0806`). Toutes les autres sections utilisent `--bg-primary`.
 
 - **Grille perspective** : `.hero-grid` — `background-image` avec 2 `linear-gradient` ambre (0.18 opacity), `transform: perspective(700px) rotateX(58deg)`, animation `grid-flow` 5s. Toujours dans le wrapper overflow-hidden.
-- **Orbs animés** : 3 divs avec `animation: float-1/2/3` (18s/22s/15s désynchronisé), `will-change: transform`. Couleurs : `#b87418` (0.55), `#e8a44a` (0.3), `#7a4510` (0.4).
+- **Orbs animés** : 2 divs (orb-1 et orb-3 — orb-2 supprimée), animés via GSAP timeline yoyo. Couleurs : `#b87418` (0.55), `#7a4510` (0.4). Ne pas recréer orb-2.
+- **Spline iframe** : `.spline-bg hidden md:block` — `position: absolute; left: 35%`, gradient mask gauche, `z-index: 2`, `pointer-events: none`. Masqué sur mobile.
 - **Texte sur dark** : `color: #ffffff` (acceptable sur fond dark explicite) ou `rgba(255,255,255,X)`
 - **`.btn-outline-dark`** : variante locale dans `Hero.astro` — ne pas modifier `.btn-outline` global
 - **Transition vers section claire** : rupture franche (pas de dégradé). Marquee a son propre fond via `--bg-primary`.
@@ -197,8 +212,12 @@ Avant de déclarer une session terminée, vérifier chaque point :
 - [ ] `id="hero-headline"` présent dans `Hero.astro`
 - [ ] ~~`id="process-line"`~~ — supprimé, Process redessiné en sticky scroll
 - [ ] Animations `fade-up` visibles au scroll (vérifier en dev)
-- [ ] Orbs hero animés (float visible, non statiques)
+- [ ] Orbs hero animés (2 orbs, GSAP yoyo)
 - [ ] Grille perspective visible dans le hero
+- [ ] Spline iframe visible sur desktop (vérifier le chargement)
+- [ ] Lottie : fichiers `.lottie` présents dans `/public/animations/` (web / responsive / seo / perf)
+- [ ] Process sticky stack : 4 cards s'empilent au scroll (desktop)
+- [ ] Tools : lignes SVG se dessinent au scroll, cards lévitent
 
 ### Design
 - [ ] Aucun `text-white` sur fond clair
@@ -217,10 +236,11 @@ src/
     Navbar.astro     ← pill dark floating, style visitors-now
     Personas.astro   ← 3 cards services (Landing Page / Site Vitrine / E-commerce)
     Marquee.astro    ← défilement tech stack (py-6 exception)
-    Services.astro   ← liste numérotée 4 services
+    Services.astro   ← bento grid 4 services, cards dark + Lottie (canvas[data-lottie-src])
     Portfolio.astro  ← filtre par catégorie
     About.astro
-    Process.astro    ← sticky scroll 4 cards sombres (redessiné)
+    Tools.astro      ← section Outils : logo RC + 5 tool cards SVG animées + note Caveat
+    Process.astro    ← sticky scroll 4 cards sombres (100vh/slot, .process-card GSAP)
     Testimonials.astro
     Contact.astro
     FAQ.astro
@@ -229,7 +249,8 @@ src/
   layouts/
     Layout.astro     ← head, fonts, SEO, ambient glows
   scripts/
-    animations.ts    ← GSAP + ScrollTrigger (data-animate)
+    animations.ts    ← GSAP + ScrollTrigger (data-animate, process-card, tools)
+    lottie.ts        ← DotLottie init + IntersectionObserver (canvas[data-lottie-src])
     cursor.ts        ← curseur custom
     tilt.ts          ← effet 3D cards
     faq.ts           ← accordion FAQ

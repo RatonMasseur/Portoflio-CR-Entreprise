@@ -40,7 +40,7 @@ const steps = [
   <!-- Header (flux normal) -->
   <div class="max-w-3xl mx-auto pt-32 md:pt-20 pb-16" data-animate="fade-up">
     <span class="section-label mb-4 block">Processus</span>
-    <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800; color: var(--text-primary);">
+    <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700; color: var(--text-primary);">
       Comment ça<br />
       <span class="font-['Fraunces'] italic" style="font-weight: 300; color: var(--accent-primary);">se passe ?</span>
     </h2>
@@ -50,10 +50,10 @@ const steps = [
   <!-- Sticky stack — desktop -->
   <div class="hidden md:block max-w-3xl mx-auto relative pb-32">
     {steps.map((step, i) => (
-      <div class="step-scroll-slot" style={i < steps.length - 1 ? 'height: 55vh;' : ''}>
+      <div class="step-scroll-slot" style="height: 100vh;">
         <div
-          class="step-card"
-          style={`top: ${96 + i * 26}px; z-index: ${10 + i}; background: ${step.bg};`}
+          class="step-card process-card"
+          style={`top: ${80 + i * 24}px; z-index: ${10 + i}; background: ${step.bg};`}
         >
           <!-- Big decorative number -->
           <div class="step-deco-num" style={`color: ${step.numColor};`}>{step.tag.split(' ')[1]}</div>
@@ -61,7 +61,7 @@ const steps = [
           <!-- Left: content -->
           <div class="step-content">
             <span class="label-tech mb-4 block" style="color: rgba(232,164,74,0.7);">{step.tag}</span>
-            <h3 class="font-['Syne'] font-bold mb-4 leading-tight" style="font-size: var(--type-h3); color: #ffffff;">
+            <h3 class="font-['Bricolage_Grotesque'] font-bold mb-4 leading-tight" style="font-size: var(--type-h3); color: #ffffff;">
               {step.title}
             </h3>
             <p class="text-sm leading-relaxed mb-8" style="color: rgba(255,255,255,0.55);">{step.description}</p>
@@ -89,7 +89,7 @@ const steps = [
         data-animate-delay={i * 80}
       >
         <span class="label-tech mb-3 block" style="color: rgba(232,164,74,0.7);">{step.tag}</span>
-        <h3 class="font-['Syne'] font-bold mb-3" style="font-size: var(--type-h3); color: #ffffff;">{step.title}</h3>
+        <h3 class="font-['Bricolage_Grotesque'] font-bold mb-3" style="font-size: var(--type-h3); color: #ffffff;">{step.title}</h3>
         <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">{step.description}</p>
       </div>
     ))}
@@ -126,7 +126,7 @@ const steps = [
     position: absolute;
     right: -16px;
     top: -32px;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800;
     font-size: clamp(120px, 18vw, 200px);
     line-height: 1;

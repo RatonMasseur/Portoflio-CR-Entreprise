@@ -5,10 +5,20 @@
     <!-- Grille perspective animée -->
     <div class="hero-grid"></div>
     <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <!-- Grain dédié fond dark — overlay visible sur noir, contrairement au multiply global -->
     <div class="grain-hero"></div>
+  </div>
+
+  <!-- Spline 3D mockup — fond droit, desktop uniquement -->
+  <div class="spline-bg hidden md:block" aria-hidden="true">
+    <iframe
+      src="https://my.spline.design/iphone16profreemockup-rRYliaDR7r0nMLNf4Vnl7qbJ/"
+      frameborder="0"
+      width="100%"
+      height="100%"
+      loading="lazy"
+    ></iframe>
   </div>
 
   <div class="relative w-full max-w-6xl mx-auto">
@@ -23,12 +33,12 @@
 
     <!-- Main headline -->
     <div id="hero-headline" class="mb-10">
-      <h1 class="font-['Syne'] leading-[0.92] tracking-tight" style="font-size: var(--type-display); font-weight: 800; color: #ffffff;">
+      <h1 class="font-['Bricolage_Grotesque'] leading-[0.92] tracking-tight" style="font-size: var(--type-display); font-weight: 800; color: #ffffff;">
         Pas une agence.<br />
         Pas un template.
       </h1>
       <div class="flex items-baseline gap-4 mt-3">
-        <h1 class="font-['Syne'] leading-[0.92] tracking-tight italic hero-underline" style="font-size: var(--type-display); font-weight: 800; color: var(--accent-light);">
+        <h1 class="font-['Bricolage_Grotesque'] leading-[0.92] tracking-tight italic hero-underline" style="font-size: var(--type-display); font-weight: 800; color: var(--accent-light);">
           Votre site.
         </h1>
       </div>
@@ -53,17 +63,17 @@
       <!-- Stats -->
       <div class="flex gap-10 lg:gap-16 pb-2">
         <div>
-          <p class="font-['Syne'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">7j</p>
+          <p class="font-['Bricolage_Grotesque'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">7j</p>
           <p class="label-tech mt-2" style="color: rgba(255,255,255,0.4);">Délai moyen</p>
         </div>
         <div class="w-px" style="background: rgba(255,255,255,0.1);"></div>
         <div>
-          <p class="font-['Syne'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">24h</p>
+          <p class="font-['Bricolage_Grotesque'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">24h</p>
           <p class="label-tech mt-2" style="color: rgba(255,255,255,0.4);">Réponse garantie</p>
         </div>
         <div class="w-px hidden sm:block" style="background: rgba(255,255,255,0.1);"></div>
         <div class="hidden sm:block">
-          <p class="font-['Syne'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">1:1</p>
+          <p class="font-['Bricolage_Grotesque'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">1:1</p>
           <p class="label-tech mt-2" style="color: rgba(255,255,255,0.4);">Interlocuteur direct</p>
         </div>
       </div>
@@ -102,6 +112,24 @@
     to   { background-position: 0 80px; }
   }
 
+  /* Spline background — fond droit, z-index entre grille et contenu */
+  .spline-bg {
+    position: absolute;
+    inset: 0;
+    left: 35%;
+    z-index: 2;
+    pointer-events: none;
+    mask-image: linear-gradient(to right, transparent 0%, black 25%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+    opacity: 0.85;
+  }
+
+  .spline-bg iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
   /* Orbs ambre — blob flou, animés via GSAP dans animations.ts */
   .orb {
     position: absolute;
@@ -118,16 +146,6 @@
     top: -200px;
     right: -100px;
     opacity: 0.55;
-  }
-
-  .orb-2 {
-    width: 600px;
-    height: 600px;
-    background: #e8a44a;
-    filter: blur(150px);
-    top: 30%;
-    left: -80px;
-    opacity: 0.3;
   }
 
   .orb-3 {
@@ -177,7 +195,7 @@
     padding: 13px 28px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.8);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 600;
     font-size: 0.9rem;
     letter-spacing: 0.04em;

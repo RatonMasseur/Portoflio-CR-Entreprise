@@ -4,25 +4,25 @@ const services = [
     title: 'Création de site web',
     description: 'Site vitrine moderne, rapide et optimisé pour convertir vos visiteurs en clients. Conçu sur-mesure pour votre métier.',
     span: 'col-span-1 md:col-span-2',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>`,
+    lottieSrc: '/animations/web.lottie',
   },
   {
     title: 'Design responsive',
     description: "Votre site s'adapte parfaitement sur mobile, tablette et desktop. Testé sur tous les appareils.",
     span: 'col-span-1',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="12" x="5" y="6" rx="1"/><path d="M12 6h4a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4"/><line x1="5" x2="12" y1="12" y2="12"/></svg>`,
+    lottieSrc: '/animations/responsive.lottie',
   },
   {
     title: 'SEO local',
     description: 'Apparaissez en premier quand vos clients vous cherchent sur Google. Configuration Google Business incluse.',
     span: 'col-span-1',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    lottieSrc: '/animations/seo.lottie',
   },
   {
     title: 'Performance & maintenance',
     description: "Site rapide, sécurisé et maintenu. Vous n'avez rien à gérer — je m'occupe de tout.",
     span: 'col-span-1 md:col-span-2',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    lottieSrc: '/animations/perf.lottie',
   },
 ];
 ---
@@ -33,7 +33,7 @@ const services = [
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
       <div>
         <span class="section-label mb-4 block">Services</span>
-        <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800;">Ce que je peux<br />faire pour vous</h2>
+        <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">Ce que je peux<br />faire pour vous</h2>
       </div>
       <p class="max-w-xs text-base" style="color: var(--text-muted);">Tout ce qu'il faut pour être visible et crédible en ligne. Rien de superflu.</p>
     </div>
@@ -42,20 +42,40 @@ const services = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       {services.map((service, i) => (
         <div
-          class={`bento-card glass ${service.span}`}
+          class={`bento-card bento-dark ${service.span}`}
           data-animate="fade-up"
           data-animate-delay={i * 80}
         >
-          <!-- Icon -->
-          <div class="mb-6" style="color: var(--accent-primary);" set:html={service.icon} />
+          <!-- Lottie animation -->
+          <div class="mb-6">
+            <canvas
+              data-lottie-src={service.lottieSrc}
+              width="80"
+              height="80"
+            ></canvas>
+          </div>
 
           <!-- Content -->
-          <h3 class="font-['Syne'] font-bold mb-3" style="font-size: var(--type-h3); color: var(--text-primary);">
+          <h3 class="font-['Bricolage_Grotesque'] font-semibold mb-3" style="font-size: var(--type-h3); color: #ffffff;">
             {service.title}
           </h3>
-          <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{service.description}</p>
+          <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.5);">{service.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .bento-dark {
+    background: rgba(15, 13, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .bento-dark:hover {
+    border-color: rgba(184, 116, 24, 0.35);
+    box-shadow: 0 0 40px rgba(232, 164, 74, 0.08);
+  }
+</style>
