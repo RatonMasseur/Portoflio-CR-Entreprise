@@ -22,9 +22,9 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <!-- Ambient glow — haut droite -->
-    <div aria-hidden="true" style="position: fixed; top: -100px; right: -100px; width: 700px; height: 700px; background: radial-gradient(ellipse at top right, rgba(232, 164, 74, 0.1) 0%, transparent 60%); filter: blur(120px); pointer-events: none; z-index: 0;"></div>
+    <div class="ambient-glow-1" aria-hidden="true"></div>
     <!-- Ambient glow — milieu gauche -->
-    <div aria-hidden="true" style="position: fixed; top: 50%; left: -150px; transform: translateY(-50%); width: 600px; height: 600px; background: radial-gradient(ellipse at left, rgba(232, 164, 74, 0.1) 0%, transparent 65%); filter: blur(120px); pointer-events: none; z-index: 0;"></div>
+    <div class="ambient-glow-2" aria-hidden="true"></div>
     <Cursor />
     <slot />
     <script src="../scripts/lenis.ts"></script>
@@ -36,4 +36,40 @@ const { title, description } = Astro.props;
 
 <style is:global>
   @import '../styles/global.css';
+</style>
+
+<style>
+  @keyframes breathe {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50%       { opacity: 0.18; transform: scale(1.08); }
+  }
+
+  .ambient-glow-1 {
+    position: fixed;
+    top: -100px;
+    right: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at top right, rgba(232, 164, 74, 0.12) 0%, transparent 60%);
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    animation: breathe 12s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .ambient-glow-2 {
+    position: fixed;
+    top: 50%;
+    left: -150px;
+    transform: translateY(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse at left, rgba(232, 164, 74, 0.1) 0%, transparent 65%);
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    animation: breathe 16s ease-in-out infinite reverse;
+    will-change: transform, opacity;
+  }
 </style>

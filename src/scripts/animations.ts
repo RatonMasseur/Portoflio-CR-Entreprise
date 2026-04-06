@@ -88,18 +88,4 @@ gsap.utils.toArray<HTMLElement>('[data-parallax-img]').forEach(img => {
   );
 });
 
-// Process line draw animation
-const processLine = document.getElementById('process-line');
-if (processLine) {
-  gsap.from(processLine, {
-    scaleX: 0,
-    transformOrigin: 'left center',
-    duration: 1,
-    ease: 'power2.inOut',
-    scrollTrigger: {
-      trigger: processLine,
-      start: 'top 80%',
-      toggleActions: 'play none none none',
-    },
-  });
-}
+// Process line draw animation — supprimé (section process redessinée en sticky cards)

@@ -10,7 +10,7 @@
 
 **Positionnement** : "Pas une agence. Pas un template." — fait main, livré en 7 jours, relation 1:1. Robin est le seul interlocuteur du début à la fin.
 
-**Vision esthétique** : "Artisanat Digital" — la précision technique d'un outil comme Mixpanel (propre, structuré, typographie forte) combinée à la chaleur humaine de Healthy Together (crème, textures, animations douces). Éviter à tout prix le côté "template SaaS froid" ou "agence générique".
+**Vision esthétique** : "Artisanat Digital" — la précision technique d'un outil comme Mixpanel (propre, structuré, typographie forte) combinée à la chaleur humaine de Healthy Together. Direction décidée : **noir/blanc pur** avec hero sombre. Fond principal blanc `#ffffff`, hero `#0a0806` + orbs ambre, accent ambre conservé. Éviter le côté "template SaaS froid" ou "agence générique".
 
 **Stack** : Astro (SSG) + Tailwind CSS + GSAP + ScrollTrigger + Lenis (smooth scroll)
 
@@ -24,7 +24,7 @@ Ces valeurs sont figées. Ne jamais les hardcoder — toujours utiliser les vari
 
 ```css
 /* Fonds */
---bg-primary: #f5f0e9        /* Crème — fond principal */
+--bg-primary: #ffffff        /* Blanc — fond principal (sections claires) */
 --bg-card: rgba(255,255,255,0.75)
 --bg-card-hover: rgba(255,255,255,0.95)
 
@@ -60,7 +60,7 @@ Ces valeurs sont figées. Ne jamais les hardcoder — toujours utiliser les vari
 
 **Échelle (variables CSS dans `:root`) :**
 ```css
---type-display: clamp(3rem, 10vw, 8rem)   /* hero h1 */
+--type-display: clamp(2.5rem, 6vw, 5rem)   /* hero h1 */
 --type-h2:      clamp(2rem, 5vw, 3.5rem)   /* titres de section */
 --type-h3:      clamp(1.25rem, 2.5vw, 1.75rem) /* sous-titres */
 --type-body:    1rem                        /* corps de texte */
@@ -116,7 +116,7 @@ Ces `id` et `data-*` sont lus par `src/scripts/animations.ts`. Ne jamais les ren
 | Attribut | Composant | Effet |
 |----------|-----------|-------|
 | `id="hero-headline"` | Hero.astro | Stagger enfants directs (y: 30→0, opacity) |
-| `id="process-line"` | Process.astro | Draw ligne horizontale (scaleX: 0→1) |
+| `id="process-line"` | ~~Process.astro~~ | Supprimé — section remplacée par sticky scroll cards |
 | `data-animate="fade-up"` | Tout composant | Fade depuis le bas (y: 40→0) |
 | `data-animate="fade-right"` | About photo | Fade depuis la gauche (x: -60→0) |
 | `data-animate="fade-left"` | About texte | Fade depuis la droite (x: 60→0) |
@@ -124,11 +124,23 @@ Ces `id` et `data-*` sont lus par `src/scripts/animations.ts`. Ne jamais les ren
 | `data-parallax-img` | Images portfolio | Parallaxe léger au scroll |
 | `data-tilt` | Cards | Effet 3D tilt au survol |
 
-### Textures obligatoires (déjà en place dans global.css)
+### Hero dark — règles spécifiques
 
-- **Grain** : `body::after` avec bruit SVG, opacité 0.04 — ne jamais supprimer
-- **Glows ambiants** : dans `Layout.astro`, deux dégradés radiaux ambre positionnés précisément
-- **Glassmorphism** : via la classe `.glass` — ne pas recréer inline
+Le Hero est la **seule section** avec fond sombre (`#0a0806`). Toutes les autres sections utilisent `--bg-primary`.
+
+- **Grille perspective** : `.hero-grid` — `background-image` avec 2 `linear-gradient` ambre (0.18 opacity), `transform: perspective(700px) rotateX(58deg)`, animation `grid-flow` 5s. Toujours dans le wrapper overflow-hidden.
+- **Orbs animés** : 3 divs avec `animation: float-1/2/3` (18s/22s/15s désynchronisé), `will-change: transform`. Couleurs : `#b87418` (0.55), `#e8a44a` (0.3), `#7a4510` (0.4).
+- **Texte sur dark** : `color: #ffffff` (acceptable sur fond dark explicite) ou `rgba(255,255,255,X)`
+- **`.btn-outline-dark`** : variante locale dans `Hero.astro` — ne pas modifier `.btn-outline` global
+- **Transition vers section claire** : rupture franche (pas de dégradé). Marquee a son propre fond via `--bg-primary`.
+- **Ne jamais** mettre `overflow-hidden` sur `<section>` hero — ça clippe grille + orbs. Le wrapper interne gère ça.
+
+### Textures obligatoires (déjà en place)
+
+- **Grain global** : `body::after` — bruit SVG, `opacity: 0.055`, `mix-blend-mode: soft-light` (visible sur blanc). Ne jamais supprimer ni repasser en `multiply`.
+- **Grain hero dark** : `.grain-hero` dans `Hero.astro` — même SVG, `opacity: 0.07`, `mix-blend-mode: overlay` (visible sur fond `#0a0806`). Séparé du grain global.
+- **Glows ambiants** : `.ambient-glow-1` et `.ambient-glow-2` dans `Layout.astro` — animation CSS `breathe` désynchronisée (12s / 16s reverse). Ne pas remettre en `style=""` inline.
+- **Glassmorphism** : via la classe `.glass` — ne pas recréer inline.
 
 ---
 
@@ -183,8 +195,10 @@ Avant de déclarer une session terminée, vérifier chaque point :
 
 ### Animations
 - [ ] `id="hero-headline"` présent dans `Hero.astro`
-- [ ] `id="process-line"` présent dans `Process.astro`
+- [ ] ~~`id="process-line"`~~ — supprimé, Process redessiné en sticky scroll
 - [ ] Animations `fade-up` visibles au scroll (vérifier en dev)
+- [ ] Orbs hero animés (float visible, non statiques)
+- [ ] Grille perspective visible dans le hero
 
 ### Design
 - [ ] Aucun `text-white` sur fond clair
@@ -199,17 +213,18 @@ Avant de déclarer une session terminée, vérifier chaque point :
 ```
 src/
   components/        ← un fichier par section
-    Hero.astro
-    Navbar.astro
-    About.astro
+    Hero.astro       ← fond dark #0a0806 + orbs animés + grille perspective
+    Navbar.astro     ← pill dark floating, style visitors-now
+    Personas.astro   ← 3 cards services (Landing Page / Site Vitrine / E-commerce)
+    Marquee.astro    ← défilement tech stack (py-6 exception)
+    Services.astro   ← liste numérotée 4 services
     Portfolio.astro  ← filtre par catégorie
-    Services.astro
-    Process.astro
+    About.astro
+    Process.astro    ← sticky scroll 4 cards sombres (redessiné)
     Testimonials.astro
     Contact.astro
     FAQ.astro
     Footer.astro
-    Marquee.astro    ← défilement tech stack
     Cursor.astro     ← curseur custom (desktop only)
   layouts/
     Layout.astro     ← head, fonts, SEO, ambient glows

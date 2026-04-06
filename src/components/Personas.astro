@@ -1,0 +1,252 @@
+---
+const services = [
+  {
+    tag: 'Landing Page',
+    title: 'Capturez\nvos leads',
+    description: "Une page conçue pour convertir. Un seul objectif, un seul message — vos visiteurs passent à l'action.",
+    features: ['Formulaire de contact', 'CTA fort & visible', 'Chargement < 2s', 'SEO optimisé'],
+    accent: 'rgba(184,116,24,0.9)',
+  },
+  {
+    tag: 'Site Vitrine',
+    title: 'Présentez\nvotre activité',
+    description: "Votre meilleur commercial, disponible 24h/24. Vos clients vous trouvent, vous découvrent, vous appellent.",
+    features: ['Galerie de réalisations', 'Présentation services', 'Intégration Google Maps', 'Formulaire de devis'],
+    accent: 'rgba(232,164,74,0.9)',
+  },
+  {
+    tag: 'Site E-commerce',
+    title: 'Vendez\nen ligne',
+    description: "Votre boutique ouverte à toute heure. Paiement sécurisé, gestion de stock, livraison intégrée.",
+    features: ['Paiement Stripe/PayPal', 'Gestion des stocks', 'Fiches produits SEO', 'Tableau de bord vendeur'],
+    accent: 'rgba(138,85,16,0.9)',
+  }
+];
+---
+
+<section class="py-32 md:py-20 px-6" style="background: var(--bg-primary);">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center max-w-xl mx-auto mb-16" data-animate="fade-up">
+      <span class="section-label mb-4 block">Prestations</span>
+      <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800; color: var(--text-primary);">
+        Quel site<br />
+        <span class="font-['Fraunces'] italic" style="font-weight: 300; color: var(--accent-primary);">vous faut-il ?</span>
+      </h2>
+    </div>
+
+    <!-- 3 cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {services.map((s, i) => (
+        <div
+          class="service-card relative overflow-hidden flex flex-col"
+          data-animate="fade-up"
+          data-animate-delay={i * 100}
+        >
+          <!-- Accent line top -->
+          <div class="h-[3px] w-full rounded-t-2xl" style={`background: ${s.accent};`}></div>
+
+          <div class="flex flex-col flex-1 p-8 gap-6">
+            <!-- Tag -->
+            <span class="label-tech" style="color: var(--accent-primary);">{s.tag}</span>
+
+            <!-- Title -->
+            <h3 class="font-['Syne'] font-bold leading-tight whitespace-pre-line" style={`font-size: var(--type-h3); color: var(--text-primary);`}>
+              {s.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">{s.description}</p>
+
+            <!-- Features -->
+            <ul class="flex flex-col gap-2 mt-auto">
+              {s.features.map(f => (
+                <li class="flex items-center gap-2.5 text-sm" style="color: var(--text-secondary);">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0" aria-hidden="true">
+                    <circle cx="7" cy="7" r="6.5" stroke="currentColor" stroke-opacity="0.25"/>
+                    <path d="M4.5 7L6.5 9L9.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTA -->
+            <a href="#contact" class="btn-primary mt-4 self-start text-sm py-2.5 px-5">
+              Démarrer →
+            </a>
+          </div>
+
+          <!-- Mockup CSS en bas de la card -->
+          <div class="mockup-wrapper" aria-hidden="true">
+            {i === 0 && (
+              <!-- Landing page mockup -->
+              <div class="mockup mockup-landing">
+                <div class="m-bar"></div>
+                <div class="m-hero">
+                  <div class="m-hero-text"></div>
+                  <div class="m-hero-text short"></div>
+                  <div class="m-cta"></div>
+                </div>
+              </div>
+            )}
+            {i === 1 && (
+              <!-- Site vitrine mockup -->
+              <div class="mockup mockup-vitrine">
+                <div class="m-bar"></div>
+                <div class="m-img"></div>
+                <div class="m-grid">
+                  <div class="m-card"></div>
+                  <div class="m-card"></div>
+                  <div class="m-card"></div>
+                </div>
+              </div>
+            )}
+            {i === 2 && (
+              <!-- E-commerce mockup -->
+              <div class="mockup mockup-ecom">
+                <div class="m-bar"></div>
+                <div class="m-products">
+                  <div class="m-product"><div class="m-thumb"></div><div class="m-price"></div></div>
+                  <div class="m-product"><div class="m-thumb"></div><div class="m-price"></div></div>
+                  <div class="m-product"><div class="m-thumb"></div><div class="m-price"></div></div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.05);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    overflow: hidden;
+  }
+
+  .service-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+  }
+
+  /* Mockup zone */
+  .mockup-wrapper {
+    padding: 0 24px;
+    height: 140px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    margin-top: auto;
+  }
+
+  .mockup {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-bottom: none;
+    background: #f8f8f8;
+  }
+
+  /* Barre nav mockup */
+  .m-bar {
+    height: 20px;
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .m-bar::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(184,116,24,0.5);
+  }
+  .m-bar::after {
+    content: '';
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.08);
+    margin-left: 4px;
+  }
+
+  /* Landing page */
+  .mockup-landing .m-hero {
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: linear-gradient(135deg, #0f0d0a 0%, #1a150d 100%);
+  }
+  .m-hero-text {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.7);
+    width: 80%;
+  }
+  .m-hero-text.short { width: 55%; background: rgba(255,255,255,0.35); }
+  .m-cta {
+    margin-top: 6px;
+    height: 14px;
+    width: 60px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #e8a44a, #b87418);
+  }
+
+  /* Site vitrine */
+  .mockup-vitrine .m-img {
+    height: 40px;
+    background: linear-gradient(135deg, #d4c4a8 0%, #e8dcc8 100%);
+  }
+  .mockup-vitrine .m-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 6px;
+    background: #f5f0e9;
+  }
+  .mockup-vitrine .m-card {
+    height: 30px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* E-commerce */
+  .mockup-ecom .m-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 6px;
+    background: #fafafa;
+  }
+  .m-product {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .m-thumb {
+    height: 40px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #e8dcc8 0%, #f0e8d8 100%);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .m-price {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(184,116,24,0.4);
+    width: 70%;
+  }
+</style>

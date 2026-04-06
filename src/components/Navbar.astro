@@ -1,47 +1,59 @@
 <nav
   id="navbar"
   class="fixed z-50 transition-all duration-500"
-  style="top: 16px; left: 50%; transform: translateX(-50%); width: calc(100% - 48px); max-width: 1000px;"
+  style="top: 16px; left: 50%; transform: translateX(-50%); width: calc(100% - 48px); max-width: 960px;"
 >
   <div
     id="navbar-inner"
-    class="flex items-center justify-between px-6 py-3.5 transition-all duration-500"
-    style="background: rgba(245, 240, 233, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.9); border-radius: 100px; box-shadow: 0 2px 20px rgba(0,0,0,0.08);"
+    class="flex items-center justify-between px-5 py-2.5 transition-all duration-500"
+    style="background: rgba(10, 8, 6, 0.82); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; box-shadow: 0 4px 24px rgba(0,0,0,0.28);"
   >
     <!-- Logo -->
-    <a href="#" class="font-['Syne'] text-base font-bold tracking-tight" style="color: var(--text-primary);">
+    <a href="#" class="font-['Syne'] text-sm font-bold tracking-tight text-white shrink-0">
       RC<span style="color: var(--accent-primary);">.</span>
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-7 text-sm" style="color: var(--text-muted);">
-      <a href="#services" class="nav-link hover:text-[var(--text-primary)] transition-colors duration-200 tracking-wide">Services</a>
-      <a href="#realisations" class="nav-link hover:text-[var(--text-primary)] transition-colors duration-200 tracking-wide">Réalisations</a>
-      <a href="#a-propos" class="nav-link hover:text-[var(--text-primary)] transition-colors duration-200 tracking-wide">À propos</a>
-      <a href="#processus" class="nav-link hover:text-[var(--text-primary)] transition-colors duration-200 tracking-wide">Processus</a>
-      <a href="#faq" class="nav-link hover:text-[var(--text-primary)] transition-colors duration-200 tracking-wide">FAQ</a>
+    <div class="hidden md:flex items-center gap-6 text-[13px]" style="color: rgba(255,255,255,0.55);">
+      <a href="#services" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">Services</a>
+      <a href="#realisations" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">Réalisations</a>
+      <a href="#a-propos" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">À propos</a>
+      <a href="#processus" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">Processus</a>
+      <a href="#faq" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">FAQ</a>
     </div>
 
     <!-- CTA -->
-    <a href="#contact" class="hidden md:block btn-primary text-sm py-2 px-5">Contact</a>
+    <a
+      href="#contact"
+      class="hidden md:block text-[13px] font-semibold font-['Syne'] px-4 py-1.5 rounded-full shrink-0 transition-all duration-200"
+      style="background: var(--gradient-cta); color: #fff; letter-spacing: 0.02em;"
+      onmouseover="this.style.opacity='0.88'"
+      onmouseout="this.style.opacity='1'"
+    >
+      Contact
+    </a>
 
     <!-- Mobile toggle -->
-    <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Ouvrir le menu">
-      <span class="block w-5 h-0.5 transition-all duration-300 origin-center" style="background: var(--text-primary);" id="bar1"></span>
-      <span class="block w-5 h-0.5 transition-all duration-300" style="background: var(--text-primary);" id="bar2"></span>
-      <span class="block w-5 h-0.5 transition-all duration-300 origin-center" style="background: var(--text-primary);" id="bar3"></span>
+    <button id="menu-toggle" class="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer" aria-label="Ouvrir le menu">
+      <span class="block w-[18px] h-[1.5px] bg-white transition-all duration-300 origin-center" id="bar1"></span>
+      <span class="block w-[18px] h-[1.5px] bg-white transition-all duration-300" id="bar2"></span>
+      <span class="block w-[18px] h-[1.5px] bg-white transition-all duration-300 origin-center" id="bar3"></span>
     </button>
   </div>
 </nav>
 
 <!-- Mobile menu -->
-<div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 text-2xl opacity-0 pointer-events-none transition-opacity duration-300" style="background: rgba(245, 240, 233, 0.97); backdrop-filter: blur(20px);">
-  <a href="#services" class="hover:text-[var(--accent-primary)] transition-colors mobile-link font-['Syne'] font-bold" style="color: var(--text-primary);">Services</a>
-  <a href="#realisations" class="hover:text-[var(--accent-primary)] transition-colors mobile-link font-['Syne'] font-bold" style="color: var(--text-primary);">Réalisations</a>
-  <a href="#a-propos" class="hover:text-[var(--accent-primary)] transition-colors mobile-link font-['Syne'] font-bold" style="color: var(--text-primary);">À propos</a>
-  <a href="#processus" class="hover:text-[var(--accent-primary)] transition-colors mobile-link font-['Syne'] font-bold" style="color: var(--text-primary);">Processus</a>
-  <a href="#faq" class="hover:text-[var(--accent-primary)] transition-colors mobile-link font-['Syne'] font-bold" style="color: var(--text-primary);">FAQ</a>
-  <a href="#contact" class="btn-primary mobile-link mt-4">Contact →</a>
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 text-2xl opacity-0 pointer-events-none transition-opacity duration-300"
+  style="background: rgba(10, 8, 6, 0.97); backdrop-filter: blur(24px);"
+>
+  <a href="#services" class="mobile-link font-['Syne'] font-bold text-white hover:text-[var(--accent-light)] transition-colors">Services</a>
+  <a href="#realisations" class="mobile-link font-['Syne'] font-bold text-white hover:text-[var(--accent-light)] transition-colors">Réalisations</a>
+  <a href="#a-propos" class="mobile-link font-['Syne'] font-bold text-white hover:text-[var(--accent-light)] transition-colors">À propos</a>
+  <a href="#processus" class="mobile-link font-['Syne'] font-bold text-white hover:text-[var(--accent-light)] transition-colors">Processus</a>
+  <a href="#faq" class="mobile-link font-['Syne'] font-bold text-white hover:text-[var(--accent-light)] transition-colors">FAQ</a>
+  <a href="#contact" class="mobile-link mt-4 text-base font-semibold font-['Syne'] px-6 py-3 rounded-full" style="background: var(--gradient-cta); color: #fff;">Contact →</a>
 </div>
 
 <script>
@@ -49,13 +61,13 @@
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
-      navbarInner.style.background = 'rgba(245, 240, 233, 0.92)';
-      navbarInner.style.borderColor = 'rgba(255,255,255,1)';
-      navbarInner.style.boxShadow = '0 8px 32px rgba(0,0,0,0.12)';
+      navbarInner.style.background = 'rgba(10, 8, 6, 0.95)';
+      navbarInner.style.borderColor = 'rgba(255,255,255,0.1)';
+      navbarInner.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4)';
     } else {
-      navbarInner.style.background = 'rgba(245, 240, 233, 0.7)';
-      navbarInner.style.borderColor = 'rgba(255,255,255,0.9)';
-      navbarInner.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+      navbarInner.style.background = 'rgba(10, 8, 6, 0.82)';
+      navbarInner.style.borderColor = 'rgba(255,255,255,0.08)';
+      navbarInner.style.boxShadow = '0 4px 24px rgba(0,0,0,0.28)';
     }
   });
 
@@ -70,9 +82,9 @@
     open = !open;
     mobileMenu.style.opacity = open ? '1' : '0';
     mobileMenu.style.pointerEvents = open ? 'all' : 'none';
-    bar1.style.transform = open ? 'translateY(8px) rotate(45deg)' : '';
+    bar1.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
     bar2.style.opacity = open ? '0' : '1';
-    bar3.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
+    bar3.style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
   });
 
   document.querySelectorAll('.mobile-link').forEach(link => {

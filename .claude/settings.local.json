@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:cr-entreprise.com)"
+      "WebFetch(domain:cr-entreprise.com)",
+      "Bash(python \"C:\\\\Users\\\\Robin\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"freelance web developer portfolio dark luxury amber elegant\" --design-system -p \"Robin Carivenc Portfolio\")",
+      "Bash(py --version)",
+      "Bash(powershell -Command \"Copy-Item 'inspiration 3\\\\Capture d''écran 2026-04-06 010155.png' 'inspiration3-capture.png'\")"
     ]
   }
 }

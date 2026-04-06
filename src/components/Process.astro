@@ -1,65 +1,137 @@
 ---
 const steps = [
-  { number: '01', title: 'Échange', description: 'On discute de votre activité, vos clients cibles, ce que vous voulez mettre en avant.' },
-  { number: '02', title: 'Maquette', description: "Je vous présente une maquette complète. On ajuste ensemble jusqu'à ce que ce soit parfait." },
-  { number: '03', title: 'Développement', description: "Je code le site, j'optimise le SEO, je configure l'hébergement. Vous ne touchez à rien." },
-  { number: '04', title: 'Mise en ligne', description: 'Votre site est en ligne. Je vous forme en 30 min à gérer votre contenu vous-même.' }
+  {
+    tag: 'Étape 01',
+    title: 'Échange',
+    description: "On discute de votre activité, vos clients cibles, ce que vous voulez mettre en avant. 30 minutes suffisent.",
+    details: ['Appel découverte gratuit', 'Cahier des charges simple', 'Devis sous 24h'],
+    bg: '#0f0d0a',
+    numColor: 'rgba(184,116,24,0.08)',
+  },
+  {
+    tag: 'Étape 02',
+    title: 'Maquette',
+    description: "Je vous présente une maquette complète du site. On ajuste ensemble jusqu'à ce que ce soit parfait.",
+    details: ['Maquette Figma interactive', 'Révisions illimitées', 'Validation avant développement'],
+    bg: '#1a1510',
+    numColor: 'rgba(184,116,24,0.07)',
+  },
+  {
+    tag: 'Étape 03',
+    title: 'Développement',
+    description: "Je code le site à la main, optimise le SEO, configure l'hébergement. Vous ne touchez à rien.",
+    details: ['Code propre & performant', 'SEO technique inclus', 'Tests mobile & desktop'],
+    bg: '#231e16',
+    numColor: 'rgba(184,116,24,0.07)',
+  },
+  {
+    tag: 'Étape 04',
+    title: 'Mise en ligne',
+    description: 'Votre site est en ligne. Je vous forme en 30 minutes à gérer votre contenu — et je reste disponible.',
+    details: ['Déploiement & DNS', 'Formation contenu incluse', 'Support 3 mois offert'],
+    bg: '#2e2618',
+    numColor: 'rgba(232,164,74,0.1)',
+  }
 ];
 ---
 
-<section id="processus" class="py-32 md:py-20 px-6">
-  <div class="max-w-6xl mx-auto">
+<section id="processus" class="px-6 overflow-hidden" style="background: var(--bg-primary);">
 
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20" data-animate="fade-up">
-      <div>
-        <span class="section-label mb-4 block">Processus</span>
-        <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800;">Comment ça<br />se passe ?</h2>
-      </div>
-      <p class="max-w-xs text-sm" style="color: var(--text-muted);">Un process simple et transparent, du brief à la mise en ligne.</p>
-    </div>
-
-    <!-- Desktop: horizontal timeline -->
-    <div class="hidden md:grid grid-cols-4 gap-8 relative">
-      <!-- Ligne de connexion — animée via GSAP scaleX 0→1 -->
-      <div id="process-line" class="absolute top-[19px] left-[calc(12.5%+20px)] right-[calc(12.5%+20px)] h-px" style="background: linear-gradient(to right, var(--accent-primary), var(--border-card)); transform-origin: left; transform: scaleX(0);"></div>
-
-      {steps.map((step, i) => (
-        <div class="relative" data-animate="fade-up" data-animate-delay={i * 120}>
-          <!-- Numéro cercle -->
-          <div
-            class="w-10 h-10 rounded-full flex items-center justify-center mb-6 relative z-10 font-['Syne'] font-bold text-xs"
-            style="background: var(--bg-primary); border: 1px solid var(--accent-primary); color: var(--accent-primary);"
-          >
-            {step.number}
-          </div>
-          <h3 class="text-lg font-['Syne'] font-bold mb-2" style="color: var(--text-primary);">{step.title}</h3>
-          <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{step.description}</p>
-        </div>
-      ))}
-    </div>
-
-    <!-- Mobile: vertical timeline -->
-    <div class="md:hidden flex flex-col gap-0 relative">
-      {steps.map((step, i) => (
-        <div class="relative flex gap-6 pb-10 last:pb-0" data-animate="fade-up" data-animate-delay={i * 100}>
-          <!-- Ligne verticale -->
-          {i < steps.length - 1 && (
-            <div class="absolute left-[19px] top-10 bottom-0 w-px" style="background: linear-gradient(to bottom, var(--accent-primary), var(--border-card));"></div>
-          )}
-          <!-- Cercle -->
-          <div
-            class="w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-['Syne'] font-bold text-xs relative z-10"
-            style="background: var(--bg-primary); border: 1px solid var(--accent-primary); color: var(--accent-primary);"
-          >
-            {step.number}
-          </div>
-          <div class="pt-1.5">
-            <h3 class="text-base font-['Syne'] font-bold mb-1" style="color: var(--text-primary);">{step.title}</h3>
-            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{step.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-
+  <!-- Header (flux normal) -->
+  <div class="max-w-3xl mx-auto pt-32 md:pt-20 pb-16" data-animate="fade-up">
+    <span class="section-label mb-4 block">Processus</span>
+    <h2 class="font-['Syne'] leading-tight" style="font-size: var(--type-h2); font-weight: 800; color: var(--text-primary);">
+      Comment ça<br />
+      <span class="font-['Fraunces'] italic" style="font-weight: 300; color: var(--accent-primary);">se passe ?</span>
+    </h2>
+    <p class="mt-4 text-base max-w-sm" style="color: var(--text-muted);">Un process simple et transparent, du brief à la mise en ligne en 7 jours.</p>
   </div>
+
+  <!-- Sticky stack — desktop -->
+  <div class="hidden md:block max-w-3xl mx-auto relative pb-32">
+    {steps.map((step, i) => (
+      <div class="step-scroll-slot" style={i < steps.length - 1 ? 'height: 55vh;' : ''}>
+        <div
+          class="step-card"
+          style={`top: ${96 + i * 26}px; z-index: ${10 + i}; background: ${step.bg};`}
+        >
+          <!-- Big decorative number -->
+          <div class="step-deco-num" style={`color: ${step.numColor};`}>{step.tag.split(' ')[1]}</div>
+
+          <!-- Left: content -->
+          <div class="step-content">
+            <span class="label-tech mb-4 block" style="color: rgba(232,164,74,0.7);">{step.tag}</span>
+            <h3 class="font-['Syne'] font-bold mb-4 leading-tight" style="font-size: var(--type-h3); color: #ffffff;">
+              {step.title}
+            </h3>
+            <p class="text-sm leading-relaxed mb-8" style="color: rgba(255,255,255,0.55);">{step.description}</p>
+            <ul class="flex flex-col gap-2.5">
+              {step.details.map(d => (
+                <li class="flex items-center gap-2.5 text-sm" style="color: rgba(255,255,255,0.45);">
+                  <span class="w-1 h-1 rounded-full shrink-0" style="background: rgba(232,164,74,0.6);"></span>
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Mobile: vertical simple -->
+  <div class="md:hidden max-w-3xl mx-auto pb-20 flex flex-col gap-4">
+    {steps.map((step, i) => (
+      <div
+        class="rounded-2xl p-8"
+        style={`background: ${step.bg};`}
+        data-animate="fade-up"
+        data-animate-delay={i * 80}
+      >
+        <span class="label-tech mb-3 block" style="color: rgba(232,164,74,0.7);">{step.tag}</span>
+        <h3 class="font-['Syne'] font-bold mb-3" style="font-size: var(--type-h3); color: #ffffff;">{step.title}</h3>
+        <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">{step.description}</p>
+      </div>
+    ))}
+  </div>
+
 </section>
+
+<style>
+  /* Slot de scroll — crée la hauteur pour que la carte sticky "accroche" */
+  .step-scroll-slot {
+    position: relative;
+  }
+
+  .step-card {
+    position: sticky;
+    border-radius: 20px;
+    padding: 52px 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  }
+
+  .step-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Grand numéro décoratif en fond */
+  .step-deco-num {
+    position: absolute;
+    right: -16px;
+    top: -32px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(120px, 18vw, 200px);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.3s;
+  }
+</style>

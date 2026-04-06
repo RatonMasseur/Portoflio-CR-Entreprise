@@ -12,13 +12,13 @@
 /* ─── Design Tokens — Atelier Tech Light ─────────────────── */
 :root {
   /* Typographie — échelle fluide */
-  --type-display: clamp(3rem, 10vw, 8rem);
+  --type-display: clamp(2.5rem, 6vw, 5rem);
   --type-h2:      clamp(2rem, 5vw, 3.5rem);
   --type-h3:      clamp(1.25rem, 2.5vw, 1.75rem);
   --type-body:    1rem;
 
   /* Backgrounds */
-  --bg-primary:    #f5f0e9;
+  --bg-primary:    #ffffff;
   --bg-card:       rgba(255, 255, 255, 0.75);
   --bg-card-hover: rgba(255, 255, 255, 0.95);
 
@@ -63,15 +63,15 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Grain texture — multiply sur fond clair ─────────────── */
+/* ─── Grain texture — soft-light sur fond clair ───────────── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
+  opacity: 0.055;
+  mix-blend-mode: soft-light;
   pointer-events: none;
   z-index: 9999;
 }
