@@ -58,16 +58,43 @@ gsap.utils.toArray<HTMLElement>('[data-animate="fade-left"]').forEach(el => {
   });
 });
 
-// Hero headline text animation
+// Hero headline — text reveal mot par mot
 const heroHeadline = document.getElementById('hero-headline');
 if (heroHeadline) {
-  gsap.from(heroHeadline.children, {
-    y: 30,
+  // Wrap chaque nœud texte direct des enfants h1 en spans par mot
+  heroHeadline.querySelectorAll('h1').forEach(el => {
+    // Ne splitter que les nœuds texte directs (préserve les spans enfants comme .hero-underline)
+    el.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()) {
+        const words = node.textContent.split(/(\s+)/);
+        const fragment = document.createDocumentFragment();
+        words.forEach(part => {
+          if (/\s+/.test(part)) {
+            fragment.appendChild(document.createTextNode(part));
+          } else if (part) {
+            const wrap = document.createElement('span');
+            wrap.style.cssText = 'display:inline-block; overflow:hidden; vertical-align:bottom; line-height:inherit;';
+            const inner = document.createElement('span');
+            inner.className = 'word-inner';
+            inner.style.display = 'inline-block';
+            inner.textContent = part;
+            wrap.appendChild(inner);
+            fragment.appendChild(wrap);
+          }
+        });
+        node.replaceWith(fragment);
+      }
+    });
+  });
+
+  gsap.from(heroHeadline.querySelectorAll('.word-inner'), {
+    y: '110%',
+    rotation: 3,
     opacity: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out',
-    delay: 0.3,
+    duration: 0.75,
+    ease: 'power3.out',
+    stagger: 0.055,
+    delay: 0.2,
   });
 }
 
@@ -89,3 +116,25 @@ gsap.utils.toArray<HTMLElement>('[data-parallax-img]').forEach(img => {
 });
 
 // Process line draw animation — supprimé (section process redessinée en sticky cards)
+
+// Hero orbs — GSAP mesh gradient (remplace les keyframes CSS float-1/2/3)
+const orbs = document.querySelectorAll<HTMLElement>('.orb');
+orbs.forEach((orb, i) => {
+  const tl = gsap.timeline({ repeat: -1, yoyo: true });
+  // Deux positions aléatoires pour un mouvement organique continu
+  tl.to(orb, {
+    x: gsap.utils.random(-70, 70),
+    y: gsap.utils.random(-50, 50),
+    scale: gsap.utils.random(0.92, 1.12),
+    duration: gsap.utils.random(16, 22),
+    ease: 'sine.inOut',
+  }).to(orb, {
+    x: gsap.utils.random(-70, 70),
+    y: gsap.utils.random(-50, 50),
+    scale: gsap.utils.random(0.88, 1.08),
+    duration: gsap.utils.random(14, 20),
+    ease: 'sine.inOut',
+  });
+  // Décalage de phase pour désynchroniser les 3 orbs
+  tl.progress(i * 0.33);
+});

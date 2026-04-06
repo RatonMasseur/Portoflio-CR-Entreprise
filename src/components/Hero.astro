@@ -1,4 +1,4 @@
-<section class="relative min-h-screen flex items-end px-6 pt-36 pb-20" style="background: #0a0806;">
+<section class="relative min-h-screen flex items-end px-6 pt-36 pb-20" style="background: #0a0806;" data-dark-section>
 
   <!-- Clip container pour les orbs (overflow-hidden ici, pas sur la section) -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -102,25 +102,7 @@
     to   { background-position: 0 80px; }
   }
 
-  /* ─── Keyframes flottement désynchronisé ─── */
-  @keyframes float-1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33%       { transform: translate(-30px, 20px) scale(1.04); }
-    66%       { transform: translate(20px, -15px) scale(0.97); }
-  }
-
-  @keyframes float-2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    40%       { transform: translate(25px, -30px) scale(1.06); }
-    70%       { transform: translate(-15px, 20px) scale(0.95); }
-  }
-
-  @keyframes float-3 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%       { transform: translate(-20px, 15px) scale(1.03); }
-  }
-
-  /* Orbs ambre — blob flou CSS pur */
+  /* Orbs ambre — blob flou, animés via GSAP dans animations.ts */
   .orb {
     position: absolute;
     border-radius: 50%;
@@ -132,33 +114,30 @@
     width: 800px;
     height: 800px;
     background: #b87418;
-    filter: blur(160px);
+    filter: blur(150px);
     top: -200px;
     right: -100px;
     opacity: 0.55;
-    animation: float-1 18s ease-in-out infinite;
   }
 
   .orb-2 {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     background: #e8a44a;
-    filter: blur(120px);
+    filter: blur(150px);
     top: 30%;
     left: -80px;
     opacity: 0.3;
-    animation: float-2 22s ease-in-out infinite;
   }
 
   .orb-3 {
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background: #7a4510;
-    filter: blur(100px);
+    filter: blur(150px);
     bottom: 0;
     right: 25%;
     opacity: 0.4;
-    animation: float-3 15s ease-in-out infinite;
   }
 
   /* Grain dédié fond dark — overlay (visible sur noir, contrairement à multiply) */
