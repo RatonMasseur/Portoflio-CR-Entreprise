@@ -19,9 +19,11 @@
       height="100%"
       loading="lazy"
     ></iframe>
+    <!-- Watermark cover -->
+    <div style="position: absolute; bottom: 0; right: 0; width: 160px; height: 36px; background: #0a0806; z-index: 3;"></div>
   </div>
 
-  <div class="relative w-full max-w-6xl mx-auto">
+  <div class="relative w-full max-w-6xl mx-auto" style="z-index: 3;">
 
     <!-- Top label row -->
     <div class="flex items-center gap-4 mb-12" data-animate="fade-up">
@@ -60,23 +62,6 @@
         </p>
       </div>
 
-      <!-- Stats -->
-      <div class="flex gap-10 lg:gap-16 pb-2">
-        <div>
-          <p class="font-['Bricolage_Grotesque'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">7j</p>
-          <p class="label-tech mt-2" style="color: rgba(255,255,255,0.4);">Délai moyen</p>
-        </div>
-        <div class="w-px" style="background: rgba(255,255,255,0.1);"></div>
-        <div>
-          <p class="font-['Bricolage_Grotesque'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">24h</p>
-          <p class="label-tech mt-2" style="color: rgba(255,255,255,0.4);">Réponse garantie</p>
-        </div>
-        <div class="w-px hidden sm:block" style="background: rgba(255,255,255,0.1);"></div>
-        <div class="hidden sm:block">
-          <p class="font-['Bricolage_Grotesque'] text-5xl leading-none" style="font-weight: 800; color: #ffffff;">1:1</p>
-          <p class="label-tech mt-2" style="color: rgba(255,255,255,0.4);">Interlocuteur direct</p>
-        </div>
-      </div>
     </div>
 
     <!-- Scroll indicator -->

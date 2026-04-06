@@ -4,25 +4,25 @@ const services = [
     title: 'Création de site web',
     description: 'Site vitrine moderne, rapide et optimisé pour convertir vos visiteurs en clients. Conçu sur-mesure pour votre métier.',
     span: 'col-span-1 md:col-span-2',
-    lottieSrc: '/animations/web.lottie',
+    visual: 'web',
   },
   {
     title: 'Design responsive',
     description: "Votre site s'adapte parfaitement sur mobile, tablette et desktop. Testé sur tous les appareils.",
     span: 'col-span-1',
-    lottieSrc: '/animations/responsive.lottie',
+    visual: 'responsive',
   },
   {
     title: 'SEO local',
     description: 'Apparaissez en premier quand vos clients vous cherchent sur Google. Configuration Google Business incluse.',
     span: 'col-span-1',
-    lottieSrc: '/animations/seo.lottie',
+    visual: 'seo',
   },
   {
     title: 'Performance & maintenance',
     description: "Site rapide, sécurisé et maintenu. Vous n'avez rien à gérer — je m'occupe de tout.",
     span: 'col-span-1 md:col-span-2',
-    lottieSrc: '/animations/perf.lottie',
+    visual: 'perf',
   },
 ];
 ---
@@ -46,13 +46,52 @@ const services = [
           data-animate="fade-up"
           data-animate-delay={i * 80}
         >
-          <!-- Lottie animation -->
-          <div class="mb-6">
-            <canvas
-              data-lottie-src={service.lottieSrc}
-              width="80"
-              height="80"
-            ></canvas>
+          <!-- Visual CSS -->
+          <div class="bento-visual mb-6" aria-hidden="true">
+            {service.visual === 'web' && (
+              <div class="visual-code">
+                <div class="code-line"><span class="code-tag">&lt;section</span> <span class="code-attr">class</span>=<span class="code-str">"hero"</span><span class="code-tag">&gt;</span></div>
+                <div class="code-line indent"><span class="code-tag">&lt;h1&gt;</span><span class="code-text">Votre site.</span><span class="code-tag">&lt;/h1&gt;</span></div>
+                <div class="code-line indent"><span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-str">"#contact"</span><span class="code-tag">&gt;</span><span class="code-text">Contact</span><span class="code-tag">&lt;/a&gt;</span></div>
+                <div class="code-line"><span class="code-tag">&lt;/section&gt;</span></div>
+              </div>
+            )}
+            {service.visual === 'responsive' && (
+              <div class="visual-devices">
+                <div class="device device-desktop"></div>
+                <div class="device device-tablet"></div>
+                <div class="device device-mobile"></div>
+              </div>
+            )}
+            {service.visual === 'seo' && (
+              <div class="visual-seo">
+                <div class="seo-bar">
+                  <div class="seo-dot"></div>
+                  <div class="seo-url">google.com/search?q=votre+métier</div>
+                </div>
+                <div class="seo-result seo-result--top">
+                  <div class="seo-rank">1</div>
+                  <div class="seo-lines"><div></div><div></div></div>
+                </div>
+                <div class="seo-result">
+                  <div class="seo-rank">2</div>
+                  <div class="seo-lines"><div></div><div></div></div>
+                </div>
+              </div>
+            )}
+            {service.visual === 'perf' && (
+              <div class="visual-perf">
+                <div class="perf-gauge">
+                  <div class="perf-arc"></div>
+                  <div class="perf-score">98</div>
+                </div>
+                <div class="perf-bars">
+                  <div class="perf-bar-wrap"><span class="perf-label">Performance</span><div class="perf-bar" style="width: 95%;"></div></div>
+                  <div class="perf-bar-wrap"><span class="perf-label">Accessibilité</span><div class="perf-bar" style="width: 100%;"></div></div>
+                  <div class="perf-bar-wrap"><span class="perf-label">SEO</span><div class="perf-bar" style="width: 92%;"></div></div>
+                </div>
+              </div>
+            )}
           </div>
 
           <!-- Content -->
@@ -72,10 +111,157 @@ const services = [
     border: 1px solid rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color 0.25s, box-shadow 0.25s;
   }
 
   .bento-dark:hover {
     border-color: rgba(184, 116, 24, 0.35);
     box-shadow: 0 0 40px rgba(232, 164, 74, 0.08);
+  }
+
+  /* ── Code snippet visual (Création web) ── */
+  .visual-code {
+    font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: inline-block;
+  }
+  .code-line { white-space: nowrap; }
+  .code-line.indent { padding-left: 16px; }
+  .code-tag  { color: rgba(232, 164, 74, 0.9); }
+  .code-attr { color: rgba(147, 197, 253, 0.8); }
+  .code-str  { color: rgba(134, 239, 172, 0.8); }
+  .code-text { color: rgba(255, 255, 255, 0.6); }
+
+  /* ── Device icons visual (Design responsive) ── */
+  .visual-devices {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 56px;
+  }
+  .device {
+    border: 1.5px solid rgba(232, 164, 74, 0.5);
+    border-radius: 3px;
+    background: rgba(232, 164, 74, 0.06);
+  }
+  .device-desktop { width: 56px; height: 40px; border-radius: 4px; }
+  .device-tablet  { width: 30px; height: 40px; border-radius: 4px; }
+  .device-mobile  { width: 18px; height: 32px; border-radius: 4px; }
+
+  /* ── SEO visual ── */
+  .visual-seo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 240px;
+  }
+  .seo-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 5px 10px;
+  }
+  .seo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    flex-shrink: 0;
+  }
+  .seo-url {
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .seo-result {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    opacity: 0.45;
+  }
+  .seo-result--top { opacity: 1; }
+  .seo-rank {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    width: 14px;
+    text-align: center;
+  }
+  .seo-lines { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .seo-lines div {
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .seo-lines div:first-child { width: 70%; }
+  .seo-lines div:last-child  { width: 45%; }
+
+  /* ── Performance gauge visual ── */
+  .visual-perf {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .perf-gauge {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+  .perf-arc {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-top-color: var(--accent-primary);
+    border-right-color: var(--accent-primary);
+    border-bottom-color: var(--accent-light);
+  }
+  .perf-score {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--accent-light);
+  }
+  .perf-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .perf-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .perf-label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .perf-bar {
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
   }
 </style>

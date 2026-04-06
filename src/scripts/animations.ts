@@ -158,18 +158,17 @@ if (toolsIllustration) {
   });
 }
 
-// Process sticky cards — entrée GSAP au scroll
+// Process sticky cards — scale subtle (pas d'opacity pour ne pas conflicte avec sticky)
 gsap.utils.toArray<HTMLElement>('.process-card').forEach(card => {
   gsap.fromTo(card,
-    { y: 60, opacity: 0 },
+    { scale: 0.97 },
     {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
+      scale: 1,
+      duration: 0.5,
       ease: 'power2.out',
       scrollTrigger: {
-        trigger: card,
-        start: 'top 80%',
+        trigger: card.closest('.step-scroll-slot') as Element,
+        start: 'top 60%',
         toggleActions: 'play none none none',
       },
     }

@@ -32,7 +32,7 @@ const services = [
       <span class="section-label mb-4 block">Prestations</span>
       <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700; color: var(--text-primary);">
         Quel site<br />
-        <span class="font-['Fraunces'] italic" style="font-weight: 300; color: var(--accent-primary);">vous faut-il ?</span>
+        <span style="color: var(--accent-primary);">vous faut-il ?</span>
       </h2>
     </div>
 
@@ -43,7 +43,14 @@ const services = [
           class="service-card relative overflow-hidden flex flex-col"
           data-animate="fade-up"
           data-animate-delay={i * 100}
+          style={i === 1 ? 'border-color: var(--accent-primary); box-shadow: 0 0 40px rgba(184,116,24,0.15);' : ''}
         >
+          {i === 1 && (
+            <div style="position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent-primary); color: #fff; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 0 0 10px 10px; white-space: nowrap; z-index: 1;">
+              Le plus populaire
+            </div>
+          )}
+
           <!-- Accent line top -->
           <div class="h-[3px] w-full rounded-t-2xl" style={`background: ${s.accent};`}></div>
 
@@ -77,44 +84,6 @@ const services = [
               Démarrer →
             </a>
           </div>
-
-          <!-- Mockup CSS en bas de la card -->
-          <div class="mockup-wrapper" aria-hidden="true">
-            {i === 0 && (
-              <!-- Landing page mockup -->
-              <div class="mockup mockup-landing">
-                <div class="m-bar"></div>
-                <div class="m-hero">
-                  <div class="m-hero-text"></div>
-                  <div class="m-hero-text short"></div>
-                  <div class="m-cta"></div>
-                </div>
-              </div>
-            )}
-            {i === 1 && (
-              <!-- Site vitrine mockup -->
-              <div class="mockup mockup-vitrine">
-                <div class="m-bar"></div>
-                <div class="m-img"></div>
-                <div class="m-grid">
-                  <div class="m-card"></div>
-                  <div class="m-card"></div>
-                  <div class="m-card"></div>
-                </div>
-              </div>
-            )}
-            {i === 2 && (
-              <!-- E-commerce mockup -->
-              <div class="mockup mockup-ecom">
-                <div class="m-bar"></div>
-                <div class="m-products">
-                  <div class="m-product"><div class="m-thumb"></div><div class="m-price"></div></div>
-                  <div class="m-product"><div class="m-thumb"></div><div class="m-price"></div></div>
-                  <div class="m-product"><div class="m-thumb"></div><div class="m-price"></div></div>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
       ))}
     </div>
@@ -135,118 +104,5 @@ const services = [
     border-color: var(--border-hover);
     box-shadow: 0 12px 48px rgba(0,0,0,0.1);
     transform: translateY(-4px);
-  }
-
-  /* Mockup zone */
-  .mockup-wrapper {
-    padding: 0 24px;
-    height: 140px;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-start;
-    margin-top: auto;
-  }
-
-  .mockup {
-    width: 100%;
-    border-radius: 8px 8px 0 0;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.07);
-    border-bottom: none;
-    background: #f8f8f8;
-  }
-
-  /* Barre nav mockup */
-  .m-bar {
-    height: 20px;
-    background: #e8e8e8;
-    display: flex;
-    align-items: center;
-    padding: 0 8px;
-    gap: 4px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-
-  .m-bar::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(184,116,24,0.5);
-  }
-  .m-bar::after {
-    content: '';
-    flex: 1;
-    height: 8px;
-    border-radius: 4px;
-    background: rgba(0,0,0,0.08);
-    margin-left: 4px;
-  }
-
-  /* Landing page */
-  .mockup-landing .m-hero {
-    padding: 16px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: linear-gradient(135deg, #0f0d0a 0%, #1a150d 100%);
-  }
-  .m-hero-text {
-    height: 8px;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.7);
-    width: 80%;
-  }
-  .m-hero-text.short { width: 55%; background: rgba(255,255,255,0.35); }
-  .m-cta {
-    margin-top: 6px;
-    height: 14px;
-    width: 60px;
-    border-radius: 100px;
-    background: linear-gradient(135deg, #e8a44a, #b87418);
-  }
-
-  /* Site vitrine */
-  .mockup-vitrine .m-img {
-    height: 40px;
-    background: linear-gradient(135deg, #d4c4a8 0%, #e8dcc8 100%);
-  }
-  .mockup-vitrine .m-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    padding: 6px;
-    background: #f5f0e9;
-  }
-  .mockup-vitrine .m-card {
-    height: 30px;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.8);
-    border: 1px solid rgba(0,0,0,0.06);
-  }
-
-  /* E-commerce */
-  .mockup-ecom .m-products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    padding: 6px;
-    background: #fafafa;
-  }
-  .m-product {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .m-thumb {
-    height: 40px;
-    border-radius: 4px;
-    background: linear-gradient(135deg, #e8dcc8 0%, #f0e8d8 100%);
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-  .m-price {
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(184,116,24,0.4);
-    width: 70%;
   }
 </style>
