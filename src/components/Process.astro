@@ -6,33 +6,36 @@ const steps = [
     description: "On discute de votre activité, vos clients cibles, ce que vous voulez mettre en avant. 30 minutes suffisent.",
     details: ['Appel découverte gratuit', 'Cahier des charges simple', 'Devis sous 24h'],
     bg: '#0f0d0a',
-    numColor: 'rgba(184,116,24,0.08)',
+    numColor: 'rgba(32,96,216,0.07)',
   },
   {
     tag: 'Étape 02',
     title: 'Maquette',
     description: "Je vous présente une maquette complète du site. On ajuste ensemble jusqu'à ce que ce soit parfait.",
     details: ['Maquette Figma interactive', 'Révisions illimitées', 'Validation avant développement'],
-    bg: '#1a1510',
-    numColor: 'rgba(184,116,24,0.07)',
+    bg: '#0d1420',
+    numColor: 'rgba(32,96,216,0.07)',
   },
   {
     tag: 'Étape 03',
     title: 'Développement',
     description: "Je code le site à la main, optimise le SEO, configure l'hébergement. Vous ne touchez à rien.",
     details: ['Code propre & performant', 'SEO technique inclus', 'Tests mobile & desktop'],
-    bg: '#231e16',
-    numColor: 'rgba(184,116,24,0.07)',
+    bg: '#0b1626',
+    numColor: 'rgba(91,150,245,0.08)',
   },
   {
     tag: 'Étape 04',
     title: 'Mise en ligne',
     description: 'Votre site est en ligne. Je vous forme en 30 minutes à gérer votre contenu — et je reste disponible.',
     details: ['Déploiement & DNS', 'Formation contenu incluse', 'Support 3 mois offert'],
-    bg: '#2e2618',
-    numColor: 'rgba(232,164,74,0.1)',
+    bg: '#09182e',
+    numColor: 'rgba(91,150,245,0.1)',
   }
 ];
+
+const PEEK = 80;   // px visibles du header de chaque carte en-dessous
+const BASE = 100;  // px depuis le haut du viewport pour la première carte
 ---
 
 <section id="processus" class="px-6 overflow-hidden" style="background: var(--bg-primary);">
@@ -47,33 +50,37 @@ const steps = [
     <p class="mt-4 text-base max-w-sm" style="color: var(--text-muted);">Un process simple et transparent, du brief à la mise en ligne en 7 jours.</p>
   </div>
 
-  <!-- Sticky stack — desktop -->
-  <div class="hidden md:block max-w-3xl mx-auto relative pb-32">
+  <!-- Stacking cards — desktop -->
+  <div class="hidden md:block max-w-3xl mx-auto relative" style={`padding-bottom: ${BASE + steps.length * PEEK + 60}px;`}>
     {steps.map((step, i) => (
-      <div class="step-scroll-slot" style="height: 100vh;">
+      <div class="step-scroll-slot">
         <div
           class="step-card process-card"
-          style={`top: ${80 + i * 24}px; z-index: ${10 + i}; background: ${step.bg};`}
+          style={`top: ${BASE + i * PEEK}px; z-index: ${10 + i}; background: ${step.bg};`}
         >
-          <!-- Big decorative number -->
-          <div class="step-deco-num" style={`color: ${step.numColor};`}>{step.tag.split(' ')[1]}</div>
-
-          <!-- Left: content -->
-          <div class="step-content">
-            <span class="label-tech mb-4 block" style="color: rgba(232,164,74,0.7);">{step.tag}</span>
-            <h3 class="font-['Bricolage_Grotesque'] font-bold mb-4 leading-tight" style="font-size: var(--type-h3); color: #ffffff;">
+          <!-- Header visible (peek area) -->
+          <div class="step-header">
+            <span class="step-tag" style="color: rgba(91,150,245,0.65);">{step.tag}</span>
+            <h3 class="step-title font-['Bricolage_Grotesque'] font-bold leading-tight" style={`font-size: var(--type-h3); color: #ffffff;`}>
               {step.title}
             </h3>
+          </div>
+
+          <!-- Body (covered by next card) -->
+          <div class="step-body">
             <p class="text-sm leading-relaxed mb-8" style="color: rgba(255,255,255,0.55);">{step.description}</p>
-            <ul class="flex flex-col gap-2.5">
+            <ul class="flex flex-col gap-3">
               {step.details.map(d => (
-                <li class="flex items-center gap-2.5 text-sm" style="color: rgba(255,255,255,0.45);">
-                  <span class="w-1 h-1 rounded-full shrink-0" style="background: rgba(232,164,74,0.6);"></span>
+                <li class="flex items-center gap-3 text-sm" style="color: rgba(255,255,255,0.45);">
+                  <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background: rgba(91,150,245,0.6);"></span>
                   {d}
                 </li>
               ))}
             </ul>
           </div>
+
+          <!-- Numéro décoratif -->
+          <div class="step-deco-num" style={`color: ${step.numColor};`}>{step.tag.split(' ')[1]}</div>
         </div>
       </div>
     ))}
@@ -88,8 +95,8 @@ const steps = [
         data-animate="fade-up"
         data-animate-delay={i * 80}
       >
-        <span class="label-tech mb-3 block" style="color: rgba(232,164,74,0.7);">{step.tag}</span>
-        <h3 class="font-['Bricolage_Grotesque'] font-bold mb-3" style="font-size: var(--type-h3); color: #ffffff;">{step.title}</h3>
+        <span class="label-tech mb-3 block" style="color: rgba(91,150,245,0.65);">{step.tag}</span>
+        <h3 class="font-['Bricolage_Grotesque'] font-bold mb-3" style={`font-size: var(--type-h3); color: #ffffff;`}>{step.title}</h3>
         <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">{step.description}</p>
       </div>
     ))}
@@ -98,27 +105,45 @@ const steps = [
 </section>
 
 <style>
-  /* Slot de scroll — crée la hauteur pour que la carte sticky "accroche" */
+  /* ── Slot de scroll : donne la hauteur pour que la carte sticky "avance" ── */
   .step-scroll-slot {
+    height: 70vh;
     position: relative;
   }
 
+  /* ── Carte sticky ── */
   .step-card {
     position: sticky;
     border-radius: 20px;
-    padding: 52px 56px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: 24px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
     will-change: transform;
-    transform-origin: center top;
   }
 
-  .step-content {
+  /* Header : toujours visible (zone de peek) */
+  .step-header {
+    padding: 28px 48px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .step-tag {
+    display: block;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .step-title {
+    margin: 0;
+  }
+
+  /* Body : description + bullets */
+  .step-body {
+    padding: 28px 48px 40px;
     position: relative;
     z-index: 1;
   }
@@ -126,14 +151,13 @@ const steps = [
   /* Grand numéro décoratif en fond */
   .step-deco-num {
     position: absolute;
-    right: -16px;
-    top: -32px;
+    right: -12px;
+    bottom: -24px;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800;
-    font-size: clamp(120px, 18vw, 200px);
+    font-size: clamp(100px, 16vw, 180px);
     line-height: 1;
     pointer-events: none;
     user-select: none;
-    transition: color 0.3s;
   }
 </style>

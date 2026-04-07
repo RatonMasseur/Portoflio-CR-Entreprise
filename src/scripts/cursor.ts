@@ -2,6 +2,7 @@ const dot = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
 
 if (dot && ring && window.matchMedia('(hover: hover)').matches) {
+  const ringEl = ring;
   let mouseX = 0;
   let mouseY = 0;
   let ringX = 0;
@@ -16,7 +17,7 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,164,74,0.10) 0%, rgba(184,116,24,0.04) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(91,150,245,0.10) 0%, rgba(32,96,216,0.04) 40%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: opacity 0.5s ease;
     opacity: 0;
@@ -45,7 +46,7 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
   function animateRing() {
     ringX += (mouseX - ringX) * 0.15;
     ringY += (mouseY - ringY) * 0.15;
-    ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+    ringEl.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
     requestAnimationFrame(animateRing);
   }
   animateRing();
@@ -53,14 +54,14 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
   const interactives = 'a, button, input, textarea, [data-tilt]';
   document.querySelectorAll(interactives).forEach(el => {
     el.addEventListener('mouseenter', () => {
-      ring.style.width = '50px';
-      ring.style.height = '50px';
-      ring.style.borderColor = 'var(--accent-light)';
+      ringEl.style.width = '50px';
+      ringEl.style.height = '50px';
+      ringEl.style.borderColor = 'var(--accent-light)';
     });
     el.addEventListener('mouseleave', () => {
-      ring.style.width = '36px';
-      ring.style.height = '36px';
-      ring.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+      ringEl.style.width = '36px';
+      ringEl.style.height = '36px';
+      ringEl.style.borderColor = 'rgba(255, 255, 255, 0.5)';
     });
   });
 }

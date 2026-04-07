@@ -5,21 +5,21 @@ const services = [
     title: 'Capturez\nvos leads',
     description: "Une page conçue pour convertir. Un seul objectif, un seul message — vos visiteurs passent à l'action.",
     features: ['Formulaire de contact', 'CTA fort & visible', 'Chargement < 2s', 'SEO optimisé'],
-    accent: 'rgba(184,116,24,0.9)',
+    accent: 'rgba(32,96,216,0.9)',
   },
   {
     tag: 'Site Vitrine',
     title: 'Présentez\nvotre activité',
     description: "Votre meilleur commercial, disponible 24h/24. Vos clients vous trouvent, vous découvrent, vous appellent.",
     features: ['Galerie de réalisations', 'Présentation services', 'Intégration Google Maps', 'Formulaire de devis'],
-    accent: 'rgba(232,164,74,0.9)',
+    accent: 'rgba(91,150,245,0.9)',
   },
   {
     tag: 'Site E-commerce',
     title: 'Vendez\nen ligne',
     description: "Votre boutique ouverte à toute heure. Paiement sécurisé, gestion de stock, livraison intégrée.",
     features: ['Paiement Stripe/PayPal', 'Gestion des stocks', 'Fiches produits SEO', 'Tableau de bord vendeur'],
-    accent: 'rgba(138,85,16,0.9)',
+    accent: 'rgba(22,72,168,0.9)',
   }
 ];
 ---
@@ -43,7 +43,7 @@ const services = [
           class="service-card relative overflow-hidden flex flex-col"
           data-animate="fade-up"
           data-animate-delay={i * 100}
-          style={i === 1 ? 'border-color: var(--accent-primary); box-shadow: 0 0 40px rgba(184,116,24,0.15);' : ''}
+          style={i === 1 ? 'border-color: var(--accent-primary); box-shadow: 0 0 40px rgba(32,96,216,0.15);' : ''}
         >
           {i === 1 && (
             <div style="position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent-primary); color: #fff; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 0 0 10px 10px; white-space: nowrap; z-index: 1;">

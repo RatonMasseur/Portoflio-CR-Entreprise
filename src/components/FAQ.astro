@@ -1,30 +1,159 @@
 ---
-const faqs = [
-  { question: 'Est-ce que je pourrai modifier mon site moi-même ?', answer: "Ça dépend de l'offre. Avec le Site Vitrine Complet (WordPress), oui — je vous forme en 30 minutes à modifier vos textes et photos depuis un panneau d'administration simple, sans toucher au code. Avec la Page Unique, c'est moi qui gère les modifications — vous m'envoyez un message et je m'en occupe sous 24h." },
-  { question: '7 jours c\'est vraiment possible ?', answer: "Oui, à condition qu'on ait fait le brief ensemble et que vous m'ayez transmis vos photos et textes. Si vous n'avez pas le temps de rassembler ça, je peux rédiger les textes pour vous et utiliser des photos professionnelles libres de droits. On s'adapte." },
-  { question: 'Est-ce que mon site sera vraiment visible sur Google ?', answer: "Chaque site est optimisé pour les recherches locales de votre secteur en Alsace. Le référencement prend 4 à 8 semaines pour s'installer après la mise en ligne — c'est le délai normal chez Google pour un nouveau site. Je configure aussi votre Google Business Profile gratuit pour accélérer." },
-  { question: 'Je ne suis pas à l\'aise avec l\'informatique. C\'est pour moi ?', answer: "Oui, c'est exactement pour vous. Vous n'avez rien à faire côté technique — ni hébergement, ni configuration, ni domaine. Vous me donnez votre activité, vos photos si vous en avez, et je m'occupe de tout. À la livraison, je vous explique en 30 minutes comment utiliser votre site." }
+const faqsLeft = [
+  {
+    question: 'Est-ce que je pourrai modifier mon site moi-même ?',
+    answer: "Ça dépend de l'offre. Avec le Site Vitrine Complet (WordPress), oui — je vous forme en 30 minutes à modifier vos textes et photos depuis un panneau d'administration simple, sans toucher au code. Avec la Page Unique, c'est moi qui gère les modifications — vous m'envoyez un message et je m'en occupe sous 24h.",
+  },
+  {
+    question: '7 jours c\'est vraiment possible ?',
+    answer: "Oui, à condition qu'on ait fait le brief ensemble et que vous m'ayez transmis vos photos et textes. Si vous n'avez pas le temps de rassembler ça, je peux rédiger les textes pour vous et utiliser des photos professionnelles libres de droits. On s'adapte.",
+  },
+  {
+    question: 'Mon site sera-t-il visible sur Google ?',
+    answer: "Chaque site est optimisé pour les recherches locales de votre secteur en Alsace. Le référencement prend 4 à 8 semaines pour s'installer après la mise en ligne — c'est le délai normal chez Google pour un nouveau site. Je configure aussi votre Google Business Profile gratuit pour accélérer.",
+  },
+  {
+    question: 'Je ne suis pas à l\'aise avec l\'informatique. C\'est pour moi ?',
+    answer: "Oui, c'est exactement pour vous. Vous n'avez rien à faire côté technique — ni hébergement, ni configuration, ni domaine. Vous me donnez votre activité, vos photos si vous en avez, et je m'occupe de tout. À la livraison, je vous explique en 30 minutes comment utiliser votre site.",
+  },
+  {
+    question: 'Que se passe-t-il après la livraison du site ?',
+    answer: "Je reste disponible par message après la livraison. Pour les petites modifications (texte, photo, horaires), je les traite sous 24h. Je propose également un suivi mensuel optionnel pour les mises à jour, la sécurité et le monitoring SEO.",
+  },
+];
+
+const faqsRight = [
+  {
+    question: 'Quel est le prix pour un site vitrine ?',
+    answer: "Les tarifs varient selon la complexité du projet et l'offre choisie. Contactez-moi pour obtenir un devis personnalisé gratuit. Je m'adapte aux budgets des artisans et petites entreprises locales — pas de mauvaise surprise.",
+  },
+  {
+    question: 'Est-ce que vous travaillez en dehors de l\'Alsace ?',
+    answer: "Principalement en Alsace pour les clients qui préfèrent un contact local, mais je travaille aussi à distance pour toute la France. La grande majorité du processus se fait en ligne — brief, maquette, validation, livraison.",
+  },
+  {
+    question: 'Puis-je voir des exemples de vos réalisations ?',
+    answer: "Oui, la section Réalisations de ce site présente mes projets récents. Chaque projet est accompagné du contexte client et des résultats. N'hésitez pas à me contacter si vous souhaitez voir des exemples dans votre secteur d'activité.",
+  },
+  {
+    question: 'Comment se passe concrètement le processus ?',
+    answer: "On commence par un appel de 20 minutes pour comprendre votre activité et vos besoins. Je prépare ensuite une maquette en 48h pour validation. Une fois validée, le développement prend 3 à 5 jours. Livraison, formation et mise en ligne le jour J.",
+  },
+  {
+    question: 'Le site sera-t-il optimisé pour mobile ?',
+    answer: "Absolument. Tous mes sites sont conçus mobile-first — plus de 70% des visites viennent des smartphones. Le design s'adapte parfaitement à toutes les tailles d'écran, des téléphones aux grands écrans desktop.",
+  },
 ];
 ---
 
 <section id="faq" class="py-32 md:py-20 px-6">
-  <div class="max-w-3xl mx-auto">
-    <p class="text-sm tracking-[0.2em] uppercase mb-4 font-medium text-center" style="color: var(--accent-primary);" data-animate="fade-up">FAQ</p>
-    <h2 class="font-['Bricolage_Grotesque'] font-bold mb-12 text-center" style="font-size: var(--type-h2);" data-animate="fade-up">Questions fréquentes</h2>
-    <div class="space-y-4">
-      {faqs.map((faq, i) => (
-        <div class="border rounded-xl overflow-hidden" style="border-color: var(--border-card); background: var(--bg-card);" data-animate="fade-up" data-animate-delay={i * 80}>
-          <button class="faq-trigger w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
-            <span class="font-medium text-base pr-4" style="color: var(--text-primary);">{faq.question}</span>
-            <span class="faq-icon text-xl shrink-0 transition-transform duration-300" style="color: var(--accent-primary);">+</span>
-          </button>
-          <div class="faq-content overflow-hidden" style="height: 0;">
-            <p class="px-5 pb-5 leading-relaxed" style="color: var(--text-secondary);">{faq.answer}</p>
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-12" data-animate="fade-up">
+      <span class="section-label mb-3 block">Questions fréquentes</span>
+      <h2 class="font-['Bricolage_Grotesque'] font-bold mb-4" style="font-size: var(--type-h2);">
+        Tout ce qu'il faut savoir
+      </h2>
+      <p class="max-w-xl mx-auto mb-8 text-base leading-relaxed" style="color: var(--text-muted);">
+        Les réponses aux questions que se posent la plupart de mes clients avant de se lancer.
+      </p>
+      <a href="#contact" class="btn-primary">Poser ma question →</a>
+    </div>
+
+    <!-- FAQs 2 colonnes -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0 mt-14">
+
+      <!-- Colonne gauche -->
+      <div class="faq-column">
+        {faqsLeft.map((faq, i) => (
+          <div class="faq-item" data-animate="fade-up" data-animate-delay={i * 60}>
+            <button class="faq-trigger" aria-expanded="false">
+              <span class="faq-question">{faq.question}</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-content">
+              <p class="faq-answer">{faq.answer}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <!-- Colonne droite -->
+      <div class="faq-column">
+        {faqsRight.map((faq, i) => (
+          <div class="faq-item" data-animate="fade-up" data-animate-delay={i * 60 + 30}>
+            <button class="faq-trigger" aria-expanded="false">
+              <span class="faq-question">{faq.question}</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-content">
+              <p class="faq-answer">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  .faq-item {
+    border-bottom: 1px solid var(--border-card);
+  }
+
+  .faq-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.1rem 0;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 1rem;
+  }
+
+  .faq-question {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .faq-chevron {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-trigger[aria-expanded="true"] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, padding 0.25s ease;
+  }
+
+  .faq-content.open {
+    max-height: 400px;
+  }
+
+  .faq-answer {
+    padding-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+</style>
 
 <script src="../scripts/faq.ts"></script>
