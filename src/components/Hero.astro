@@ -10,7 +10,7 @@
     <div class="grain-hero"></div>
   </div>
 
-  <!-- Spline 3D mockup — fond droit, desktop uniquement — chargé après window.load -->
+  <!-- Spline 3D mockup — iframe embed, desktop uniquement, chargé après idle -->
   <div class="spline-bg hidden md:block" aria-hidden="true">
     <iframe
       id="spline-iframe"
@@ -19,8 +19,6 @@
       height="100%"
       style="opacity:0; transition: opacity 0.8s ease;"
     ></iframe>
-    <!-- Watermark cover -->
-    <div style="position: absolute; bottom: 0; right: 0; width: 160px; height: 36px; background: #0a0806; z-index: 3;"></div>
   </div>
 
   <script>
@@ -200,6 +198,7 @@
   .hero-underline {
     position: relative;
     display: inline-block;
+    padding-right: 0.08em;
   }
 
   .hero-underline::after {

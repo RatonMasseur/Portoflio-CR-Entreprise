@@ -14,10 +14,10 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
     position: fixed;
     pointer-events: none;
     z-index: 9997;
-    width: 380px;
-    height: 380px;
+    width: 420px;
+    height: 420px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(91,150,245,0.10) 0%, rgba(32,96,216,0.04) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(32,96,216,0.12) 0%, rgba(32,96,216,0.04) 40%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: opacity 0.5s ease;
     opacity: 0;
@@ -29,39 +29,49 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
   document.querySelectorAll('[data-dark-section]').forEach(section => {
     section.addEventListener('mouseenter', () => {
       spotlight.style.opacity = '1';
+      dot.classList.add('on-dark');
     });
     section.addEventListener('mouseleave', () => {
       spotlight.style.opacity = '0';
+      dot.classList.remove('on-dark');
     });
   });
 
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    dot.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
+    dot.style.transform = `translate(${mouseX - 3.5}px, ${mouseY - 3.5}px)`;
     spotlight.style.left = `${mouseX}px`;
     spotlight.style.top = `${mouseY}px`;
   });
 
   function animateRing() {
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-    ringEl.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ringEl.style.transform = `translate(${ringX - 17}px, ${ringY - 17}px)`;
     requestAnimationFrame(animateRing);
   }
   animateRing();
 
-  const interactives = 'a, button, input, textarea, [data-tilt]';
-  document.querySelectorAll(interactives).forEach(el => {
+  // Liens et boutons — ring se remplit
+  document.querySelectorAll('a, button, input, textarea').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      ringEl.style.width = '50px';
-      ringEl.style.height = '50px';
-      ringEl.style.borderColor = 'var(--accent-light)';
+      ringEl.classList.add('is-hovering');
+      ringEl.classList.remove('is-viewing');
     });
     el.addEventListener('mouseleave', () => {
-      ringEl.style.width = '36px';
-      ringEl.style.height = '36px';
-      ringEl.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+      ringEl.classList.remove('is-hovering');
+    });
+  });
+
+  // Cards projets / tilt — ring devient sélecteur carré
+  document.querySelectorAll('[data-tilt], .card-sharp').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ringEl.classList.add('is-viewing');
+      ringEl.classList.remove('is-hovering');
+    });
+    el.addEventListener('mouseleave', () => {
+      ringEl.classList.remove('is-viewing');
     });
   });
 }
