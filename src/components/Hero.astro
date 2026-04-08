@@ -1,13 +1,14 @@
+---
+import HeroBackground from './HeroBackground.tsx';
+---
 <section class="relative min-h-screen flex items-end px-6 pt-36 pb-20" style="background: #0a0806;" data-dark-section>
 
   <!-- Clip container pour les orbs (overflow-hidden ici, pas sur la section) -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <!-- MeshGradient React (paper-design/shaders) -->
+    <HeroBackground client:only="react" />
     <!-- Grille perspective animée -->
     <div class="hero-grid"></div>
-    <!-- Mesh gradient — canvas animé -->
-    <canvas id="hero-canvas" class="hero-mesh" aria-hidden="true"></canvas>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-3"></div>
     <!-- Grain dédié fond dark — overlay visible sur noir, contrairement au multiply global -->
     <div class="grain-hero"></div>
   </div>
@@ -29,8 +30,8 @@
         Pas un template.
       </h1>
       <div class="flex items-baseline gap-4 mt-3">
-        <h1 class="font-['Bricolage_Grotesque'] leading-[0.92] tracking-tight italic hero-underline" style="font-size: var(--type-display); font-weight: 800; color: var(--accent-light);">
-          Votre site.
+        <h1 class="font-['Bricolage_Grotesque'] leading-[0.92] tracking-tight italic" style="font-size: var(--type-display); font-weight: 800; color: var(--accent-light);">
+          <span class="hero-badge-outline">Votre site.</span>
         </h1>
       </div>
     </div>
@@ -43,8 +44,24 @@
           Un site professionnel qui vous ressemble, conçu pour convertir vos visiteurs en clients. Livré en 7 jours.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="btn-primary">Parlons de votre projet →</a>
-          <a href="#realisations" class="btn-outline-dark">Voir mes réalisations</a>
+          <a href="#contact" class="btn-primary">
+            <span>Parlons de votre projet</span>
+            <span class="btn-arrow-icon btn-arrow-light">
+              <span class="btn-arrow-inner">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+          </a>
+          <a href="#realisations" class="btn-outline-dark">
+            <span>Voir mes réalisations</span>
+            <span class="btn-arrow-icon btn-arrow-white">
+              <span class="btn-arrow-inner">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+          </a>
         </div>
         <p class="mt-6 label-tech" style="color: rgba(255,255,255,0.35);">
           Disponible pour nouveaux projets · Délai garanti
@@ -86,44 +103,6 @@
     to   { background-position: 0 80px; }
   }
 
-  /* Mesh gradient — canvas animé */
-  .hero-mesh {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    opacity: 0.75;
-  }
-
-  /* Orbs ambre — blob flou, animés via GSAP dans animations.ts */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  .orb-1 {
-    width: 800px;
-    height: 800px;
-    background: #2060d8;
-    filter: blur(150px);
-    top: -200px;
-    right: -100px;
-    opacity: 0.45;
-  }
-
-  .orb-3 {
-    width: 500px;
-    height: 500px;
-    background: #1648a8;
-    filter: blur(150px);
-    bottom: 0;
-    right: 25%;
-    opacity: 0.3;
-  }
-
   /* Grain dédié fond dark — overlay (visible sur noir, contrairement à multiply) */
   .grain-hero {
     position: absolute;
@@ -135,23 +114,13 @@
     pointer-events: none;
   }
 
-  /* Hero underline ambre */
-  .hero-underline {
-    position: relative;
+  /* Badge outline style "AI Communities" sur "Votre site." */
+  .hero-badge-outline {
     display: inline-block;
-    padding-right: 0.08em;
-  }
-
-  .hero-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--gradient-cta);
-    border-radius: 2px;
-    opacity: 0.7;
+    border: 1.5px solid rgba(91, 150, 245, 0.55);
+    border-radius: 6px;
+    padding: 0 14px 2px;
+    box-shadow: 0 0 20px rgba(32, 96, 216, 0.2);
   }
 
   /* btn-outline adapté fond dark */
@@ -178,47 +147,3 @@
     transform: translateY(-2px);
   }
 </style>
-
-<script>
-  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
-  if (canvas) {
-    const ctx = canvas.getContext('2d')!;
-    let t = 0;
-    let raf: number;
-
-    const blobs = [
-      { x: 0.12, y: 0.3,  sx: 0.20, sy: 0.14, phase: 0,    rgb: [22, 72, 168]  },
-      { x: 0.78, y: 0.22, sx: -0.14, sy: 0.20, phase: 2.1,  rgb: [32, 96, 216]  },
-      { x: 0.45, y: 0.78, sx: 0.26,  sy: -0.18, phase: 4.2, rgb: [15, 50, 155]  },
-      { x: 0.88, y: 0.72, sx: -0.10, sy: -0.22, phase: 1.0, rgb: [55, 115, 235] },
-      { x: 0.30, y: 0.55, sx: 0.16,  sy: 0.26,  phase: 3.1, rgb: [18, 55, 140]  },
-    ];
-
-    function draw() {
-      const W = canvas.offsetWidth;
-      const H = canvas.offsetHeight;
-      if (canvas.width !== W || canvas.height !== H) {
-        canvas.width  = W;
-        canvas.height = H;
-      }
-      ctx.clearRect(0, 0, W, H);
-
-      const R = Math.max(W, H) * 0.65;
-      blobs.forEach(b => {
-        const x = (b.x + Math.sin(t * b.sx + b.phase) * 0.30) * W;
-        const y = (b.y + Math.cos(t * b.sy + b.phase) * 0.25) * H;
-        const g = ctx.createRadialGradient(x, y, 0, x, y, R);
-        g.addColorStop(0, `rgba(${b.rgb.join(',')},0.20)`);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.fillRect(0, 0, W, H);
-      });
-
-      t += 0.0025;
-      raf = requestAnimationFrame(draw);
-    }
-
-    draw();
-    document.addEventListener('astro:before-swap', () => cancelAnimationFrame(raf), { once: true });
-  }
-</script>

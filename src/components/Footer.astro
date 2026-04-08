@@ -1,26 +1,58 @@
-<!-- CTA typographique bold -->
-<div class="px-6 py-24 overflow-hidden relative" style="border-top: 1px solid var(--border-card);">
-  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, rgba(91,150,245,0.08) 0%, transparent 70%);"></div>
-  <div class="max-w-6xl mx-auto relative text-center" data-animate="fade-up">
-    <span class="label-tech mb-6 block">Prêt à commencer ?</span>
-    <h2
-      class="font-['Bricolage_Grotesque'] leading-[0.9] tracking-tight mb-8"
-      style="font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 700; color: var(--text-primary);"
-    >
+<!-- Footer CTA — fond noir continu depuis la section contact -->
+<div class="footer-cta-section px-6 overflow-hidden relative" data-animate="fade-up">
+  <div class="max-w-6xl mx-auto relative text-center">
+    <span class="section-label mb-6 block" style="color: rgba(91,150,245,0.7);">Prêt à commencer ?</span>
+    <h2 class="font-['Bricolage_Grotesque'] leading-[0.9] tracking-tight mb-10 footer-cta-title">
       Construisons votre<br />
-      <span style="color: var(--accent-primary);">présence en ligne.</span>
+      <span style="color: var(--accent-light);">présence en ligne.</span>
     </h2>
-    <a href="#contact" class="btn-primary text-base px-8 py-4">Démarrer le projet →</a>
+    <a href="#contact" class="btn-primary text-base px-8 py-4">
+      <span>Démarrer le projet</span>
+      <span class="btn-arrow-icon btn-arrow-light">
+        <span class="btn-arrow-inner">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </span>
+    </a>
   </div>
 </div>
 
-<footer class="py-8 px-6" style="border-top: 1px solid var(--border-card);">
+<footer class="py-8 px-6 footer-bar">
   <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-    <img src="/images/logo-white.webp" alt="Robin Carivenc" style="height: 40px; width: auto; filter: invert(1) brightness(0.2);" />
-    <p class="label-tech">© 2026 Robin Carivenc · Tous droits réservés</p>
+    <img src="/images/logo-white.webp" alt="Robin Carivenc" style="height: 40px; width: auto; opacity: 0.6;" />
+    <p class="label-tech" style="color: rgba(255,255,255,0.3);">© 2026 Robin Carivenc · Tous droits réservés</p>
     <div class="flex gap-6">
-      <a href="#" class="label-tech hover:text-[var(--text-primary)] transition-colors duration-200">Mentions légales</a>
-      <a href="#" class="label-tech hover:text-[var(--text-primary)] transition-colors duration-200">CGV</a>
+      <a href="#" class="label-tech footer-link">Mentions légales</a>
+      <a href="#" class="label-tech footer-link">CGV</a>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-cta-section {
+    background: #0a0806;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .footer-cta-title {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .footer-bar {
+    background: #0a0806;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .footer-link {
+    color: rgba(255, 255, 255, 0.35);
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+</style>

@@ -5,7 +5,7 @@
     <div class="text-center mb-10" data-animate="fade-up">
       <span class="section-label mb-4 block">Stack & Outils</span>
       <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">
-        Les outils qui font<br />la différence
+        Les outils qui font<br /><span style="color: var(--accent-primary);">la différence</span>
       </h2>
       <p class="mt-4 max-w-sm mx-auto text-base" style="color: var(--text-muted);">
         Technologies modernes, résultats concrets pour vos clients.
@@ -28,19 +28,21 @@
     <!-- Illustration container -->
     <div id="tools-illustration" class="relative mx-auto" style="width: 100%; max-width: 700px; height: 420px;">
 
-      <!-- SVG lignes du centre (350,260) vers chaque carte -->
+      <!-- SVG lignes — style Mixpanel, toujours visibles, de chaque carte vers le cercle central -->
       <svg
-        class="absolute inset-0 w-full h-full"
+        class="absolute inset-0 w-full h-full tools-svg"
         viewBox="0 0 700 420"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        <path class="tool-line" d="M317,237 C350,200 130,160 100,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" opacity="0.5"/>
-        <path class="tool-line" d="M326,228 C350,210 230,150 220,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="800" stroke-dashoffset="800" opacity="0.5"/>
-        <path class="tool-line" d="M350,220 C350,220 350,140 350,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="600" stroke-dashoffset="600" opacity="0.5"/>
-        <path class="tool-line" d="M374,228 C350,210 470,150 480,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="800" stroke-dashoffset="800" opacity="0.5"/>
-        <path class="tool-line" d="M383,237 C350,200 570,160 600,90" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" opacity="0.5"/>
+        <!-- Chaque path part du bas de la carte (y≈88) vers le haut du cercle (350,212) -->
+        <!-- Courbes en "fontaine" : vertical au début, convergent vers le centre -->
+        <path d="M64,88 C64,170 350,170 350,212"  stroke="var(--accent-primary)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
+        <path d="M210,88 C210,160 350,160 350,212" stroke="var(--accent-primary)" stroke-width="1.5" opacity="0.4"  stroke-linecap="round"/>
+        <path d="M350,88 C350,140 350,170 350,212" stroke="var(--accent-primary)" stroke-width="1.5" opacity="0.45" stroke-linecap="round"/>
+        <path d="M490,88 C490,160 350,160 350,212" stroke="var(--accent-primary)" stroke-width="1.5" opacity="0.4"  stroke-linecap="round"/>
+        <path d="M636,88 C636,170 350,170 350,212" stroke="var(--accent-primary)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
       </svg>
 
       <!-- Logo central RC -->

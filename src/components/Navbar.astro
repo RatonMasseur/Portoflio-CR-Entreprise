@@ -29,15 +29,18 @@
       <a href="#faq" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">FAQ</a>
     </div>
 
-    <!-- CTA -->
+    <!-- CTA animé -->
     <a
       href="#contact"
-      class="hidden md:block text-[13px] font-semibold font-['Bricolage_Grotesque'] px-4 py-1.5 rounded-full shrink-0 transition-all duration-200 relative z-10"
-      style="background: var(--gradient-cta); color: #fff; letter-spacing: 0.02em;"
-      onmouseover="this.style.opacity='0.88'"
-      onmouseout="this.style.opacity='1'"
+      class="contact-nav-btn hidden md:flex items-center gap-2 shrink-0 z-10"
     >
-      Contact
+      <span>Contact</span>
+      <span class="contact-nav-arrow-icon">
+        <span class="contact-nav-arrow-inner">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </span>
     </a>
 
     <!-- Mobile toggle -->
@@ -63,6 +66,56 @@
   <a href="#contact" class="mobile-link mt-4 text-base font-semibold font-['Bricolage_Grotesque'] px-6 py-3 rounded-full" style="background: var(--gradient-cta); color: #fff;">Contact →</a>
 </div>
 
+<style>
+  /* ── Bouton Contact animé ── */
+  .contact-nav-btn {
+    background: var(--gradient-cta);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    letter-spacing: 0.02em;
+    padding: 6px 8px 6px 16px;
+    border-radius: 100px;
+    text-decoration: none;
+    min-height: 34px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .contact-nav-arrow-icon {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-nav-arrow-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    transition: transform 0.22s ease;
+  }
+
+  .contact-nav-arrow-inner svg:last-child {
+    margin-top: 2px;
+    transform: translateX(-18px);
+  }
+
+  /* ── Nav link active ── */
+  .nav-link.is-active {
+    font-weight: 700;
+    color: #ffffff !important;
+  }
+</style>
+
 <script>
   const navbarBg = document.getElementById('navbar-bg')!;
 
@@ -76,6 +129,7 @@
     }
   });
 
+  // ── Mobile menu ──
   const toggle = document.getElementById('menu-toggle')!;
   const mobileMenu = document.getElementById('mobile-menu')!;
   const bar1 = document.getElementById('bar1')!;
@@ -101,5 +155,29 @@
       bar2.style.opacity = '1';
       bar3.style.transform = '';
     });
+  });
+
+  // ── Section active highlight ──
+  const sectionIds = ['services', 'realisations', 'a-propos', 'outils', 'processus', 'faq'];
+  const navLinks = document.querySelectorAll<HTMLElement>('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('is-active');
+          } else {
+            link.classList.remove('is-active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
   });
 </script>

@@ -206,6 +206,48 @@ h4 { font-weight: 600; }
   transform: translateY(0);
 }
 
+/* ─── Bouton arrow — cercle animé (cross-arrow pattern) ──── */
+.btn-arrow-icon {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-arrow-light { background: #ffffff; }
+.btn-arrow-dark  { background: var(--accent-primary); }
+.btn-arrow-white { background: rgba(255,255,255,0.18); }
+
+.btn-arrow-inner {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  transition: transform 0.22s ease;
+}
+
+.btn-arrow-inner svg {
+  display: block;
+}
+
+.btn-arrow-inner svg:last-child {
+  margin-top: 2px;
+  transform: translateX(-20px);
+}
+
+/* On hover: first arrow flies top-right, second enters from bottom-left */
+.btn-primary:hover      .btn-arrow-inner,
+.btn-outline:hover      .btn-arrow-inner,
+.btn-outline-dark:hover .btn-arrow-inner,
+.contact-nav-btn:hover  .contact-nav-arrow-inner {
+  transform: translateY(-22px) translateX(20px);
+}
+
 /* ─── Nav links ───────────────────────────────────────────── */
 .nav-link {
   position: relative;

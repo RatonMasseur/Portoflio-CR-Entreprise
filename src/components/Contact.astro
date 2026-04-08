@@ -1,10 +1,10 @@
-<section id="contact" class="py-32 md:py-20 px-6 relative">
+<section id="contact" class="py-32 md:py-20 px-6 relative" style="background: linear-gradient(to bottom, #ffffff 0%, #ffffff 22%, #0a0806 62%);">
 
   <div class="max-w-2xl mx-auto relative">
 
     <div class="text-center mb-12" data-animate="fade-up">
       <span class="section-label mb-4 block">Contact</span>
-      <h2 class="font-['Bricolage_Grotesque'] leading-tight mb-4" style="font-size: var(--type-h2); font-weight: 700;">Prêt à lancer<br />votre projet ?</h2>
+      <h2 class="font-['Bricolage_Grotesque'] leading-tight mb-4" style="font-size: var(--type-h2); font-weight: 700; color: var(--text-primary);">Prêt à lancer<br /><span style="color: var(--accent-primary);">votre projet ?</span></h2>
       <p style="color: var(--text-secondary);">Décrivez-moi votre projet. Réponse sous 24h.</p>
     </div>
 
@@ -48,20 +48,26 @@
           ></textarea>
         </div>
         <button type="submit" class="btn-primary w-full justify-center text-base py-4">
-          Envoyer ma demande →
+          <span>Envoyer ma demande</span>
+          <span class="btn-arrow-icon btn-arrow-light">
+            <span class="btn-arrow-inner">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
         </button>
       </form>
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-sm" data-animate="fade-up">
-      <div class="flex items-center gap-2" style="color: var(--text-muted);">
-        <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-primary);"></span>
-        <span class="label-tech">Alsace · Partout en France</span>
+      <div class="flex items-center gap-2" style="color: rgba(255,255,255,0.4);">
+        <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-light);"></span>
+        <span class="label-tech" style="color: rgba(255,255,255,0.4);">Alsace · Partout en France</span>
       </div>
-      <div class="hidden sm:block w-px h-4" style="background: var(--border-card);"></div>
-      <div class="flex items-center gap-2" style="color: var(--text-muted);">
-        <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-primary);"></span>
-        <span class="label-tech">Réponse sous 24h garantie</span>
+      <div class="hidden sm:block w-px h-4" style="background: rgba(255,255,255,0.1);"></div>
+      <div class="flex items-center gap-2" style="color: rgba(255,255,255,0.4);">
+        <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-light);"></span>
+        <span class="label-tech" style="color: rgba(255,255,255,0.4);">Réponse sous 24h garantie</span>
       </div>
     </div>
 
@@ -70,8 +76,8 @@
 
 <style>
   .contact-card {
-    background: #0a0a0f;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #111018;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     padding: 40px;
     box-shadow:
