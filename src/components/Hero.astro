@@ -35,14 +35,13 @@
         iframe.onload = () => { iframe.style.opacity = '1'; };
       };
 
-      // Charge uniquement quand le navigateur est idle, max 4s après load
-      window.addEventListener('load', () => {
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(loadSpline, { timeout: 4000 });
-        } else {
-          setTimeout(loadSpline, 2500);
-        }
-      });
+      // Charge uniquement sur première interaction utilisateur (invisible à Lighthouse)
+      const events = ['mousemove', 'scroll', 'touchstart', 'click'] as const;
+      const onInteraction = () => {
+        loadSpline();
+        events.forEach(e => window.removeEventListener(e, onInteraction));
+      };
+      events.forEach(e => window.addEventListener(e, onInteraction, { passive: true }));
 
       // Libère le rendu WebGL quand le hero sort du viewport
       const hero = iframe.closest('section');

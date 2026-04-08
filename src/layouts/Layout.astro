@@ -59,10 +59,12 @@ const canonicalUrl = Astro.url ? `${siteUrl}${Astro.url.pathname}` : siteUrl;
       }
     })} />
 
-    <!-- Polices -->
+    <!-- Polices — non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&family=Caveat:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&family=Caveat:wght@400;500&display=swap" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&family=Caveat:wght@400;500&display=swap" /></noscript>
   </head>
   <body>
     <!-- Ambient glow — haut droite -->
@@ -73,7 +75,6 @@ const canonicalUrl = Astro.url ? `${siteUrl}${Astro.url.pathname}` : siteUrl;
     <slot />
     <script src="../scripts/lenis.ts"></script>
     <script src="../scripts/animations.ts"></script>
-    <script src="../scripts/lottie.ts"></script>
     <script src="../scripts/cursor.ts"></script>
     <script src="../scripts/tilt.ts"></script>
   </body>
@@ -96,11 +97,10 @@ const canonicalUrl = Astro.url ? `${siteUrl}${Astro.url.pathname}` : siteUrl;
     width: 700px;
     height: 700px;
     background: radial-gradient(ellipse at top right, rgba(91, 150, 245, 0.12) 0%, transparent 60%);
-    filter: blur(120px);
     pointer-events: none;
     z-index: 0;
     animation: breathe 12s ease-in-out infinite;
-    will-change: transform, opacity;
+    will-change: opacity;
   }
 
   .ambient-glow-2 {
@@ -111,10 +111,9 @@ const canonicalUrl = Astro.url ? `${siteUrl}${Astro.url.pathname}` : siteUrl;
     width: 600px;
     height: 600px;
     background: radial-gradient(ellipse at left, rgba(91, 150, 245, 0.1) 0%, transparent 65%);
-    filter: blur(120px);
     pointer-events: none;
     z-index: 0;
     animation: breathe 16s ease-in-out infinite reverse;
-    will-change: transform, opacity;
+    will-change: opacity;
   }
 </style>

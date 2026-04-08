@@ -40,12 +40,12 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    dot.style.transform = `translate(${mouseX - 3.5}px, ${mouseY - 3.5}px)`;
-    spotlight.style.left = `${mouseX}px`;
-    spotlight.style.top = `${mouseY}px`;
   });
 
   function animateRing() {
+    dot!.style.transform = `translate(${mouseX - 3.5}px, ${mouseY - 3.5}px)`;
+    spotlight.style.left = `${mouseX}px`;
+    spotlight.style.top = `${mouseY}px`;
     ringX += (mouseX - ringX) * 0.12;
     ringY += (mouseY - ringY) * 0.12;
     ringEl.style.transform = `translate(${ringX - 17}px, ${ringY - 17}px)`;
