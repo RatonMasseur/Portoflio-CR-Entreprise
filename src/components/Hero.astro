@@ -4,8 +4,8 @@
   <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
     <!-- Grille perspective animée -->
     <div class="hero-grid"></div>
-    <!-- Mesh gradient — relief subtil en fond -->
-    <div class="hero-mesh"></div>
+    <!-- Mesh gradient — canvas animé -->
+    <canvas id="hero-canvas" class="hero-mesh" aria-hidden="true"></canvas>
     <div class="orb orb-1"></div>
     <div class="orb orb-3"></div>
     <!-- Grain dédié fond dark — overlay visible sur noir, contrairement au multiply global -->
@@ -86,24 +86,14 @@
     to   { background-position: 0 80px; }
   }
 
-  /* Mesh gradient — relief subtil en fond */
+  /* Mesh gradient — canvas animé */
   .hero-mesh {
     position: absolute;
     inset: 0;
-    background-image:
-      radial-gradient(ellipse at 15% 85%, rgba(32,96,216,0.12) 0%, transparent 45%),
-      radial-gradient(ellipse at 85% 15%, rgba(91,150,245,0.10) 0%, transparent 40%),
-      radial-gradient(ellipse at 55% 55%, rgba(22,72,168,0.07) 0%, transparent 50%),
-      radial-gradient(ellipse at 30% 30%, rgba(32,96,216,0.05) 0%, transparent 35%);
-    background-size: 200% 200%;
-    animation: mesh-drift 15s ease-in-out infinite alternate;
-    opacity: 0.55;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
-  }
-
-  @keyframes mesh-drift {
-    0%   { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+    opacity: 0.75;
   }
 
   /* Orbs ambre — blob flou, animés via GSAP dans animations.ts */
@@ -188,3 +178,47 @@
     transform: translateY(-2px);
   }
 </style>
+
+<script>
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    let t = 0;
+    let raf: number;
+
+    const blobs = [
+      { x: 0.12, y: 0.3,  sx: 0.20, sy: 0.14, phase: 0,    rgb: [22, 72, 168]  },
+      { x: 0.78, y: 0.22, sx: -0.14, sy: 0.20, phase: 2.1,  rgb: [32, 96, 216]  },
+      { x: 0.45, y: 0.78, sx: 0.26,  sy: -0.18, phase: 4.2, rgb: [15, 50, 155]  },
+      { x: 0.88, y: 0.72, sx: -0.10, sy: -0.22, phase: 1.0, rgb: [55, 115, 235] },
+      { x: 0.30, y: 0.55, sx: 0.16,  sy: 0.26,  phase: 3.1, rgb: [18, 55, 140]  },
+    ];
+
+    function draw() {
+      const W = canvas.offsetWidth;
+      const H = canvas.offsetHeight;
+      if (canvas.width !== W || canvas.height !== H) {
+        canvas.width  = W;
+        canvas.height = H;
+      }
+      ctx.clearRect(0, 0, W, H);
+
+      const R = Math.max(W, H) * 0.65;
+      blobs.forEach(b => {
+        const x = (b.x + Math.sin(t * b.sx + b.phase) * 0.30) * W;
+        const y = (b.y + Math.cos(t * b.sy + b.phase) * 0.25) * H;
+        const g = ctx.createRadialGradient(x, y, 0, x, y, R);
+        g.addColorStop(0, `rgba(${b.rgb.join(',')},0.20)`);
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+      });
+
+      t += 0.0025;
+      raf = requestAnimationFrame(draw);
+    }
+
+    draw();
+    document.addEventListener('astro:before-swap', () => cancelAnimationFrame(raf), { once: true });
+  }
+</script>

@@ -34,8 +34,7 @@ const steps = [
   }
 ];
 
-const PEEK = 80;   // px visibles du header de chaque carte en-dessous
-const BASE = 100;  // px depuis le haut du viewport pour la première carte
+const STICKY_TOP = 100; // px depuis le haut du viewport — identique pour toutes les cartes
 ---
 
 <section id="processus" class="px-6" style="background: var(--bg-primary); overflow-x: clip;">
@@ -51,12 +50,12 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
   </div>
 
   <!-- Stacking cards — desktop -->
-  <div class="hidden md:block max-w-3xl mx-auto relative" style={`padding-bottom: ${BASE + steps.length * PEEK + 60}px;`}>
+  <div class="hidden md:block max-w-3xl mx-auto relative">
     {steps.map((step, i) => (
       <div class="step-scroll-slot">
         <div
           class="step-card process-card"
-          style={`top: ${BASE + i * PEEK}px; z-index: ${10 + i}; background: ${step.bg};`}
+          style={`top: ${STICKY_TOP}px; z-index: ${10 + i}; background: ${step.bg};`}
         >
           <!-- Header visible (peek area) -->
           <div class="step-header">
@@ -105,10 +104,15 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
 </section>
 
 <style>
-  /* ── Slot de scroll : donne la hauteur pour que la carte sticky "avance" ── */
+  /* ── Slot de scroll : une hauteur viewport complète par carte ── */
   .step-scroll-slot {
-    height: 70vh;
+    height: 100vh;
     position: relative;
+  }
+
+  /* Dernier slot : juste assez pour que la carte reste visible */
+  .step-scroll-slot:last-child {
+    height: 60vh;
   }
 
   /* ── Carte sticky ── */
@@ -182,21 +186,25 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
     lenis.on('scroll', ScrollTrigger.update);
   }
 
-  // Chaque carte sauf la dernière rétrécit quand la suivante arrive
+  // Chaque carte sauf la dernière rétrécit et s'assombrit quand la suivante arrive
   cards.forEach((card, i) => {
     if (i === total - 1) return;
 
-    const targetScale = 1 - (total - i) * 0.05;
-    const nextCard = cards[i + 1];
+    const nextSlot = cards[i + 1].parentElement as HTMLElement;
+    // depth = 0 pour la carte juste en-dessous, total-2 pour la plus profonde
+    const depth = total - 1 - i;
+    const targetScale = 1 - depth * 0.04;
 
     gsap.to(card, {
       scale: targetScale,
       ease: 'none',
       scrollTrigger: {
-        trigger: nextCard,
+        // Commence à scaler quand le slot suivant entre dans le viewport
+        // Finit quand la carte suivante a atteint sa position sticky
+        trigger: nextSlot,
         start: 'top bottom',
-        end: 'top center',
-        scrub: true,
+        end: `top ${100}px`,
+        scrub: 0.5,
       },
     });
   });
