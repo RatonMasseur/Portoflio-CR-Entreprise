@@ -148,6 +148,11 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
     z-index: 1;
   }
 
+  /* Transform origin pour l'effet scale depuis le haut */
+  .step-card {
+    transform-origin: top center;
+  }
+
   /* Grand numéro décoratif en fond */
   .step-deco-num {
     position: absolute;
@@ -161,3 +166,26 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
     user-select: none;
   }
 </style>
+
+<script>
+  import { scroll, animate } from 'motion';
+
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.process-card'));
+  const total = cards.length;
+
+  // Chaque carte sauf la dernière rétrécit quand la suivante arrive
+  cards.forEach((card, i) => {
+    if (i === total - 1) return;
+
+    const targetScale = 1 - (total - i) * 0.05;
+    const nextCard = cards[i + 1];
+
+    scroll(
+      animate(card, { scale: [1, targetScale] }, { ease: 'linear' }),
+      {
+        target: nextCard,
+        offset: ['start end', 'start center'],
+      }
+    );
+  });
+</script>

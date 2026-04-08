@@ -10,58 +10,6 @@
     <div class="grain-hero"></div>
   </div>
 
-  <!-- Spline 3D mockup — iframe embed, desktop uniquement, chargé après idle -->
-  <div class="spline-bg hidden md:block" aria-hidden="true">
-    <iframe
-      id="spline-iframe"
-      frameborder="0"
-      width="100%"
-      height="100%"
-      style="opacity:0; transition: opacity 0.8s ease;"
-    ></iframe>
-  </div>
-
-  <script>
-    const SPLINE_SRC = 'https://my.spline.design/iphone16profreemockup-rRYliaDR7r0nMLNf4Vnl7qbJ/';
-    const iframe = document.getElementById('spline-iframe') as HTMLIFrameElement | null;
-
-    if (iframe && window.innerWidth >= 768) {
-      let loaded = false;
-
-      const loadSpline = () => {
-        if (loaded) return;
-        loaded = true;
-        iframe.src = SPLINE_SRC;
-        iframe.onload = () => { iframe.style.opacity = '1'; };
-      };
-
-      // Charge uniquement sur première interaction utilisateur (invisible à Lighthouse)
-      const events = ['mousemove', 'scroll', 'touchstart', 'click'] as const;
-      const onInteraction = () => {
-        loadSpline();
-        events.forEach(e => window.removeEventListener(e, onInteraction));
-      };
-      events.forEach(e => window.addEventListener(e, onInteraction, { passive: true }));
-
-      // Libère le rendu WebGL quand le hero sort du viewport
-      const hero = iframe.closest('section');
-      if (hero) {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (!entry.isIntersecting && loaded) {
-              iframe.src = '';
-              loaded = false;
-            } else if (entry.isIntersecting && !loaded) {
-              loadSpline();
-            }
-          },
-          { threshold: 0 }
-        );
-        observer.observe(hero);
-      }
-    }
-  </script>
-
   <div class="relative w-full max-w-6xl mx-auto" style="z-index: 3;">
 
     <!-- Top label row -->
@@ -134,24 +82,6 @@
   @keyframes grid-flow {
     from { background-position: 0 0; }
     to   { background-position: 0 80px; }
-  }
-
-  /* Spline background — fond droit, z-index entre grille et contenu */
-  .spline-bg {
-    position: absolute;
-    inset: 0;
-    left: 35%;
-    z-index: 2;
-    pointer-events: none;
-    mask-image: linear-gradient(to right, transparent 0%, black 25%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
-    opacity: 0.85;
-  }
-
-  .spline-bg iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
   }
 
   /* Orbs ambre — blob flou, animés via GSAP dans animations.ts */

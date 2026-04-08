@@ -158,23 +158,6 @@ if (toolsIllustration) {
   });
 }
 
-// Process sticky cards — scale subtle (pas d'opacity pour ne pas conflicte avec sticky)
-gsap.utils.toArray<HTMLElement>('.process-card').forEach(card => {
-  gsap.fromTo(card,
-    { scale: 0.97 },
-    {
-      scale: 1,
-      duration: 0.5,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: card.closest('.step-scroll-slot') as Element,
-        start: 'top 60%',
-        toggleActions: 'play none none none',
-      },
-    }
-  );
-});
-
 // Hero orbs — GSAP mesh gradient (remplace les keyframes CSS float-1/2/3)
 const orbs = document.querySelectorAll<HTMLElement>('.orb');
 orbs.forEach((orb, i) => {

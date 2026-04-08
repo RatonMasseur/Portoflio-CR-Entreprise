@@ -1,134 +1,162 @@
 ---
-const categories = ['Tous', 'Paysagiste', 'Charpentier', 'Fleuriste', 'Électricien'];
-
-// Remplacer les src par /images/project-*.webp quand les vraies screenshots sont disponibles
 const projects = [
   {
+    id: 'paysagiste',
     title: 'Paysagiste · Mulhouse',
-    category: 'Paysagiste',
-    type: 'Site vitrine WordPress',
-    tags: ['SEO local', 'Galerie avant/après'],
+    description: 'Site vitrine WordPress avec galerie avant/après et SEO local optimisé pour capter les clients de la région.',
+    type: 'Site Vitrine',
+    href: '#',
     image: '/images/project-paysagiste.webp',
   },
   {
+    id: 'electricien',
     title: 'Électricien · Colmar',
-    category: 'Électricien',
-    type: 'Landing page statique',
-    tags: ['Génération de leads', 'Formulaire devis'],
+    description: 'Landing page statique ultra-rapide axée génération de leads avec formulaire de devis intégré.',
+    type: 'Landing Page',
+    href: '#',
     image: '/images/project-electricien.webp',
   },
   {
+    id: 'fleuriste',
     title: 'Fleuriste · Strasbourg',
-    category: 'Fleuriste',
-    type: 'Site vitrine WordPress',
-    tags: ['Boutique en ligne', 'SEO local'],
+    description: 'Site vitrine WordPress avec boutique en ligne et SEO local pour développer la visibilité.',
+    type: 'E-Commerce',
+    href: '#',
     image: '/images/project-fleuriste.webp',
   },
   {
+    id: 'charpentier',
     title: 'Charpentier · Colmar',
-    category: 'Charpentier',
-    type: 'Site vitrine statique',
-    tags: ['Galerie projets', 'Formulaire contact'],
+    description: 'Site vitrine statique avec galerie de projets et formulaire de contact pour une présence en ligne soignée.',
+    type: 'Site Vitrine',
+    href: '#',
     image: '/images/project-charpentier.webp',
   },
 ];
 ---
 
-<section id="realisations" class="py-32 md:py-20 px-6">
-  <div class="max-w-6xl mx-auto">
+<section id="realisations" class="py-32 md:py-20">
 
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
-      <div>
-        <span class="section-label mb-4 block">Réalisations</span>
-        <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">Des sites qui font<br />la différence</h2>
-      </div>
-      <p class="max-w-xs text-sm" style="color: var(--text-muted);">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
+  <!-- Header : titre + flèches -->
+  <div class="max-w-6xl mx-auto px-6 mb-14 flex items-end justify-between" data-animate="fade-up">
+    <div class="flex flex-col gap-3">
+      <span class="section-label">Réalisations</span>
+      <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">Des sites qui font<br />la différence</h2>
+      <p class="max-w-xs text-sm mt-1" style="color: var(--text-muted);">Démos représentatives — les vraies réalisations arrivent dès les premiers clients.</p>
     </div>
-
-    <!-- Filtres -->
-    <div class="flex flex-wrap gap-2 mb-12" data-animate="fade-up" id="portfolio-filters">
-      {categories.map(cat => (
-        <button
-          class="portfolio-filter px-5 py-2 text-sm font-['Bricolage_Grotesque'] font-semibold border transition-all duration-200 cursor-pointer"
-          data-category={cat}
-          style={cat === 'Tous'
-            ? 'background: var(--accent-primary); border-color: var(--accent-primary); color: #fff; border-radius: 100px;'
-            : 'background: transparent; border-color: var(--border-card); color: var(--text-muted); border-radius: 100px;'}
-        >
-          {cat}
-        </button>
-      ))}
+    <div class="hidden md:flex gap-3 mb-2">
+      <button id="portfolio-prev" class="carousel-arrow" aria-label="Précédent">←</button>
+      <button id="portfolio-next" class="carousel-arrow" aria-label="Suivant">→</button>
     </div>
+  </div>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="portfolio-grid">
-      {projects.map((project, i) => (
-        <div
-          class="portfolio-card group overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-          style="background: #ffffffbf; border: 0.5px solid var(--border-card); border-radius: 16px; backdrop-filter: blur(16px); box-shadow: 0 20px 80px -15px rgba(0, 0, 0, 0.1), 0 10px 30px -10px rgba(0, 0, 0, 0.05);"
-          data-category={project.category}
-          data-animate="fade-up"
-          data-animate-delay={i * 80}
-        >
-          <!-- Image -->
-          <div class="overflow-hidden aspect-video relative" style="background: linear-gradient(135deg, #e8e0d2, #d5c9b8);">
+  <!-- Carousel full width -->
+  <div class="embla-portfolio overflow-hidden" id="portfolio-carousel">
+    <div class="embla-portfolio__container flex" style="margin-left: max(24px, calc(50vw - 600px + 24px));">
+      {projects.map((project) => (
+        <div class="embla-portfolio__slide shrink-0 pl-5" style="max-width: 360px;">
+          <a href={project.href} class="portfolio-card group block rounded-2xl overflow-hidden relative" style="min-height: 27rem; display: block;">
             <img
               src={project.image}
               alt={project.title}
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              data-parallax-img
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(to top, rgba(32,96,216,0.08) 0%, transparent 60%);"></div>
-            <span
-              class="absolute top-3 left-3 px-3 py-1 text-xs font-['Bricolage_Grotesque'] font-semibold glass"
-              style="color: var(--accent-deep); border-radius: 100px;"
-            >
-              {project.category}
-            </span>
-          </div>
-
-          <!-- Content -->
-          <div class="p-5 flex items-start justify-between gap-4">
-            <div>
-              <p class="label-tech mb-1" style="color: var(--accent-primary);">{project.type}</p>
-              <h3 class="text-base font-['Bricolage_Grotesque'] font-bold mb-3" style="color: var(--text-primary);">{project.title}</h3>
-              <div class="flex flex-wrap gap-2">
-                {project.tags.map(tag => (
-                  <span
-                    class="text-xs px-2.5 py-1"
-                    style="background: rgba(0,0,0,0.04); color: var(--text-muted); border: 1px solid var(--border-card); border-radius: 6px;"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <!-- gradient overlay -->
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);"></div>
+            <!-- content -->
+            <div class="absolute inset-x-0 bottom-0 p-7" style="color: #fff;">
+              <span class="label-tech mb-3 inline-block" style="color: rgba(255,255,255,0.6);">{project.type}</span>
+              <h3 class="font-['Bricolage_Grotesque'] font-semibold text-xl mb-2">{project.title}</h3>
+              <p class="text-sm mb-6 line-clamp-2" style="color: rgba(255,255,255,0.65);">{project.description}</p>
+              <span class="flex items-center gap-2 text-sm font-medium" style="color: var(--accent-light);">
+                Voir le projet
+                <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
             </div>
-            <span class="shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1 group-hover:translate-x-0 text-lg" style="color: var(--accent-primary);">→</span>
-          </div>
+          </a>
         </div>
       ))}
     </div>
   </div>
+
+  <!-- Dots -->
+  <div id="portfolio-dots" class="mt-8 flex justify-center gap-2"></div>
+
 </section>
 
-<script>
-  const filters = document.querySelectorAll<HTMLButtonElement>('.portfolio-filter');
-  const cards = document.querySelectorAll<HTMLElement>('.portfolio-card');
+<style>
+  .portfolio-card {
+    transition: box-shadow 0.3s ease;
+    position: relative;
+  }
+  .portfolio-card:hover {
+    box-shadow: 0 20px 60px rgba(91, 150, 245, 0.3);
+  }
 
-  filters.forEach(filter => {
-    filter.addEventListener('click', () => {
-      const selected = filter.dataset.category!;
-      filters.forEach(btn => {
-        const isActive = btn.dataset.category === selected;
-        btn.style.background = isActive ? 'var(--accent-primary)' : 'transparent';
-        btn.style.borderColor = isActive ? 'var(--accent-primary)' : 'var(--border-card)';
-        btn.style.color = isActive ? '#fff' : 'var(--text-muted)';
-      });
-      cards.forEach(card => {
-        const match = selected === 'Tous' || card.dataset.category === selected;
-        card.style.display = match ? '' : 'none';
-      });
-    });
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .carousel-arrow:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  .carousel-arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+</style>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  const container = document.getElementById('portfolio-carousel') as HTMLElement;
+  const embla = EmblaCarousel(container, { align: 'start', loop: false });
+
+  const prevBtn = document.getElementById('portfolio-prev') as HTMLButtonElement;
+  const nextBtn = document.getElementById('portfolio-next') as HTMLButtonElement;
+
+  prevBtn?.addEventListener('click', () => embla.scrollPrev());
+  nextBtn?.addEventListener('click', () => embla.scrollNext());
+
+  // Dots
+  const dotsEl = document.getElementById('portfolio-dots')!;
+  const snaps = embla.scrollSnapList();
+
+  snaps.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'portfolio-dot';
+    dot.setAttribute('aria-label', `Aller au projet ${i + 1}`);
+    dot.style.cssText = `width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;transition:background 0.2s;background:${i === 0 ? 'var(--accent-primary)' : 'rgba(0,0,0,0.15)'};`;
+    dot.addEventListener('click', () => embla.scrollTo(i));
+    dotsEl.appendChild(dot);
   });
+
+  const dots = dotsEl.querySelectorAll<HTMLElement>('.portfolio-dot');
+
+  const updateDots = () => {
+    const current = embla.selectedScrollSnap();
+    dots.forEach((dot, i) => {
+      dot.style.background = i === current ? 'var(--accent-primary)' : 'rgba(0,0,0,0.15)';
+    });
+  };
+
+  const updateArrows = () => {
+    if (prevBtn) prevBtn.disabled = !embla.canScrollPrev();
+    if (nextBtn) nextBtn.disabled = !embla.canScrollNext();
+  };
+
+  embla.on('select', updateDots);
+  embla.on('select', updateArrows);
+  updateArrows();
 </script>
