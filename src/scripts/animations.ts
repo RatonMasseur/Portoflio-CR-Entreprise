@@ -73,7 +73,7 @@ if (heroHeadline) {
             fragment.appendChild(document.createTextNode(part));
           } else if (part) {
             const wrap = document.createElement('span');
-            wrap.style.cssText = 'display:inline-block; overflow:hidden; vertical-align:bottom; line-height:inherit;';
+            wrap.style.cssText = 'display:inline-block; overflow:hidden; vertical-align:bottom; line-height:inherit; padding-right: 0.07em; margin-right: -0.07em;';
             const inner = document.createElement('span');
             inner.className = 'word-inner';
             inner.style.display = 'inline-block';

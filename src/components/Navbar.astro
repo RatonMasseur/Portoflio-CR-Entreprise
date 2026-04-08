@@ -27,16 +27,23 @@
 >
   <div
     id="navbar-inner"
-    class="flex items-center justify-between px-5 py-2.5 transition-all duration-500"
-    style="background: rgba(255,255,255,0.06); backdrop-filter: blur(32px) saturate(200%); -webkit-backdrop-filter: blur(32px) saturate(200%); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05), 0 8px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1); filter: url(#liquid-glass-filter);"
+    class="flex items-center justify-between px-5 py-2.5 transition-all duration-500 relative"
+    style="border-radius: 100px;"
   >
+    <!-- Glass background layer — filter appliqué ici, pas sur le contenu texte -->
+    <div
+      id="navbar-bg"
+      class="absolute inset-0 transition-all duration-500"
+      style="border-radius: 100px; background: rgba(255,255,255,0.06); backdrop-filter: blur(32px) saturate(200%); -webkit-backdrop-filter: blur(32px) saturate(200%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05), 0 8px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.15); filter: url(#liquid-glass-filter);"
+    ></div>
+
     <!-- Logo -->
-    <a href="#" class="shrink-0">
-      <img src="/images/logo-white.webp" alt="Robin Carivenc" style="height: 32px; width: auto;" />
+    <a href="#" class="shrink-0 relative z-10">
+      <img src="/images/logo-white.webp" alt="Robin Carivenc" style="height: 40px; width: auto;" />
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-6 text-[13px]" style="color: rgba(255,255,255,0.85);">
+    <div class="hidden md:flex items-center gap-6 text-[13px] relative z-10" style="color: rgba(255,255,255,0.85);">
       <a href="#services" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">Services</a>
       <a href="#realisations" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">Réalisations</a>
       <a href="#a-propos" class="nav-link hover:text-white transition-colors duration-200 tracking-wide">À propos</a>
@@ -47,7 +54,7 @@
     <!-- CTA -->
     <a
       href="#contact"
-      class="hidden md:block text-[13px] font-semibold font-['Bricolage_Grotesque'] px-4 py-1.5 rounded-full shrink-0 transition-all duration-200"
+      class="hidden md:block text-[13px] font-semibold font-['Bricolage_Grotesque'] px-4 py-1.5 rounded-full shrink-0 transition-all duration-200 relative z-10"
       style="background: var(--gradient-cta); color: #fff; letter-spacing: 0.02em;"
       onmouseover="this.style.opacity='0.88'"
       onmouseout="this.style.opacity='1'"
@@ -56,7 +63,7 @@
     </a>
 
     <!-- Mobile toggle -->
-    <button id="menu-toggle" class="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer" aria-label="Ouvrir le menu">
+    <button id="menu-toggle" class="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer relative z-10" aria-label="Ouvrir le menu">
       <span class="block w-[18px] h-[1.5px] bg-white transition-all duration-300 origin-center" id="bar1"></span>
       <span class="block w-[18px] h-[1.5px] bg-white transition-all duration-300" id="bar2"></span>
       <span class="block w-[18px] h-[1.5px] bg-white transition-all duration-300 origin-center" id="bar3"></span>
@@ -79,17 +86,15 @@
 </div>
 
 <script>
-  const navbarInner = document.getElementById('navbar-inner')!;
+  const navbarBg = document.getElementById('navbar-bg')!;
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
-      navbarInner.style.background = 'rgba(255,255,255,0.10)';
-      navbarInner.style.borderColor = 'rgba(255,255,255,0.20)';
-      navbarInner.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.25), 0 8px 40px rgba(0,0,0,0.2)';
+      navbarBg.style.background = 'rgba(255,255,255,0.10)';
+      navbarBg.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.25), 0 8px 40px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.20)';
     } else {
-      navbarInner.style.background = 'rgba(255,255,255,0.06)';
-      navbarInner.style.borderColor = 'rgba(255,255,255,0.15)';
-      navbarInner.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05), 0 8px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1)';
+      navbarBg.style.background = 'rgba(255,255,255,0.06)';
+      navbarBg.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05), 0 8px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.15)';
     }
   });
 

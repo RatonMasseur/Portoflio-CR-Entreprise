@@ -168,10 +168,19 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
 </style>
 
 <script>
-  import { scroll, animate } from 'motion';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
 
   const cards = Array.from(document.querySelectorAll<HTMLElement>('.process-card'));
   const total = cards.length;
+
+  // Sync avec Lenis si disponible
+  const lenis = (window as any).__lenis;
+  if (lenis) {
+    lenis.on('scroll', ScrollTrigger.update);
+  }
 
   // Chaque carte sauf la dernière rétrécit quand la suivante arrive
   cards.forEach((card, i) => {
@@ -180,12 +189,15 @@ const BASE = 100;  // px depuis le haut du viewport pour la première carte
     const targetScale = 1 - (total - i) * 0.05;
     const nextCard = cards[i + 1];
 
-    scroll(
-      animate(card, { scale: [1, targetScale] }, { ease: 'linear' }),
-      {
-        target: nextCard,
-        offset: ['start end', 'start center'],
-      }
-    );
+    gsap.to(card, {
+      scale: targetScale,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: nextCard,
+        start: 'top bottom',
+        end: 'top center',
+        scrub: true,
+      },
+    });
   });
 </script>

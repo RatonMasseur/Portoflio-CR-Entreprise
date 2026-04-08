@@ -54,7 +54,7 @@ const projects = [
   <div class="embla-portfolio overflow-hidden" id="portfolio-carousel">
     <div class="embla-portfolio__container flex" style="margin-left: max(24px, calc(50vw - 600px + 24px));">
       {projects.map((project) => (
-        <div class="embla-portfolio__slide shrink-0 pl-5" style="max-width: 360px;">
+        <div class="embla-portfolio__slide pl-5" style="width: 360px; min-width: 360px; flex: 0 0 360px;">
           <a href={project.href} class="portfolio-card group block rounded-2xl overflow-hidden relative" style="min-height: 27rem; display: block;">
             <img
               src={project.image}
