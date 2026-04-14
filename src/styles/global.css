@@ -266,3 +266,14 @@ input:focus, textarea:focus {
   box-shadow: 0 0 0 1px rgba(32, 96, 216, 0.5), 0 0 40px rgba(91, 150, 245, 0.12);
   transform: translateY(-2px);
 }
+
+/* ─── Section capsule — dark rounded container on white background ── */
+.section-capsule {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #080808;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 4rem 2rem;
+  box-shadow: 0 8px 64px rgba(0, 0, 0, 0.15);
+}
