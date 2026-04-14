@@ -45,22 +45,12 @@ import HeroBackground from './HeroBackground.tsx';
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="#contact" class="btn-primary">
-            <span>Parlons de votre projet</span>
-            <span class="btn-arrow-icon btn-arrow-light">
-              <span class="btn-arrow-inner">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#2060d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </span>
+            <span class="btn-text-front">Parlons de votre projet</span>
+            <span class="btn-text-back">Parlons de votre projet</span>
           </a>
           <a href="#realisations" class="btn-outline-dark">
-            <span>Voir mes réalisations</span>
-            <span class="btn-arrow-icon btn-arrow-white">
-              <span class="btn-arrow-inner">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </span>
+            <span class="btn-text-front">Voir mes réalisations</span>
+            <span class="btn-text-back">Voir mes réalisations</span>
           </a>
         </div>
         <p class="mt-6 label-tech" style="color: rgba(255,255,255,0.35);">
@@ -123,27 +113,9 @@ import HeroBackground from './HeroBackground.tsx';
     box-shadow: 0 0 20px rgba(32, 96, 216, 0.2);
   }
 
-  /* btn-outline adapté fond dark */
-  .btn-outline-dark {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    min-height: 44px;
-  }
-
+  /* btn-outline-dark hover — Hero-specific subtle highlight */
   .btn-outline-dark:hover {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
   }
 </style>

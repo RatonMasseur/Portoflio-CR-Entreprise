@@ -149,103 +149,74 @@ h4 { font-weight: 600; }
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* ─── Bouton primaire ─────────────────────────────────────── */
-.btn-primary {
+/* ─── Boutons — skew text animation ──────────────────────── */
+.btn-primary,
+.btn-outline,
+.btn-outline-dark {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
-  background: var(--gradient-cta);
-  color: #fff;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
+  justify-content: center;
+  overflow: hidden;
   border-radius: 100px;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-  min-height: 44px;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(32, 96, 216, 0.4);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-/* ─── Bouton outline ──────────────────────────────────────── */
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   padding: 13px 28px;
-  border: 1px solid var(--border-hover);
-  color: var(--accent-deep);
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
-  border-radius: 100px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
   min-height: 44px;
+  transition: opacity 0.2s;
 }
 
-.btn-outline:hover {
-  background: rgba(32, 96, 216, 0.07);
-  border-color: var(--accent-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(32, 96, 216, 0.15);
+.btn-primary {
+  background: var(--gradient-cta);
+  color: #ffffff;
 }
 
-.btn-outline:active {
-  transform: translateY(0);
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
 }
 
-/* ─── Bouton arrow — cercle animé (cross-arrow pattern) ──── */
-.btn-arrow-icon {
-  position: relative;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
+.btn-outline-dark {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Texte intérieur — deux copies pour l'animation skew */
+.btn-text-front,
+.btn-text-back {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1),
+              opacity 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.btn-text-back {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(110%) skewY(12deg);
+  opacity: 0;
 }
 
-.btn-arrow-light { background: #ffffff; }
-.btn-arrow-dark  { background: var(--accent-primary); }
-.btn-arrow-white { background: rgba(255,255,255,0.18); }
-
-.btn-arrow-inner {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
-  transition: transform 0.22s ease;
+.btn-primary:hover .btn-text-front,
+.btn-outline:hover .btn-text-front,
+.btn-outline-dark:hover .btn-text-front {
+  transform: translateY(-110%) skewY(-12deg);
+  opacity: 0;
 }
 
-.btn-arrow-inner svg {
-  display: block;
-}
-
-.btn-arrow-inner svg:last-child {
-  margin-top: 2px;
-  transform: translateX(-20px);
-}
-
-/* On hover: first arrow flies top-right, second enters from bottom-left */
-.btn-primary:hover      .btn-arrow-inner,
-.btn-outline:hover      .btn-arrow-inner,
-.btn-outline-dark:hover .btn-arrow-inner,
-.contact-nav-btn:hover  .contact-nav-arrow-inner {
-  transform: translateY(-22px) translateX(20px);
+.btn-primary:hover .btn-text-back,
+.btn-outline:hover .btn-text-back,
+.btn-outline-dark:hover .btn-text-back {
+  transform: translateY(0) skewY(0);
+  opacity: 1;
 }
 
 /* ─── Nav links ───────────────────────────────────────────── */
