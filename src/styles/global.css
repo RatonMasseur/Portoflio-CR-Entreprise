@@ -269,6 +269,7 @@ input:focus, textarea:focus {
 
 /* ─── Section capsule — dark rounded container on white background ── */
 .section-capsule {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   background: #080808;
