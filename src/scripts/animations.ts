@@ -179,3 +179,60 @@ orbs.forEach((orb, i) => {
   // Décalage de phase pour désynchroniser les 3 orbs
   tl.progress(i * 0.33);
 });
+
+// ── Process — Sticky Cards GSAP ─────────────────────────────
+function initProcessCards(): void {
+  const track = document.querySelector<HTMLElement>('.process-track');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.process-card'));
+  if (!track || cards.length === 0) return;
+
+  const n = cards.length; // 4
+
+  // Set initial state: first card visible, others hidden below
+  cards.forEach((card, i) => {
+    gsap.set(card, {
+      y: i === 0 ? 0 : 80,
+      scale: 1,
+      opacity: i === 0 ? 1 : 0,
+    });
+  });
+
+  ScrollTrigger.create({
+    trigger: track,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 1,
+    onUpdate: ({ progress }) => {
+      const cardProgress = progress * n; // 0 → 4
+      const activeIndex = Math.min(Math.floor(cardProgress), n - 1);
+      const localProgress = cardProgress - Math.floor(cardProgress); // 0→1 within current slot
+
+      cards.forEach((card, i) => {
+        if (i < activeIndex) {
+          // Past cards: stacked behind active
+          const depth = activeIndex - i;
+          gsap.set(card, {
+            scale: Math.max(0.85, 1 - depth * 0.05),
+            y: -depth * 20,
+            opacity: 1,
+          });
+        } else if (i === activeIndex) {
+          // Active card: fully visible
+          gsap.set(card, { scale: 1, y: 0, opacity: 1 });
+        } else if (i === activeIndex + 1) {
+          // Next card: entering from below
+          gsap.set(card, {
+            scale: gsap.utils.interpolate(0.95, 1, localProgress),
+            y: gsap.utils.interpolate(80, 0, localProgress),
+            opacity: gsap.utils.interpolate(0, 1, localProgress),
+          });
+        } else {
+          // Future cards: hidden below
+          gsap.set(card, { scale: 1, y: 80, opacity: 0 });
+        }
+      });
+    },
+  });
+}
+
+initProcessCards();
