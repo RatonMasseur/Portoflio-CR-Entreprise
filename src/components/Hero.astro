@@ -1,76 +1,74 @@
 ---
 import HeroBackground from './HeroBackground.tsx';
 ---
-<section class="relative min-h-screen flex items-end px-6 pt-36 pb-20" style="background: #0a0806;" data-dark-section>
+<section
+  class="relative min-h-screen flex flex-col items-center justify-center px-6 text-center"
+  style="background: #0a0806;"
+  data-dark-section
+>
 
-  <!-- Clip container pour les orbs (overflow-hidden ici, pas sur la section) -->
+  <!-- Background layers — ne pas modifier -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-    <!-- MeshGradient React (paper-design/shaders) -->
     <HeroBackground client:only="react" />
-    <!-- Grille perspective animée -->
     <div class="hero-grid"></div>
-    <!-- Grain dédié fond dark — overlay visible sur noir, contrairement au multiply global -->
     <div class="grain-hero"></div>
   </div>
 
-  <div class="relative w-full max-w-6xl mx-auto" style="z-index: 3;">
+  <div class="relative w-full max-w-3xl mx-auto flex flex-col items-center gap-8" style="z-index: 3;">
 
-    <!-- Top label row -->
-    <div class="flex items-center gap-4 mb-12" data-animate="fade-up">
+    <!-- Label -->
+    <div class="flex items-center gap-3" data-animate="fade-up">
       <span class="section-label">Développeur Web Freelance · Alsace</span>
-      <div class="h-px flex-1 max-w-[60px]" style="background: rgba(255,255,255,0.12);"></div>
-      <span class="w-2 h-2 rounded-full" style="background: var(--accent-primary); box-shadow: 0 0 10px rgba(32,96,216,0.6);"></span>
-      <span class="label-tech" style="color: rgba(255,255,255,0.45);">Disponible</span>
+      <div class="hero-separator"></div>
+      <span class="hero-dot"></span>
+      <span class="label-tech hero-available">Disponible</span>
     </div>
 
-    <!-- Main headline -->
-    <div id="hero-headline" class="mb-10">
-      <h1 class="font-['Bricolage_Grotesque'] leading-[0.92] tracking-tight" style="font-size: var(--type-display); font-weight: 800; color: #ffffff;">
+    <!-- Titre -->
+    <div id="hero-headline">
+      <h1 class="hero-title">
         Pas une agence.<br />
         Pas un template.
       </h1>
-      <div class="flex items-baseline gap-4 mt-3">
-        <h1 class="font-['Bricolage_Grotesque'] leading-[0.92] tracking-tight italic" style="font-size: var(--type-display); font-weight: 800; color: var(--accent-light);">
-          <span class="hero-badge-outline">Votre site.</span>
-        </h1>
+      <div class="hero-animated-line">
+        Votre&nbsp;<span class="hero-word-outer"><span class="hero-word-inner" id="hero-cycling-word">présence</span></span>.
       </div>
     </div>
 
-    <!-- Bottom row: description + CTA + stats -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10" data-animate="fade-up" data-animate-delay="180">
+    <!-- Description -->
+    <p class="hero-desc" data-animate="fade-up" data-animate-delay="100">
+      Un site professionnel qui vous ressemble, conçu pour convertir vos visiteurs en clients. Livré en 7 jours.
+    </p>
 
-      <div class="max-w-md">
-        <p class="text-lg leading-relaxed mb-8" style="color: rgba(255,255,255,0.58);">
-          Un site professionnel qui vous ressemble, conçu pour convertir vos visiteurs en clients. Livré en 7 jours.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="btn-primary">
-            <span class="btn-text-front">Parlons de votre projet</span>
-            <span class="btn-text-back">Parlons de votre projet</span>
-          </a>
-          <a href="#realisations" class="btn-outline-dark">
-            <span class="btn-text-front">Voir mes réalisations</span>
-            <span class="btn-text-back">Voir mes réalisations</span>
-          </a>
-        </div>
-        <p class="mt-6 label-tech" style="color: rgba(255,255,255,0.35);">
-          Disponible pour nouveaux projets · Délai garanti
-        </p>
-      </div>
-
+    <!-- CTAs -->
+    <div class="flex flex-wrap gap-4 justify-center" data-animate="fade-up" data-animate-delay="180">
+      <a href="#contact" class="btn-primary">
+        <span class="btn-text-front">Parlons de votre projet</span>
+        <span class="btn-text-back">Parlons de votre projet</span>
+      </a>
+      <a href="#realisations" class="btn-outline-dark">
+        <span class="btn-text-front">Voir mes réalisations</span>
+        <span class="btn-text-back">Voir mes réalisations</span>
+      </a>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute right-0 bottom-0 hidden lg:flex flex-col items-center gap-3" data-animate="fade-up" data-animate-delay="300">
-      <p class="label-tech" style="writing-mode: vertical-rl; color: rgba(255,255,255,0.3);">Découvrir</p>
-      <div class="w-px h-12" style="background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);"></div>
-    </div>
+    <!-- Disponibilité -->
+    <p class="label-tech hero-footnote" data-animate="fade-up" data-animate-delay="240">
+      Disponible pour nouveaux projets · Délai garanti
+    </p>
 
   </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute right-6 bottom-8 hidden lg:flex flex-col items-center gap-3">
+    <p class="label-tech hero-scroll-label">Découvrir</p>
+    <div class="hero-scroll-line"></div>
+  </div>
+
 </section>
 
 <style>
-  /* ─── Grille perspective — plancher animé ─── */
+  /* ─── Background layers ──────────────────────────────────── */
   .hero-grid {
     position: absolute;
     bottom: -10%;
@@ -93,7 +91,6 @@ import HeroBackground from './HeroBackground.tsx';
     to   { background-position: 0 80px; }
   }
 
-  /* Grain dédié fond dark — overlay (visible sur noir, contrairement à multiply) */
   .grain-hero {
     position: absolute;
     inset: 0;
@@ -104,18 +101,119 @@ import HeroBackground from './HeroBackground.tsx';
     pointer-events: none;
   }
 
-  /* Badge outline style "AI Communities" sur "Votre site." */
-  .hero-badge-outline {
-    display: inline-block;
-    border: 1.5px solid rgba(91, 150, 245, 0.55);
-    border-radius: 6px;
-    padding: 0 14px 2px;
-    box-shadow: 0 0 20px rgba(32, 96, 216, 0.2);
+  /* ─── Label row ──────────────────────────────────────────── */
+  .hero-separator {
+    height: 1px;
+    width: 60px;
+    background: rgba(255, 255, 255, 0.12);
   }
 
-  /* btn-outline-dark hover — Hero-specific subtle highlight */
+  .hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(32, 96, 216, 0.6);
+    flex-shrink: 0;
+  }
+
+  .hero-available {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  /* ─── Titre ──────────────────────────────────────────────── */
+  .hero-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 0.95;
+    tracking: tight;
+  }
+
+  .hero-animated-line {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    font-style: italic;
+    color: var(--accent-light);
+    line-height: 0.95;
+    margin-top: 0.2em;
+  }
+
+  /* ─── Mot cyclique ───────────────────────────────────────── */
+  .hero-word-outer {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
+  .hero-word-inner {
+    display: inline-block;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1),
+                opacity 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .hero-word-inner.exit {
+    transform: translateY(-110%) skewY(-12deg);
+    opacity: 0;
+  }
+
+  .hero-word-inner.enter {
+    transform: translateY(110%) skewY(12deg);
+    opacity: 0;
+  }
+
+  /* ─── Description ────────────────────────────────────────── */
+  .hero-desc {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.58);
+    max-width: 28rem;
+  }
+
+  /* ─── Bouton outline fond dark ───────────────────────────── */
   .btn-outline-dark:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    opacity: 1;
+  }
+
+  /* ─── Footer ─────────────────────────────────────────────── */
+  .hero-footnote {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .hero-scroll-label {
+    writing-mode: vertical-rl;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
   }
 </style>
+
+<script>
+  const words = ['présence', 'vitrine', 'site'];
+  let currentIndex = 0;
+  const outer = document.querySelector<HTMLElement>('.hero-word-outer');
+  if (outer) {
+    function cycleWord() {
+      currentIndex = (currentIndex + 1) % words.length;
+      const next = document.createElement('span');
+      next.className = 'hero-word-inner enter';
+      next.textContent = words[currentIndex];
+      outer!.appendChild(next);
+      const current = outer!.children[0] as HTMLElement;
+      current.classList.add('exit');
+      setTimeout(() => {
+        current.remove();
+        next.classList.remove('enter');
+      }, 500);
+    }
+    setInterval(cycleWord, 2500);
+  }
+</script>
