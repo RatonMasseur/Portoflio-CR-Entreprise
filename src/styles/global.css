@@ -63,6 +63,20 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── Section spacing ─────────────────────────────────────── */
+section {
+  padding-block: 5rem;
+}
+
+section + section {
+  margin-top: 2.5rem;
+}
+
+/* Hero exempt — min-h-screen gère l'espace */
+section:has(#hero-headline) {
+  padding-block: 0;
+}
+
 /* ─── Grain texture — soft-light sur fond clair ───────────── */
 body::after {
   content: '';
@@ -231,7 +245,7 @@ h4 { font-weight: 600; }
   width: 0;
   height: 1px;
   background: var(--accent-primary);
-  transition: width 0.25s ease;
+  transition: width 0.3s ease-in-out;
 }
 
 .nav-link:hover::after {
