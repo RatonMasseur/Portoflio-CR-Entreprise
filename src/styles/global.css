@@ -177,8 +177,7 @@ h4 { font-weight: 600; }
 
 /* ─── Boutons — skew text animation ──────────────────────── */
 .btn-primary,
-.btn-outline,
-.btn-outline-dark {
+.btn-outline {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -207,12 +206,6 @@ h4 { font-weight: 600; }
   color: var(--text-primary);
 }
 
-.btn-outline-dark {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-}
-
 /* Texte intérieur — deux copies pour l'animation skew */
 .btn-text-front,
 .btn-text-back {
@@ -232,15 +225,13 @@ h4 { font-weight: 600; }
 }
 
 .btn-primary:hover .btn-text-front,
-.btn-outline:hover .btn-text-front,
-.btn-outline-dark:hover .btn-text-front {
+.btn-outline:hover .btn-text-front {
   transform: translateY(-110%) skewY(-12deg);
   opacity: 0;
 }
 
 .btn-primary:hover .btn-text-back,
-.btn-outline:hover .btn-text-back,
-.btn-outline-dark:hover .btn-text-back {
+.btn-outline:hover .btn-text-back {
   transform: translateY(0) skewY(0);
   opacity: 1;
 }
