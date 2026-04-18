@@ -1,15 +1,15 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-surface: #0A0A0A;
-  --color-deep:    #000000;
+  --color-surface: #F9FAFB;
+  --color-deep:    #111827;
   --color-accent:  #3b82f6;
-  --shadow-luxury: 0 20px 80px -15px rgba(0, 0, 0, 0.4), 0 10px 30px -10px rgba(0, 0, 0, 0.2);
-  --shadow-glass:  inset 0 1px 1px 0 rgba(255, 255, 255, 0.06), 0 20px 40px 0 rgba(0, 0, 0, 0.3);
+  --shadow-luxury: 0 20px 80px -15px rgba(0, 0, 0, 0.15), 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  --shadow-glass:  0 20px 40px 0 rgba(0, 0, 0, 0.08);
   --blur-huge:     120px;
 }
 
-/* ─── Design Tokens — Dark Mode ─────────────────────────────── */
+/* ─── Design Tokens — Light Theme ───────────────────────────── */
 :root {
   /* Typographie — échelle fluide */
   --type-display: clamp(3rem, 7vw, 6rem);
@@ -31,7 +31,7 @@
   --text-secondary: #6B7280;
   --text-muted:     rgba(17, 24, 39, 0.45);
 
-  /* Accent (conservé) */
+  /* Accent */
   --accent-primary: #3B82F6;
   --accent-light:   #60a5fa;
   --accent-deep:    #2563eb;
@@ -41,10 +41,8 @@
   /* Glass */
   --glass-bg:      rgba(0, 0, 0, 0.03);
   --glass-border:  rgba(0, 0, 0, 0.08);
-}
 
-/* ─── Palette bento — 6 couleurs ─────────────────────────── */
-:root {
+  /* Palette bento — 6 couleurs */
   --color-lavender:      #E8DCFF;
   --color-lavender-text: #6B21A8;
   --color-rose:          #FFD6E0;
