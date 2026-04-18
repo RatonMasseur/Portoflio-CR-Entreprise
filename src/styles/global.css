@@ -2,14 +2,14 @@
 
 @theme {
   --color-surface: #0A0A0A;
-  --color-deep:    #0A0A0A;
+  --color-deep:    #000000;
   --color-accent:  #3b82f6;
   --shadow-luxury: 0 20px 80px -15px rgba(0, 0, 0, 0.4), 0 10px 30px -10px rgba(0, 0, 0, 0.2);
   --shadow-glass:  inset 0 1px 1px 0 rgba(255, 255, 255, 0.06), 0 20px 40px 0 rgba(0, 0, 0, 0.3);
   --blur-huge:     120px;
 }
 
-/* ─── Design Tokens — Atelier Tech Light ─────────────────── */
+/* ─── Design Tokens — Dark Mode ─────────────────────────────── */
 :root {
   /* Typographie — échelle fluide */
   --type-display: clamp(3rem, 7vw, 6rem);
@@ -175,7 +175,7 @@ h4 { font-weight: 600; }
 
 .btn-outline {
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-card);
   color: var(--text-primary);
 }
 
@@ -270,7 +270,7 @@ input:focus, textarea:focus {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  background: #111111;
+  background: var(--bg-card);
   border-radius: 24px;
   overflow: hidden;
   padding: 5rem 3rem;
