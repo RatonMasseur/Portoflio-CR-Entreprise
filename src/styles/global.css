@@ -18,29 +18,45 @@
   --type-body:    1rem;
 
   /* Backgrounds */
-  --bg-primary:    #0A0A0A;
-  --bg-card:       #111111;
-  --bg-card-hover: #161616;
+  --bg-primary:    #ffffff;
+  --bg-card:       #F9FAFB;
+  --bg-card-hover: #F3F4F6;
 
   /* Borders */
-  --border-card:   #262626;
-  --border-hover:  rgba(59, 130, 246, 0.45);
+  --border-card:   #E5E7EB;
+  --border-hover:  rgba(139, 92, 246, 0.45);
 
   /* Text */
-  --text-primary:   #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.72);
-  --text-muted:     rgba(255, 255, 255, 0.45);
+  --text-primary:   #111827;
+  --text-secondary: #6B7280;
+  --text-muted:     rgba(17, 24, 39, 0.45);
 
-  /* Accent bleu */
+  /* Accent (conservé) */
   --accent-primary: #3B82F6;
-  --accent-light:   #93c5fd;
+  --accent-light:   #60a5fa;
   --accent-deep:    #2563eb;
   --gradient-cta:   linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-  --glow:           rgba(59, 130, 246, 0.18);
+  --glow:           rgba(59, 130, 246, 0.12);
 
   /* Glass */
-  --glass-bg:      rgba(255, 255, 255, 0.05);
-  --glass-border:  rgba(255, 255, 255, 0.08);
+  --glass-bg:      rgba(0, 0, 0, 0.03);
+  --glass-border:  rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Palette bento — 6 couleurs ─────────────────────────── */
+:root {
+  --color-lavender:      #E8DCFF;
+  --color-lavender-text: #6B21A8;
+  --color-rose:          #FFD6E0;
+  --color-rose-text:     #BE185D;
+  --color-sage:          #D4F1C7;
+  --color-sage-text:     #166534;
+  --color-lemon:         #FFF3C4;
+  --color-lemon-text:    #854D0E;
+  --color-peach:         #FFE4CC;
+  --color-peach-text:    #9A3412;
+  --color-sky:           #D6EEFF;
+  --color-sky-text:      #1E40AF;
 }
 
 /* ─── Base ────────────────────────────────────────────────── */
