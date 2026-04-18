@@ -183,7 +183,7 @@ orbs.forEach((orb, i) => {
 // ── Process — Sticky Cards GSAP ─────────────────────────────
 function initProcessCards(): void {
   // Sur mobile, la version liste (fade-up) est utilisée — pas de stacking
-  if (window.innerWidth < 768) return;
+  if (!window.matchMedia('(min-width: 768px)').matches) return;
 
   const track = document.querySelector<HTMLElement>('.process-track');
   const cards = Array.from(document.querySelectorAll<HTMLElement>('.process-card'));
