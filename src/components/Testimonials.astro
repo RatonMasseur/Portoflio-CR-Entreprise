@@ -7,7 +7,7 @@ const testimonials = [
 ];
 ---
 
-<section class="px-6 overflow-hidden" style="background: #0a0806;" data-dark-section>
+<section class="px-6 overflow-hidden" style="background: var(--bg-primary);" data-dark-section>
   <div class="max-w-6xl mx-auto">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
@@ -38,7 +38,7 @@ const testimonials = [
                 <!-- Citation -->
                 <p class="text-base mb-6 leading-relaxed" style="color: rgba(255,255,255,0.72);">{t.quote}</p>
                 <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-full flex items-center justify-center font-['Bricolage_Grotesque'] font-bold text-sm shrink-0" style="background: rgba(91,150,245,0.15); color: var(--accent-light); border: 1px solid rgba(91,150,245,0.25);">
+                  <div class="w-9 h-9 rounded-full flex items-center justify-center font-['Bricolage_Grotesque'] font-bold text-sm shrink-0" style="background: rgba(59,130,246,0.15); color: var(--accent-light); border: 1px solid rgba(59,130,246,0.25);">
                     {t.name[0]}
                   </div>
                   <div>
@@ -70,12 +70,10 @@ const testimonials = [
 
 <style>
   .testimonial-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    transition: border-color 0.25s, background 0.25s;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out;
   }
 
   .testimonial-card:hover {
