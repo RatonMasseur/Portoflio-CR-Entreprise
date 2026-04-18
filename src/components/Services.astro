@@ -27,7 +27,7 @@ const services = [
 ];
 ---
 
-<section id="services" class="py-16 px-4 md:px-6 relative" style="background: var(--bg-primary);" data-dark-section>
+<section id="services" class="px-4 md:px-6 relative" style="background: var(--bg-primary);" data-dark-section>
   <div class="section-capsule">
 
   <!-- Glow bas droite -->
@@ -44,7 +44,7 @@ const services = [
     </div>
 
     <!-- Bento Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
       {services.map((service, i) => (
         <div
           class={`bento-card bento-dark ${service.span}`}
@@ -117,8 +117,8 @@ const services = [
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 32px;
+    border-radius: 20px;
+    padding: 36px;
     transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, transform 0.3s;
   }
 

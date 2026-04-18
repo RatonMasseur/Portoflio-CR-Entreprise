@@ -7,19 +7,19 @@ const testimonials = [
 ];
 ---
 
-<section class="py-32 md:py-20 px-6 overflow-hidden">
+<section class="px-6 overflow-hidden" style="background: #0a0806;" data-dark-section>
   <div class="max-w-6xl mx-auto">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16" data-animate="fade-up">
       <div>
         <span class="section-label mb-4 block">Témoignages</span>
-        <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700;">Ce que disent<br />mes clients</h2>
+        <h2 class="font-['Bricolage_Grotesque'] leading-tight" style="font-size: var(--type-h2); font-weight: 700; color: #ffffff;">Ce que disent<br /><span style="color: var(--accent-light);">mes clients</span></h2>
       </div>
       <div class="hidden md:flex gap-2 items-center" id="testimonial-dots-desktop">
         {testimonials.map((_, i) => (
           <button
             class="testimonial-dot-btn h-1.5 rounded-full transition-all duration-300 cursor-pointer"
-            style={i === 0 ? 'background: var(--accent-primary); width: 24px;' : 'background: var(--border-card); width: 8px; border: 1px solid rgba(0,0,0,0.1);'}
+            style={i === 0 ? 'background: var(--accent-primary); width: 24px;' : 'background: rgba(255,255,255,0.18); width: 8px;'}
             data-dot={i}
             aria-label={`Témoignage ${i + 1}`}
           ></button>
@@ -32,18 +32,18 @@ const testimonials = [
         <div class="flex transition-transform duration-500 ease-out" id="testimonial-track">
           {testimonials.map((t) => (
             <div class="w-full md:w-1/2 shrink-0 px-2.5">
-              <div class="p-7 h-full relative glass" style="border-radius: 16px; box-shadow: 0 4px 32px rgba(32, 96, 216, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);">
+              <div class="testimonial-card p-7 h-full relative" style="border-radius: 16px;">
                 <!-- Guillemet décoratif serif -->
-                <div class="font-['Fraunces'] italic leading-none mb-3 select-none" style="font-size: 5rem; font-weight: 300; color: var(--accent-primary); opacity: 0.25; line-height: 1;">"</div>
-                <!-- Citation en Fraunces -->
-                <p class="quote-serif text-base mb-6">{t.quote}</p>
+                <div class="font-['Fraunces'] italic leading-none mb-3 select-none" style="font-size: 5rem; font-weight: 300; color: var(--accent-light); opacity: 0.3; line-height: 1;">"</div>
+                <!-- Citation -->
+                <p class="text-base mb-6 leading-relaxed" style="color: rgba(255,255,255,0.72);">{t.quote}</p>
                 <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-full flex items-center justify-center font-['Bricolage_Grotesque'] font-bold text-sm shrink-0" style="background: rgba(32,96,216,0.12); color: var(--accent-primary); border: 1px solid rgba(32,96,216,0.2);">
+                  <div class="w-9 h-9 rounded-full flex items-center justify-center font-['Bricolage_Grotesque'] font-bold text-sm shrink-0" style="background: rgba(91,150,245,0.15); color: var(--accent-light); border: 1px solid rgba(91,150,245,0.25);">
                     {t.name[0]}
                   </div>
                   <div>
-                    <p class="text-sm font-['Bricolage_Grotesque'] font-bold" style="color: var(--text-primary);">{t.name}</p>
-                    <p class="label-tech" style="color: var(--accent-primary);">{t.role}</p>
+                    <p class="text-sm font-['Bricolage_Grotesque'] font-bold" style="color: #ffffff;">{t.name}</p>
+                    <p class="label-tech" style="color: var(--accent-light);">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@ const testimonials = [
         {testimonials.map((_, i) => (
           <button
             class="testimonial-dot-btn h-1.5 rounded-full transition-all duration-300 cursor-pointer"
-            style={i === 0 ? 'background: var(--accent-primary); width: 24px;' : 'background: var(--border-card); width: 8px;'}
+            style={i === 0 ? 'background: var(--accent-primary); width: 24px;' : 'background: rgba(255,255,255,0.18); width: 8px;'}
             data-dot={i}
             aria-label={`Témoignage ${i + 1}`}
           ></button>
@@ -67,5 +67,21 @@ const testimonials = [
 
   </div>
 </section>
+
+<style>
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .testimonial-card:hover {
+    background: rgba(91, 150, 245, 0.06);
+    border-color: rgba(91, 150, 245, 0.25);
+  }
+</style>
 
 <script src="../scripts/testimonials.ts"></script>

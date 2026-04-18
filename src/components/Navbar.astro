@@ -1,24 +1,24 @@
 <nav
   id="navbar"
-  class="fixed z-50 transition-all duration-500"
-  style="top: 16px; left: 50%; transform: translateX(-50%); width: calc(100% - 48px); max-width: 960px;"
+  class="fixed z-50"
+  style="top: 16px; left: 50%; transform: translateX(-50%); width: calc(100% - 48px); max-width: 960px; transition: top 0.4s ease;"
 >
   <div
     id="navbar-inner"
     class="flex items-center justify-between px-5 py-2.5 transition-all duration-500 relative"
     style="border-radius: 100px;"
   >
-    <!-- Glass background layer — filter appliqué ici, pas sur le contenu texte -->
+    <!-- Fond noir — opacité réduite via JS selon le scroll -->
     <div
       id="navbar-bg"
-      class="absolute inset-0 transition-all duration-500"
-      style="border-radius: 100px; background: rgba(255,255,255,0.06); backdrop-filter: blur(32px) saturate(200%); -webkit-backdrop-filter: blur(32px) saturate(200%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.05), 0 8px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.15);"
+      class="absolute inset-0"
+      style="border-radius: 100px; background: rgba(10,8,6,0.95); box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.08);"
     ></div>
 
     <!-- Logo -->
     <a href="/" class="navbar-logo shrink-0 relative z-10" aria-label="Retour à l'accueil">
       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-        width="44" height="44" viewBox="0 0 500 500"
+        width="72" height="72" viewBox="0 0 500 500"
         preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
         style="display:block;">
@@ -120,11 +120,10 @@
   }
 
   #navbar-bg {
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition: background 0.4s ease;
   }
   .navbar-logo {
     color: #ffffff;
-    transition: color 0.3s ease;
   }
 
   /* ── Nav link active ── */

@@ -1,4 +1,4 @@
-<section id="contact" class="py-32 md:py-20 px-6 relative" style="background: linear-gradient(to bottom, #ffffff 0%, #ffffff 35%, rgba(10,8,6,0) 42%, #0a0806 72%);">
+<section id="contact" class="px-6 relative" style="background: linear-gradient(to bottom, #ffffff 0%, #ffffff 28%, #0a0806 82%);">
 
   <div class="max-w-2xl mx-auto relative">
 
@@ -8,22 +8,22 @@
       <p style="color: var(--text-secondary);">Décrivez-moi votre projet. Réponse sous 24h.</p>
     </div>
 
-    <!-- Encart dark -->
+    <!-- Encart clair -->
     <div class="contact-card" data-animate="fade-up">
 
       <!-- Header encart -->
       <div class="contact-card-header">
         <div class="flex items-center gap-3 mb-1">
-          <div class="w-2 h-2 rounded-full" style="background: var(--accent-primary); box-shadow: 0 0 8px rgba(32,96,216,0.7);"></div>
-          <span class="label-tech" style="color: rgba(255,255,255,0.4);">Disponible pour nouveaux projets</span>
+          <div class="w-2 h-2 rounded-full" style="background: var(--accent-primary); box-shadow: 0 0 8px rgba(32,96,216,0.5);"></div>
+          <span class="label-tech" style="color: var(--text-muted);">Disponible pour nouveaux projets</span>
         </div>
-        <p class="text-sm" style="color: rgba(255,255,255,0.55);">Réponse garantie sous 24h · Devis gratuit</p>
+        <p class="text-sm" style="color: var(--text-secondary);">Réponse garantie sous 24h · Devis gratuit</p>
       </div>
 
       <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label for="name" class="label-tech block mb-2" style="color: rgba(255,255,255,0.5);">Nom</label>
+            <label for="name" class="label-tech block mb-2" style="color: var(--text-muted);">Nom</label>
             <input
               type="text" id="name" name="name" required
               class="w-full px-4 py-3.5 contact-input"
@@ -31,7 +31,7 @@
             />
           </div>
           <div>
-            <label for="email" class="label-tech block mb-2" style="color: rgba(255,255,255,0.5);">Email</label>
+            <label for="email" class="label-tech block mb-2" style="color: var(--text-muted);">Email</label>
             <input
               type="email" id="email" name="email" required
               class="w-full px-4 py-3.5 contact-input"
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div>
-          <label for="message" class="label-tech block mb-2" style="color: rgba(255,255,255,0.5);">Votre projet</label>
+          <label for="message" class="label-tech block mb-2" style="color: var(--text-muted);">Votre projet</label>
           <textarea
             id="message" name="message" rows="5" required
             class="w-full px-4 py-3.5 contact-input resize-none"
@@ -55,12 +55,12 @@
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-sm" data-animate="fade-up">
-      <div class="flex items-center gap-2" style="color: rgba(255,255,255,0.4);">
+      <div class="flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-light);"></span>
         <span class="label-tech" style="color: rgba(255,255,255,0.4);">Alsace · Partout en France</span>
       </div>
       <div class="hidden sm:block w-px h-4" style="background: rgba(255,255,255,0.1);"></div>
-      <div class="flex items-center gap-2" style="color: rgba(255,255,255,0.4);">
+      <div class="flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-light);"></span>
         <span class="label-tech" style="color: rgba(255,255,255,0.4);">Réponse sous 24h garantie</span>
       </div>
@@ -71,14 +71,13 @@
 
 <style>
   .contact-card {
-    background: #111018;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     padding: 40px;
     box-shadow:
-      0 32px 80px rgba(0, 0, 0, 0.25),
-      0 0 0 1px rgba(32, 96, 216, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      0 24px 64px rgba(0, 0, 0, 0.14),
+      0 0 0 1px rgba(32, 96, 216, 0.06);
     position: relative;
     overflow: hidden;
   }
@@ -87,37 +86,38 @@
   .contact-card::before {
     content: '';
     position: absolute;
-    top: -80px;
+    top: -60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 200px;
-    background: radial-gradient(ellipse, rgba(32, 96, 216, 0.15) 0%, transparent 70%);
+    width: 280px;
+    height: 180px;
+    background: radial-gradient(ellipse, rgba(32, 96, 216, 0.07) 0%, transparent 70%);
     pointer-events: none;
   }
 
   .contact-card-header {
-    padding-bottom: 28px;
-    margin-bottom: 28px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
   }
 
   .contact-input {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-size: 0.95rem;
-    color: #ffffff;
+    color: var(--text-primary);
     transition: border-color 0.2s, background 0.2s;
     outline: none;
+    font-family: 'DM Sans', sans-serif;
   }
 
   .contact-input::placeholder {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(0, 0, 0, 0.28);
   }
 
   .contact-input:focus {
-    border-color: rgba(32, 96, 216, 0.55);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(32, 96, 216, 0.45);
+    background: rgba(32, 96, 216, 0.03);
   }
 </style>
