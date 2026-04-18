@@ -3,14 +3,12 @@
 <section
   class="relative min-h-screen flex flex-col items-center justify-center px-6 text-center"
   style="background: var(--bg-primary);"
-  data-dark-section
 >
 
   <!-- Background layers — ne pas modifier -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
     <canvas id="hero-bg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" aria-hidden="true"></canvas>
     <div class="hero-grid"></div>
-    <div class="grain-hero"></div>
   </div>
 
   <div class="relative w-full max-w-3xl mx-auto flex flex-col items-center gap-8" style="z-index: 3;">
@@ -45,7 +43,7 @@
         <span class="btn-text-front">Parlons de votre projet</span>
         <span class="btn-text-back">Parlons de votre projet</span>
       </a>
-      <a href="#realisations" class="btn-outline-dark">
+      <a href="#realisations" class="btn-outline">
         <span class="btn-text-front">Voir mes réalisations</span>
         <span class="btn-text-back">Voir mes réalisations</span>
       </a>
@@ -83,8 +81,8 @@
     transform: translateX(-50%) perspective(700px) rotateX(58deg);
     transform-origin: center bottom;
     background-image:
-      linear-gradient(rgba(59, 130, 246, 0.18) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.18) 1px, transparent 1px);
+      linear-gradient(rgba(139, 92, 246, 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 92, 246, 0.10) 1px, transparent 1px);
     background-size: 80px 80px;
     mask-image: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 65%);
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 65%);
@@ -96,21 +94,11 @@
     to   { background-position: 0 80px; }
   }
 
-  .grain-hero {
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 180px;
-    opacity: 0.07;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-  }
-
   /* ─── Label row ──────────────────────────────────────────── */
   .hero-separator {
     height: 1px;
     width: 60px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.12);
   }
 
   .hero-dot {
@@ -123,7 +111,7 @@
   }
 
   .hero-available {
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--text-secondary);
   }
 
   /* ─── Titre ──────────────────────────────────────────────── */
@@ -173,31 +161,24 @@
   .hero-desc {
     font-size: 1.125rem;
     line-height: 1.65;
-    color: rgba(255, 255, 255, 0.58);
+    color: var(--text-secondary);
     max-width: 28rem;
-  }
-
-  /* ─── Bouton outline fond dark ───────────────────────────── */
-  .btn-outline-dark:hover {
-    border-color: rgba(255, 255, 255, 0.45);
-    background: rgba(255, 255, 255, 0.05);
-    opacity: 1;
   }
 
   /* ─── Footer ─────────────────────────────────────────────── */
   .hero-footnote {
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-secondary);
   }
 
   .hero-scroll-label {
     writing-mode: vertical-rl;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
   }
 
   .hero-scroll-line {
     width: 1px;
     height: 48px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), transparent);
   }
 </style>
 
