@@ -2,7 +2,7 @@
 ---
 <section
   class="relative min-h-screen flex flex-col items-center justify-center px-6 text-center"
-  style="background: #0a0806;"
+  style="background: var(--bg-primary);"
   data-dark-section
 >
 
@@ -83,8 +83,8 @@
     transform: translateX(-50%) perspective(700px) rotateX(58deg);
     transform-origin: center bottom;
     background-image:
-      linear-gradient(rgba(32, 96, 216, 0.18) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(32, 96, 216, 0.18) 1px, transparent 1px);
+      linear-gradient(rgba(59, 130, 246, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.18) 1px, transparent 1px);
     background-size: 80px 80px;
     mask-image: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 65%);
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 65%);
@@ -118,7 +118,7 @@
     height: 8px;
     border-radius: 50%;
     background: var(--accent-primary);
-    box-shadow: 0 0 10px rgba(32, 96, 216, 0.6);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
     flex-shrink: 0;
   }
 
@@ -131,7 +131,7 @@
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: clamp(2.2rem, 5vw, 4.5rem);
     font-weight: 800;
-    color: #ffffff;
+    color: var(--text-primary);
     line-height: 0.95;
     tracking: tight;
   }
