@@ -42,15 +42,11 @@
     <!-- CTA animé -->
     <a
       href="#contact"
-      class="contact-nav-btn hidden md:flex items-center gap-2 shrink-0 z-10"
+      class="contact-nav-btn hidden md:inline-flex items-center shrink-0 z-10 btn-outline"
+      style="padding: 8px 18px; font-size: 0.8rem;"
     >
-      <span>Contact</span>
-      <span class="contact-nav-arrow-icon">
-        <span class="contact-nav-arrow-inner">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </span>
+      <span class="btn-text-front">Contact</span>
+      <span class="btn-text-back">Contact</span>
     </a>
 
     <!-- Mobile toggle -->
@@ -77,48 +73,6 @@
 </div>
 
 <style>
-  /* ── Bouton Contact animé ── */
-  .contact-nav-btn {
-    background: var(--gradient-cta);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Bricolage Grotesque', sans-serif;
-    letter-spacing: 0.02em;
-    padding: 6px 8px 6px 16px;
-    border-radius: 100px;
-    text-decoration: none;
-    min-height: 34px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .contact-nav-arrow-icon {
-    position: relative;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.22);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .contact-nav-arrow-inner {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-content: center;
-    transition: transform 0.22s ease;
-  }
-
-  .contact-nav-arrow-inner svg:last-child {
-    margin-top: 2px;
-    transform: translateX(-18px);
-  }
-
   #navbar-bg {
     transition: background 0.4s ease;
   }
