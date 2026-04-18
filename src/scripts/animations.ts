@@ -182,6 +182,9 @@ orbs.forEach((orb, i) => {
 
 // ── Process — Sticky Cards GSAP ─────────────────────────────
 function initProcessCards(): void {
+  // Sur mobile, la version liste (fade-up) est utilisée — pas de stacking
+  if (window.innerWidth < 768) return;
+
   const track = document.querySelector<HTMLElement>('.process-track');
   const cards = Array.from(document.querySelectorAll<HTMLElement>('.process-card'));
   if (!track || cards.length === 0) return;
@@ -236,3 +239,5 @@ function initProcessCards(): void {
 }
 
 initProcessCards();
+// Refresh après init pour corriger les positions avec Lenis
+ScrollTrigger.refresh();
